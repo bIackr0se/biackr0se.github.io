@@ -1,0 +1,18 @@
+<header class="site-header">
+  <div class="ascii-banner" aria-hidden="true">
+<pre>
+ ██╗  ██╗ █████╗  ██████╗██╗  ██╗
+ ██║  ██║██╔══██╗██╔════╝██║ ██╔╝
+ ███████║███████║██║     █████╔╝
+ ██╔══██║██╔══██║██║     ██╔═██╗
+ ██║  ██║██║  ██║╚██████╗██║  ██╗
+ ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
+</pre>
+  </div>
+  <nav class="site-nav">
+    <span class="nav-prompt">$</span>
+    {{ range .Site.Menus.main }}
+      <a href="{{ .URL | absURL }}" class="nav-link{{ if $.IsMenuCurrent "main" . }} active{{ end }}">{{ .Name }}</a>
+    {{ end }}
+  </nav>
+</header>

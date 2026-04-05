@@ -1,0 +1,43 @@
+baseURL = "https://yourusername.github.io/blog/"
+languageCode = "en-us"
+title = "H̷A̶C̸K̷"
+theme = "glitch"
+
+[params]
+  author = "jr"
+  description = "security research // exploit dev // AI adversarial"
+  ascii_header = true
+
+[markup]
+  [markup.highlight]
+    style = "monokai"
+    lineNos = true
+    guessSyntax = true
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[menu]
+  [[menu.main]]
+    name = "blog"
+    url = "/posts/"
+    weight = 1
+  [[menu.main]]
+    name = "ctf"
+    url = "/ctf/"
+    weight = 2
+  [[menu.main]]
+    name = "projects"
+    url = "/projects/"
+    weight = 3
+  [[menu.main]]
+    name = "about"
+    url = "/about/"
+    weight = 4
+
+[outputs]
+  home = ["HTML", "RSS"]
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"

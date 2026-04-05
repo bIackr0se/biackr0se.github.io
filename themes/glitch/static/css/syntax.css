@@ -1,0 +1,25 @@
+/* ═══════════════════════════════════════════════
+   Syntax highlighting — Monokai-inspired for dark bg
+   Hugo uses Chroma; these override wrapper styles
+   ═══════════════════════════════════════════════ */
+
+.highlight {
+  margin: 1.5rem 0;
+}
+
+.highlight pre {
+  margin: 0;
+}
+
+/* Line numbers */
+.highlight .ln {
+  color: #555;
+  margin-right: 1rem;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Override chroma background */
+.highlight .chroma {
+  background: #111 !important;
+}
