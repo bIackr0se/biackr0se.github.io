@@ -1,11 +1,11 @@
-baseURL = "https://yourusername.github.io/blog/"
+baseURL = "https://bIackr0se.github.io/blog/"
 languageCode = "en-us"
-title = "H̷A̶C̸K̷"
+title = "b̷I̶a̸c̷k̶r̷0̴s̸e̷"
 theme = "glitch"
 
 [params]
-  author = "jr"
-  description = "security research // exploit dev // AI adversarial"
+  author = "bIackr0se"
+  description = "AI red teaming // adversarial ML // offensive security"
   ascii_header = true
 
 [markup]

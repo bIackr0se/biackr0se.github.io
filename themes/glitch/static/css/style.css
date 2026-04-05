@@ -80,12 +80,13 @@ body {
 
 .ascii-banner pre {
   font-family: var(--font-mono);
-  font-size: 0.55rem;
+  font-size: 0.45rem;
   line-height: 1.1;
   color: var(--accent);
   white-space: pre;
   margin: 0;
   text-shadow: 0 0 10px rgba(255, 0, 60, 0.5);
+  overflow-x: auto;
 }
 
 /* --- Navigation --- */
@@ -422,7 +423,7 @@ body {
   }
 
   .ascii-banner pre {
-    font-size: 0.35rem;
+    font-size: 0.25rem;
   }
 
   .post-header h1 {
