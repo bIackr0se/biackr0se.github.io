@@ -74,6 +74,46 @@
     }
   }
 
+  /* ---- static rose for inner-page headers --------------------- */
+  [].slice.call(document.querySelectorAll("[data-rose-static]")).forEach(function (c) {
+    var cw = c.offsetWidth, ch = c.offsetHeight;
+    if (!cw || !ch) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    c.width = cw * dpr; c.height = ch * dpr;
+    var g = c.getContext("2d");
+    g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var cx = cw / 2, cy = ch / 2, R = Math.min(cw, ch) * 0.42;
+    g.globalCompositeOperation = "lighter";
+    for (var i = 0; i < 2400; i++) {
+      var th = i * 0.02611;
+      var r = R * Math.cos(5 * th);
+      var wob = Math.sin(i * 0.37) * 4;
+      var x = cx + (r + wob) * Math.cos(th);
+      var y = cy + (r + wob) * Math.sin(th) * 0.92;
+      var a = 0.05 + 0.16 * Math.abs(Math.cos(5 * th));
+      var col = i % 29 === 0 ? "161, 42, 255" : (i % 17 === 0 ? "255, 106, 61" : "255, 42, 77");
+      g.fillStyle = "rgba(" + col + "," + a + ")";
+      g.beginPath();
+      g.arc(x, y, 0.9 + (i % 5) * 0.22, 0, 6.2832);
+      g.fill();
+    }
+  });
+
+  /* ---- scroll-linked drift on display type -------------------- */
+  var plx = [].slice.call(document.querySelectorAll(".statement, .section-title, .contact-title"));
+  if (!reduced && plx.length && "translate" in document.documentElement.style) {
+    var onPlx = function () {
+      var vh = window.innerHeight;
+      plx.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        var p = (r.top + r.height / 2 - vh / 2) / vh;
+        el.style.translate = "0 " + (p * 36).toFixed(1) + "px";
+      });
+    };
+    window.addEventListener("scroll", function () { requestAnimationFrame(onPlx); }, { passive: true });
+    onPlx();
+  }
+
   /* ---- rhodonea particle bloom -------------------------------- */
   var canvas = document.querySelector("[data-rose]");
   if (!canvas) return;

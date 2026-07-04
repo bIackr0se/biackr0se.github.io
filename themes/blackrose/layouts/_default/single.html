@@ -1,6 +1,7 @@
 {{ define "main" }}
 <article class="post">
   <header class="post-head">
+    <canvas class="inner-rose" data-rose-static aria-hidden="true"></canvas>
     <p class="kicker mono">
       {{ if not .Date.IsZero }}{{ .Date.Format "2006.01.02" }}{{ end }}
       {{ with .Params.tags }} &middot; {{ delimit . " / " }}{{ end }}

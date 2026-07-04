@@ -6,7 +6,7 @@ domains:
     copy: Stress-testing LLM agents, RAG stacks, and ML pipelines. Prompt injection, tool abuse, and the failure modes vendors miss.
     tags: [llm-agents, prompt-injection, rag, mcp]
   - title: OT / ICS Security
-    copy: Industrial protocols under fire. Modbus, CAN, PROFINET, and the intrusion detection that guards critical infrastructure.
+    copy: Industrial protocols under fire. Modbus, CAN, and the intrusion detection that guards critical infrastructure.
     tags: [modbus, can-bus, scada, kritis]
   - title: Detection Engineering
     copy: Building and breaking SIEM and IDS at the same time. MITRE ATT&CK mapping, Suricata, Zeek, and ML-assisted triage.

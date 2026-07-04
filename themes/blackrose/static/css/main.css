@@ -161,7 +161,8 @@ img { max-width: 100%; display: block; }
   padding: 0 var(--pad); max-width: 100%;
 }
 .hero-boot {
-  min-height: 1.4em; color: var(--faint); margin-bottom: 1.2rem;
+  min-height: 1.4em; color: var(--faint);
+  margin-bottom: clamp(1.6rem, 5vh, 3.4rem);
 }
 .hero-boot::after { content: "_"; animation: blink 1s steps(1) infinite; color: var(--rose); }
 @keyframes blink { 50% { opacity: 0; } }
@@ -177,6 +178,7 @@ img { max-width: 100%; display: block; }
   margin-top: 1.6rem; color: var(--dim);
   font-size: clamp(0.95rem, 1.6vw, 1.2rem);
   letter-spacing: 0.02em;
+  text-shadow: 0 1px 14px rgba(6, 4, 7, 0.95), 0 0 32px rgba(6, 4, 7, 0.85);
 }
 .hero-sub em { color: var(--rose); font-style: normal; }
 .hero-cue {
@@ -356,6 +358,15 @@ section { position: relative; }
 .page-head {
   max-width: var(--max); margin: 0 auto;
   padding: clamp(2rem, 6vh, 4rem) var(--pad) 2rem;
+}
+.page-head, .post-head { position: relative; }
+.inner-rose {
+  position: absolute; top: -5rem; right: -4rem;
+  width: 28rem; height: 28rem; max-width: 78vw;
+  opacity: 0.5; pointer-events: none; z-index: 0;
+}
+.page-head > *:not(.inner-rose), .post-head > *:not(.inner-rose) {
+  position: relative; z-index: 1;
 }
 .page-title {
   font-family: var(--display);

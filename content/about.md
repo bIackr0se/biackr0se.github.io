@@ -17,7 +17,7 @@ Security engineer and PhD researcher working on adversarial machine learning and
 
 - **Adversarial ML**: evasion attacks, model extraction, data poisoning, robustness evaluation
 - **Offensive security**: network pentesting, exploitation, pivoting, red teaming
-- **Industrial security**: OT/ICS protocols (Modbus, CAN, PROFINET), SCADA, fieldbus security
+- **Industrial security**: OT/ICS protocols (Modbus, CAN), SCADA, fieldbus security
 - **Detection engineering**: SIEM, IDS (Suricata, Zeek), MITRE ATT&CK mapping
 
 ## disclosures
