@@ -9,9 +9,7 @@ tags: ["cve", "disclosure", "mcp", "ssrf"]
 
 ToolHive (Stacklok) runs Model Context Protocol servers for you, each one in its own isolated container, behind an egress proxy, with no local credentials handed to it. The security model is explicit in the README: every MCP server is untrusted, so it stays boxed. That promise is the whole point of the tool.
 
-Before a remote MCP server ever reaches its container, ToolHive runs OAuth discovery against it to work out how to authenticate. That discovery runs host-side, in the ToolHive process, outside the per-server sandbox. So the question is simple: does the untrusted server get to influence what the trusted host fetches during discovery?
-
-It does.
+Before a remote MCP server ever reaches its container, ToolHive runs OAuth discovery against it to work out how to authenticate. That discovery runs host-side, in the ToolHive process, outside the per-server sandbox. The question, then, is whether the untrusted server gets to influence what the trusted host fetches during discovery. It does, and that is the finding.
 
 ## The finding
 
@@ -21,7 +19,7 @@ The project already knows how to block this. It ships `ValidateRemoteURL`, which
 
 ## The tell was in the suppressions
 
-The three discovery requests each carry the maintainers' own `#nosec G704` comment. G704 is gosec's SSRF rule: it flags an HTTP request whose URL flows from external input, which is precisely this. Each suppression waves it off on the premise that the URL is "from internal config" or is "the MCP server endpoint."
+The three discovery requests each carry the maintainers' own `#nosec G704` comment. G704 is gosec's SSRF rule: it flags an HTTP request whose URL flows from external input, which is what these three are. Each suppression waves it off on the premise that the URL is "from internal config" or is "the MCP server endpoint."
 
 That premise is the bug. Under ToolHive's own threat model the remote MCP server is untrusted, so "the MCP server endpoint" is attacker-controlled input, not internal config. The static analyzer found the exact issue and was told, in a comment, that the tainted value was trusted. A parallel cluster of log-injection suppressions on the same responses shows the whole path was treated as trusted, against the design.
 
@@ -37,7 +35,7 @@ The initial-URL HTTPS check is the kind of guard that looks sufficient and is no
 
 The attacker is the remote MCP server, never a URL the victim types. The victim runs a server they mean to use (`thv run <server> --remote-auth`); ToolHive does discovery automatically. The malicious server returns a `401` pointing `resource_metadata` at an HTTPS URL it owns, then `302`s that to `http://169.254.169.254/latest/meta-data/iam/security-credentials/<role>`. Reproduced against a loopback mock instance-metadata service standing in for the real endpoint; the code path is identical on a cloud instance.
 
-## Impact, stated honestly
+## What the primitive reaches
 
 The proven primitive is: the host issues a GET to a server-controlled internal address and follows redirects with no filtering. On an instance with AWS IMDSv1 enabled, the request to `169.254.169.254` returns IAM credentials directly, since IMDSv1 answers a plain GET. IMDSv2 (token via `PUT` plus a header) and GCP (a required `Metadata-Flavor` header) are not reachable by a redirect-following GET, so on those the reachable surface is the broader internal-GET one: internal-only HTTP services, link-local and RFC1918 endpoints, and reachability or error oracles. Rated medium, CVSS 4.7.
 

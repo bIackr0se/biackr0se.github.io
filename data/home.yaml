@@ -13,8 +13,8 @@ domains:
     tags: [siem, ids, suricata, att&ck]
 
 work:
-  - kind: CVE-2026-58196
-    title: SSRF in ToolHive
+  - kind: CVE
+    title: "CVE-2026-58196: SSRF in ToolHive"
     desc: Host-side SSRF in an MCP runtime's auth discovery, reaching cloud instance metadata from outside the container sandbox the tool exists to enforce. Full writeup, fixed in v0.31.0.
     url: projects/toolhive-ssrf/
   - kind: Framework
