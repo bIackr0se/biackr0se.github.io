@@ -1,8 +1,10 @@
 {{ define "main" }}
 
-<section class="hero" id="top">
+<div class="stage" data-stage="hero" style="--stage-vh: 195">
+<section class="hero scene" id="top">
   <canvas class="hero-canvas" data-rose aria-hidden="true"></canvas>
   <div class="hero-veil" aria-hidden="true"></div>
+  <div class="hero-fade" data-hero-fade aria-hidden="true"></div>
   <div class="hero-inner">
     <p class="hero-boot mono" data-boot aria-hidden="true"></p>
     <h1 class="hero-title glitch" data-glitch="BLACKR0SE"><span>BLACKR0SE</span></h1>
@@ -10,22 +12,26 @@
   </div>
   <a class="hero-cue mono" href="#manifesto" aria-label="scroll down">scroll<span class="cue-line" aria-hidden="true"></span></a>
 </section>
+</div>
 
-<section class="manifesto" id="manifesto">
+<div class="stage" data-stage="manifesto" style="--stage-vh: 205">
+<section class="manifesto scene" id="manifesto">
+  <div class="manifesto-wash" data-wash aria-hidden="true"></div>
   <div class="manifesto-inner">
-    <p class="kicker mono" data-reveal>[ 00 // thesis ]</p>
+    <p class="kicker mono">[ 00 // thesis ]</p>
     <h2 class="statement">
-      <span class="line" data-reveal>I break models</span>
-      <span class="line" data-reveal>to make them</span>
-      <span class="line accent" data-reveal>harder to break.</span>
+      <span class="line">I break models</span>
+      <span class="line">to make them</span>
+      <span class="line accent">harder to break.</span>
     </h2>
-    <p class="manifesto-copy" data-reveal>
+    <p class="manifesto-copy">
       Security engineer and PhD researcher working the seam between offensive security
       and machine learning: evasion attacks on intrusion detection, red teaming AI
       pipelines, and hardening the systems that defend critical infrastructure.
     </p>
   </div>
 </section>
+</div>
 
 <section class="domains" id="domains">
   <div class="section-head">
@@ -92,7 +98,11 @@
   <p class="kicker mono" data-reveal>[ 05 // handshake ]</p>
   <h2 class="contact-title glitch" data-glitch="GET IN TOUCH" data-reveal><span>GET IN TOUCH</span></h2>
   <p class="contact-copy" data-reveal>Research collaboration, responsible disclosure, or an interesting target model.</p>
-  <p data-reveal><a class="btn-solid mono" href="https://github.com/{{ site.Params.github }}" target="_blank" rel="me noopener">github.com/{{ site.Params.github }}</a></p>
+  <p data-reveal><a class="btn-solid mono" href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></p>
+  <p class="contact-alt" data-reveal>
+    <a class="btn-ghost mono" href="https://github.com/{{ site.Params.github }}" target="_blank" rel="me noopener">github</a>
+    {{ with site.Params.linkedin }}<a class="btn-ghost mono" href="{{ . }}" target="_blank" rel="me noopener">linkedin</a>{{ end }}
+  </p>
 </section>
 
 {{ end }}

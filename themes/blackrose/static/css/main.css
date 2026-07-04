@@ -65,6 +65,7 @@ body {
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  overflow-x: clip;
 }
 
 ::selection { background: var(--rose); color: #0a0508; }
@@ -140,6 +141,35 @@ img { max-width: 100%; display: block; }
 .readbar {
   position: fixed; top: 0; left: 0; height: 2px; width: 0;
   background: var(--grad); z-index: 110;
+}
+
+/* --- pinned scroll stages (GTA-style scenes) ------------------ */
+/* Pinning engages only with JS running and motion allowed; otherwise
+   stages collapse to normal flow and every scene reads statically. */
+@media (prefers-reduced-motion: no-preference) {
+  html.cinema .stage {
+    height: calc(var(--stage-vh, 100) * 1vh);
+    height: calc(var(--stage-vh, 100) * 1svh);
+  }
+  html.cinema .stage .scene {
+    position: sticky; top: 0;
+    height: 100vh; height: 100svh;
+    overflow: hidden;
+  }
+  html.cinema .stage .hero-inner > *,
+  html.cinema .stage .statement .line,
+  html.cinema .stage .manifesto-copy,
+  html.cinema .stage .manifesto .kicker { will-change: transform, opacity; }
+}
+.hero-fade {
+  position: absolute; inset: 0; background: var(--bg);
+  opacity: 0; pointer-events: none; z-index: 3;
+}
+.manifesto-wash {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 22% 40%, rgba(255, 42, 77, 0.13), transparent 65%),
+    radial-gradient(ellipse 55% 45% at 80% 70%, rgba(161, 42, 255, 0.08), transparent 70%);
 }
 
 /* --- hero --------------------------------------------------- */
@@ -251,6 +281,17 @@ html.js [data-reveal] {
 html.js [data-reveal].in { opacity: 1; transform: none; }
 
 /* --- manifesto ---------------------------------------------- */
+.manifesto { position: relative; }
+@media (prefers-reduced-motion: no-preference) {
+  html.cinema .manifesto.scene {
+    display: flex; align-items: center;
+    max-width: none;
+  }
+  html.cinema .manifesto.scene .manifesto-inner {
+    max-width: var(--max); margin: 0 auto; width: 100%;
+    padding: 0 var(--pad);
+  }
+}
 .manifesto-inner { max-width: 60rem; }
 .statement {
   font-family: var(--display);
@@ -380,6 +421,7 @@ a.pub-row:hover .pub-title { color: var(--rose); }
   margin-bottom: 1.6rem;
 }
 .contact-copy { color: var(--dim); margin-bottom: 2.6rem; }
+.contact-alt { margin-top: 1.4rem; display: flex; gap: 1rem; justify-content: center; }
 
 /* --- inner pages -------------------------------------------- */
 .is-inner main { padding-top: 7rem; }
@@ -462,17 +504,42 @@ a.pub-row:hover .pub-title { color: var(--rose); }
 .footer { border-top: 1px solid var(--line-soft); }
 .footer-inner {
   max-width: var(--max); margin: 0 auto;
-  padding: 3rem var(--pad);
-  display: flex; flex-direction: column; gap: 1.4rem;
+  padding: 3.5rem var(--pad) 2.5rem;
 }
+.footer-grid {
+  display: grid; gap: 2.5rem 2rem;
+  grid-template-columns: 2fr 1fr 1fr 1.4fr;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--line-soft);
+}
+.footer-brand { display: flex; flex-direction: column; gap: 0.9rem; color: var(--rose); }
+.footer-tag { color: var(--dim); }
 .footer-line { color: var(--rose); }
-.footer-links { display: flex; gap: 2rem; }
-.footer-links a {
-  font-family: var(--mono); font-size: 0.8125rem; color: var(--dim);
-  border-bottom: 1px solid transparent;
+.footer-head {
+  color: var(--faint); text-transform: uppercase; letter-spacing: 0.18em;
+  font-size: 0.6875rem; margin-bottom: 1.1rem;
 }
-.footer-links a:hover { color: var(--ink); border-bottom-color: var(--rose); }
-.footer-copy { color: var(--faint); font-size: 0.71875rem; }
+.footer-col { display: flex; flex-direction: column; gap: 0.55rem; align-items: flex-start; }
+.footer-col a {
+  font-family: var(--mono); font-size: 0.8125rem; color: var(--dim);
+  border-bottom: 1px solid transparent; letter-spacing: 0.04em;
+}
+.footer-col a:hover { color: var(--ink); border-bottom-color: var(--rose); }
+.footer-note { color: var(--faint); font-size: 0.71875rem; }
+.footer-copy { color: var(--faint); font-size: 0.71875rem; padding-top: 1.6rem; }
+@media (max-width: 760px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
+}
+
+/* --- nav contact cta ----------------------------------------- */
+.nav-links a.nav-cta {
+  font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em;
+  color: var(--rose); border: 1px solid var(--line);
+  padding: 0.45rem 0.9rem;
+  transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.nav-links a.nav-cta:hover { background: var(--rose); color: #0a0508; border-color: var(--rose); }
 
 /* --- responsive --------------------------------------------- */
 @media (max-width: 640px) {

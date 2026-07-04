@@ -12,6 +12,6 @@
     {{ block "main" . }}{{ end }}
   </main>
   {{ partial "footer.html" . }}
-  <script src="{{ "js/main.js" | relURL }}" defer></script>
+  <script src="{{ "js/main.js" | relURL }}" defer onerror="document.documentElement.classList.remove('js','cinema')"></script>
 </body>
 </html>

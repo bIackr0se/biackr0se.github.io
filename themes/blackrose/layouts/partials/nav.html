@@ -1,18 +1,13 @@
 <header class="nav" data-nav>
   <a class="nav-brand" href="{{ site.Home.RelPermalink }}" aria-label="home">
-    <svg class="nav-rose" viewBox="0 0 32 32" width="22" height="22" aria-hidden="true">
-      <g fill="none" stroke="currentColor" stroke-width="1.4">
-        <path d="M16 4 C20 9 26 10 25 16 C24.4 20 20 22 16 21 C12 22 7.6 20 7 16 C6 10 12 9 16 4 Z"/>
-        <path d="M16 9 C18 12 21 12.5 20.5 16 C20.2 18.2 18 19.4 16 18.8 C14 19.4 11.8 18.2 11.5 16 C11 12.5 14 12 16 9 Z"/>
-        <circle cx="16" cy="15.4" r="1.6" fill="currentColor" stroke="none"/>
-      </g>
-    </svg>
+    {{ partial "rose-icon.html" . }}
     <span class="nav-name" data-glitch="bIackr0se">bIackr0se</span>
   </a>
   <nav class="nav-links" aria-label="primary">
     {{ range site.Menus.main }}
     <a href="{{ .URL | relURL }}" {{ if $.IsMenuCurrent "main" . }}aria-current="page"{{ end }}>{{ .Name }}</a>
     {{ end }}
+    <a class="nav-cta" href="mailto:{{ site.Params.email }}">contact</a>
   </nav>
 </header>
 {{ if .IsPage }}<div class="readbar" data-readbar aria-hidden="true"></div>{{ end }}

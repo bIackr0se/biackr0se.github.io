@@ -29,11 +29,12 @@ Security engineer and PhD researcher working on adversarial machine learning and
 
 More reports are in vendor queues. They land here when they go public.
 
-## certs
+## certs & affiliations
 
 ```
 [+] NVIDIA - Exploring Adversarial Machine Learning
 [+] INE - eJPTv2 (Junior Penetration Tester)
+[+] OWASP - member
 ```
 
 ## publications
@@ -42,4 +43,7 @@ Nine peer-reviewed papers across IEEE and MDPI venues (2025-2026), spanning SIEM
 
 ## contact
 
-Fastest path is GitHub: [github.com/bIackr0se](https://github.com/bIackr0se). For vulnerability reports or research collaboration, open an issue or reach out through the platform you found me on.
+- Email: [jaafer.rahmani@owasp.org](mailto:jaafer.rahmani@owasp.org)
+- GitHub: [github.com/bIackr0se](https://github.com/bIackr0se)
+
+Email is the fastest path for vulnerability reports and research collaboration.

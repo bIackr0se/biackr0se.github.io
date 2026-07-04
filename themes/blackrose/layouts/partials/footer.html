@@ -1,11 +1,30 @@
 <footer class="footer">
   <div class="footer-inner">
-    <p class="footer-line mono">// break things responsibly</p>
-    <div class="footer-links">
-      <a href="https://github.com/{{ site.Params.github }}" rel="me noopener" target="_blank">github</a>
-      <a href="{{ "feed/" | relURL }}">rss</a>
-      <a href="{{ "about/" | relURL }}">about</a>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        {{ partial "rose-icon.html" . }}
+        <p class="footer-tag mono">adversarial ML // AI red teaming // offensive security</p>
+        <p class="footer-line mono">// break things responsibly</p>
+      </div>
+      <nav class="footer-col" aria-label="site index">
+        <p class="footer-head mono">index</p>
+        {{ range site.Menus.main }}
+        <a href="{{ .URL | relURL }}">{{ .Name }}</a>
+        {{ end }}
+        <a href="{{ "feed/" | relURL }}">subscribe</a>
+      </nav>
+      <div class="footer-col">
+        <p class="footer-head mono">elsewhere</p>
+        <a href="https://github.com/{{ site.Params.github }}" rel="me noopener" target="_blank">github</a>
+        {{ with site.Params.linkedin }}<a href="{{ . }}" rel="me noopener" target="_blank">linkedin</a>{{ end }}
+        <a href="https://owasp.org" rel="noopener" target="_blank">owasp</a>
+      </div>
+      <div class="footer-col">
+        <p class="footer-head mono">contact</p>
+        <a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a>
+        <p class="footer-note mono">OWASP member</p>
+      </div>
     </div>
-    <p class="footer-copy mono">&copy; {{ now.Format "2006" }} {{ site.Params.author }} &middot; adversarial ML // AI red teaming // offensive security</p>
+    <p class="footer-copy mono">&copy; {{ now.Format "2006" }} {{ site.Params.author }}</p>
   </div>
 </footer>
