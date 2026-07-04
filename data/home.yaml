@@ -13,19 +13,15 @@ domains:
     tags: [siem, ids, suricata, att&ck]
 
 work:
-  - kind: CVE
-    title: CVE-2026-58196 / ToolHive SSRF
-    desc: Host-side SSRF in remote MCP server authentication discovery, bypassing container isolation. Reported, confirmed, fixed in v0.31.0.
-    url: https://github.com/stacklok/toolhive/security/advisories/GHSA-pr64-jmmf-jp54
-  - kind: Paper
+  - kind: CVE-2026-58196
+    title: SSRF in ToolHive
+    desc: Host-side SSRF in an MCP runtime's auth discovery, reaching cloud instance metadata from outside the container sandbox the tool exists to enforce. Full writeup, fixed in v0.31.0.
+    url: projects/toolhive-ssrf/
+  - kind: Framework
     title: KEYSER
-    desc: Stateful adversarial campaigns against ML-based intrusion detection in industrial automation. To appear at IEEE ETFA 2026.
+    desc: Stateful adversarial campaign evaluation against ML-based intrusion detection in industrial automation. To appear at IEEE ETFA 2026.
     url: "#research"
   - kind: Tool
     title: AutoMCP
     desc: Elastic purple-team MCP server. Extracts security alerts, analyzes them, responds, and runs counter-reconnaissance.
     url: https://github.com/bIackr0se/AutoMCP
-  - kind: Tool
-    title: pasteclean
-    desc: A clipboard sanitizer for terminal users in 25 lines of bash. Someone was charging seven dollars for this.
-    url: posts/pasteclean/
