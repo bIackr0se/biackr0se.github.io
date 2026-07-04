@@ -1,5 +1,5 @@
 /* ============================================================
-   BLACKROSE — digital noir design system
+   BLACKROSE - digital noir design system
    ============================================================ */
 
 @font-face {
@@ -362,7 +362,8 @@ section { position: relative; }
 .page-head, .post-head { position: relative; }
 .inner-rose {
   position: absolute; top: -5rem; right: -4rem;
-  width: 28rem; height: 28rem; max-width: 78vw;
+  width: 28rem; max-width: 78vw;
+  aspect-ratio: 1 / 1; height: auto;
   opacity: 0.5; pointer-events: none; z-index: 0;
 }
 .page-head > *:not(.inner-rose), .post-head > *:not(.inner-rose) {

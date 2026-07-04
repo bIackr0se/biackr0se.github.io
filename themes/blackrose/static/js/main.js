@@ -1,29 +1,28 @@
-/* blackrose — hero bloom, glitch, reveals. No dependencies. */
+/* blackrose - hero bloom, glitch, reveals. No dependencies.
+   Shapes: rhodonea r = R*cos(5*theta), shared visual language with
+   renderStaticRoses (inner pages) and the favicon. */
 (function () {
   "use strict";
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---- nav scrolled state ---------------------------------- */
+  /* ---- scroll chrome (nav state + reading bar), rAF-batched --- */
   var nav = document.querySelector("[data-nav]");
-  function onScrollNav() {
-    if (!nav) return;
-    nav.classList.toggle("scrolled", window.scrollY > 40);
-  }
-  window.addEventListener("scroll", onScrollNav, { passive: true });
-  onScrollNav();
-
-  /* ---- reading progress bar --------------------------------- */
   var readbar = document.querySelector("[data-readbar]");
-  if (readbar) {
-    var onScrollBar = function () {
+  var scrollTick = false;
+  function onScrollChrome() {
+    scrollTick = false;
+    if (nav) nav.classList.toggle("scrolled", window.scrollY > 40);
+    if (readbar) {
       var h = document.documentElement;
       var max = h.scrollHeight - h.clientHeight;
       readbar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + "%";
-    };
-    window.addEventListener("scroll", onScrollBar, { passive: true });
-    onScrollBar();
+    }
   }
+  window.addEventListener("scroll", function () {
+    if (!scrollTick) { scrollTick = true; requestAnimationFrame(onScrollChrome); }
+  }, { passive: true });
+  onScrollChrome();
 
   /* ---- scroll reveals ---------------------------------------- */
   var revealables = [].slice.call(document.querySelectorAll("[data-reveal]"));
@@ -75,28 +74,36 @@
   }
 
   /* ---- static rose for inner-page headers --------------------- */
-  [].slice.call(document.querySelectorAll("[data-rose-static]")).forEach(function (c) {
-    var cw = c.offsetWidth, ch = c.offsetHeight;
-    if (!cw || !ch) return;
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    c.width = cw * dpr; c.height = ch * dpr;
-    var g = c.getContext("2d");
-    g.setTransform(dpr, 0, 0, dpr, 0, 0);
-    var cx = cw / 2, cy = ch / 2, R = Math.min(cw, ch) * 0.42;
-    g.globalCompositeOperation = "lighter";
-    for (var i = 0; i < 2400; i++) {
-      var th = i * 0.02611;
-      var r = R * Math.cos(5 * th);
-      var wob = Math.sin(i * 0.37) * 4;
-      var x = cx + (r + wob) * Math.cos(th);
-      var y = cy + (r + wob) * Math.sin(th) * 0.92;
-      var a = 0.05 + 0.16 * Math.abs(Math.cos(5 * th));
-      var col = i % 29 === 0 ? "161, 42, 255" : (i % 17 === 0 ? "255, 106, 61" : "255, 42, 77");
-      g.fillStyle = "rgba(" + col + "," + a + ")";
-      g.beginPath();
-      g.arc(x, y, 0.9 + (i % 5) * 0.22, 0, 6.2832);
-      g.fill();
-    }
+  function renderStaticRoses() {
+    [].slice.call(document.querySelectorAll("[data-rose-static]")).forEach(function (c) {
+      var cw = c.offsetWidth, ch = c.offsetHeight;
+      if (!cw || !ch) return;
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      c.width = cw * dpr; c.height = ch * dpr;
+      var g = c.getContext("2d");
+      g.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var cx = cw / 2, cy = ch / 2, R = Math.min(cw, ch) * 0.42;
+      g.globalCompositeOperation = "lighter";
+      for (var i = 0; i < 2400; i++) {
+        var th = i * 0.02611;
+        var r = R * Math.cos(5 * th);
+        var wob = Math.sin(i * 0.37) * 4;
+        var x = cx + (r + wob) * Math.cos(th);
+        var y = cy + (r + wob) * Math.sin(th) * 0.92;
+        var a = 0.05 + 0.16 * Math.abs(Math.cos(5 * th));
+        var col = i % 29 === 0 ? "161, 42, 255" : (i % 17 === 0 ? "255, 106, 61" : "255, 42, 77");
+        g.fillStyle = "rgba(" + col + "," + a + ")";
+        g.beginPath();
+        g.arc(x, y, 0.9 + (i % 5) * 0.22, 0, 6.2832);
+        g.fill();
+      }
+    });
+  }
+  renderStaticRoses();
+  var roseResizeTimer = null;
+  window.addEventListener("resize", function () {
+    clearTimeout(roseResizeTimer);
+    roseResizeTimer = setTimeout(renderStaticRoses, 200);
   });
 
   /* ---- scroll-linked drift on display type -------------------- */
@@ -133,25 +140,28 @@
     seed();
   }
 
+  var glow = null;
+
   function seed() {
     var n = Math.floor(Math.min(1400, Math.max(420, (W * H) / 1700)));
     particles = [];
     for (var i = 0; i < n; i++) {
+      var hue = Math.random();
       particles.push({
         theta: Math.random() * Math.PI * 2,
         speed: 0.0022 + Math.random() * 0.0048,
         drift: Math.random() * Math.PI * 2,
         wobble: 4 + Math.random() * 20,
         size: 0.6 + Math.random() * 1.7,
-        hue: Math.random()
+        hue: hue,
+        col: hue < 0.70 ? "255, 42, 77" : (hue < 0.92 ? "255, 106, 61" : "161, 42, 255")
       });
     }
-  }
-
-  function colorOf(p) {
-    if (p.hue < 0.70) return "255, 42, 77";       /* rose */
-    if (p.hue < 0.92) return "255, 106, 61";      /* ember */
-    return "161, 42, 255";                        /* violet */
+    /* core glow, cached per size (parallax offset is negligible at this radius) */
+    var gx = W / 2, gy = H * 0.44, gr = Math.min(W, H) * 0.36 * 1.15;
+    glow = ctx.createRadialGradient(gx, gy, 0, gx, gy, gr);
+    glow.addColorStop(0, "rgba(255, 42, 77, 0.05)");
+    glow.addColorStop(1, "rgba(255, 42, 77, 0)");
   }
 
   /* rose curve r = R * cos(k * theta), k = 5 petals.
@@ -164,18 +174,17 @@
     ctx.fillStyle = staticFrame ? "#060407" : "rgba(6, 4, 7, 0.085)";
     ctx.fillRect(0, 0, W, H);
 
-    /* soft core glow */
-    var g = ctx.createRadialGradient(cx, cy, 0, cx, cy, R * 1.15);
-    g.addColorStop(0, "rgba(255, 42, 77, 0.05)");
-    g.addColorStop(1, "rgba(255, 42, 77, 0)");
-    ctx.fillStyle = g;
-    ctx.fillRect(cx - R * 1.2, cy - R * 1.2, R * 2.4, R * 2.4);
+    /* soft core glow (gradient cached in seed) */
+    ctx.fillStyle = glow;
+    ctx.fillRect(0, 0, W, H);
 
     ctx.globalCompositeOperation = "lighter";
     var rot = t * 0.00014;
-    var steps = staticFrame ? 60 : 1;
+    /* static frame: bounded synchronous pass (reduced-motion users get one draw) */
+    var steps = staticFrame ? 42 : 1;
+    var count = staticFrame ? Math.min(particles.length, 760) : particles.length;
     for (var s = 0; s < steps; s++) {
-      for (var i = 0; i < particles.length; i++) {
+      for (var i = 0; i < count; i++) {
         var p = particles[i];
         p.theta += p.speed;
         var th = p.theta;
@@ -183,8 +192,8 @@
         var wob = Math.sin((t + s * 160) * 0.001 + p.drift) * p.wobble;
         var x = cx + (r + wob) * Math.cos(th + rot);
         var y = cy + (r + wob) * Math.sin(th + rot) * 0.92;
-        var a = (0.16 + 0.34 * Math.abs(Math.cos(5 * th))) * (staticFrame ? 0.35 : 1);
-        ctx.fillStyle = "rgba(" + colorOf(p) + "," + a + ")";
+        var a = (0.16 + 0.34 * Math.abs(Math.cos(5 * th))) * (staticFrame ? 0.5 : 1);
+        ctx.fillStyle = "rgba(" + p.col + "," + a + ")";
         ctx.beginPath();
         ctx.arc(x, y, p.size, 0, Math.PI * 2);
         ctx.fill();
@@ -206,11 +215,28 @@
     requestAnimationFrame(loop);
   }
 
-  window.addEventListener("resize", resize);
-  window.addEventListener("pointermove", function (e) {
-    pointer.x = (e.clientX / W - 0.5) * 2;
-    pointer.y = (e.clientY / H - 0.5) * 2;
-  }, { passive: true });
+  /* Debounced resize; iOS URL-bar scrolls fire resize with tiny height
+     deltas, so only rebuild when the geometry meaningfully changed. */
+  var resizeTimer = null;
+  window.addEventListener("resize", function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      var dw = Math.abs(canvas.clientWidth - W);
+      var dh = Math.abs(canvas.clientHeight - H);
+      if (dw < 2 && dh < 120) return;
+      resize();
+      if (reduced) { t = 9000; draw(true); }
+    }, 160);
+  });
+
+  /* Pointer parallax only where a hovering pointer exists; on touch the
+     last position would stick and keep the bloom off-center. */
+  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    window.addEventListener("pointermove", function (e) {
+      pointer.x = (e.clientX / W - 0.5) * 2;
+      pointer.y = (e.clientY / H - 0.5) * 2;
+    }, { passive: true });
+  }
 
   document.addEventListener("visibilitychange", function () {
     if (reduced) return;

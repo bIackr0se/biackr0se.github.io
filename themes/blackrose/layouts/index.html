@@ -32,7 +32,7 @@
     <p class="kicker mono" data-reveal>[ 01 // operating domains ]</p>
   </div>
   <div class="domain-grid">
-    {{ range $i, $d := site.Data.home.domains }}
+    {{ range $i, $d := hugo.Data.home.domains }}
     <article class="domain-card" data-reveal style="--d:{{ mul $i 60 }}ms">
       <span class="domain-index mono">{{ printf "%02d" (add $i 1) }}</span>
       <h3>{{ $d.title }}</h3>
@@ -49,7 +49,7 @@
     <h2 class="section-title" data-reveal>Proof of<br><span class="accent">damage.</span></h2>
   </div>
   <div class="work-list">
-    {{ range $i, $w := site.Data.home.work }}
+    {{ range $i, $w := hugo.Data.home.work }}
     <a class="work-item" data-reveal href="{{ if hasPrefix $w.url "http" }}{{ $w.url }}{{ else }}{{ $w.url | relURL }}{{ end }}" {{ if hasPrefix $w.url "http" }}target="_blank" rel="noopener"{{ end }}>
       <span class="work-index" aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span>
       <span class="work-body">
@@ -69,7 +69,7 @@
     <h2 class="section-title" data-reveal>Field<br><span class="accent">notes.</span></h2>
   </div>
   <div class="post-list">
-    {{ range first 5 (where site.RegularPages "Section" "posts") }}
+    {{ range first 5 (where site.RegularPages "Section" "posts").ByDate.Reverse }}
     <a class="post-row" data-reveal href="{{ .RelPermalink }}">
       <span class="post-date mono">{{ .Date.Format "2006.01.02" }}</span>
       <span class="post-title">{{ .Title }}</span>
