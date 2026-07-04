@@ -146,8 +146,8 @@
     var applyHero = function (p) {
       var zoom = 1 + Math.pow(p, 1.55) * 6;
       heroRefs.title.style.transform = "scale(" + zoom.toFixed(3) + ")";
-      heroRefs.title.style.opacity = (1 - ramp(p, 0.42, 0.72)).toFixed(3);
-      if (heroRefs.canvas) heroRefs.canvas.style.transform = "scale(" + (1 + p * 0.45).toFixed(3) + ")";
+      heroRefs.title.style.opacity = (1 - ramp(p, 0.56, 0.86)).toFixed(3);
+      if (heroRefs.canvas) heroRefs.canvas.style.transform = "scale(" + (1 + Math.pow(p, 1.3) * 3.2).toFixed(3) + ")";
       var side = (1 - ramp(p, 0.06, 0.3)).toFixed(3);
       if (heroRefs.sub) {
         heroRefs.sub.style.opacity = side;
@@ -155,34 +155,36 @@
       }
       if (heroRefs.boot) heroRefs.boot.style.opacity = side;
       if (heroRefs.cue) heroRefs.cue.style.opacity = (1 - ramp(p, 0.02, 0.12)).toFixed(3);
-      if (heroRefs.fade) heroRefs.fade.style.opacity = ramp(p, 0.62, 0.94).toFixed(3);
+      if (heroRefs.fade) heroRefs.fade.style.opacity = ramp(p, 0.72, 0.97).toFixed(3);
     };
     var applyManifesto = function (p) {
       if (maniRefs.kicker) maniRefs.kicker.style.opacity = ramp(p, 0.02, 0.14).toFixed(3);
       maniRefs.lines.forEach(function (ln, i) {
-        var t = ramp(p, 0.08 + i * 0.2, 0.24 + i * 0.2);
+        var t = ramp(p, 0.08 + i * 0.24, 0.24 + i * 0.24);
+        t = 1 - Math.pow(1 - t, 3);
         ln.style.opacity = t.toFixed(3);
         ln.style.transform = "translateY(" + ((1 - t) * 70).toFixed(1) + "px)";
       });
       if (maniRefs.copy) {
-        var c = ramp(p, 0.66, 0.86);
+        var c = ramp(p, 0.78, 0.98);
+        c = 1 - Math.pow(1 - c, 3);
         maniRefs.copy.style.opacity = c.toFixed(3);
         maniRefs.copy.style.transform = "translateY(" + ((1 - c) * 40).toFixed(1) + "px)";
       }
       if (maniRefs.wash) {
-        maniRefs.wash.style.opacity = (0.6 * Math.sin(Math.PI * clamp01((p - 0.04) / 0.92))).toFixed(3);
+        maniRefs.wash.style.opacity = (0.75 * Math.sin(Math.PI * clamp01((p - 0.04) / 0.92))).toFixed(3);
       }
     };
     var smoothHero, smoothMani;
     var frame = function () {
       if (heroRefs) {
         var hp = progressOf(heroRefs.stage);
-        smoothHero = smoothHero === undefined ? hp : smoothHero + (hp - smoothHero) * 0.16;
+        smoothHero = smoothHero === undefined ? hp : smoothHero + (hp - smoothHero) * 0.24;
         applyHero(smoothHero);
       }
       if (maniRefs) {
         var mp = progressOf(maniRefs.stage);
-        smoothMani = smoothMani === undefined ? mp : smoothMani + (mp - smoothMani) * 0.16;
+        smoothMani = smoothMani === undefined ? mp : smoothMani + (mp - smoothMani) * 0.24;
         applyManifesto(smoothMani);
       }
       if (canTranslate && plx.length) {
