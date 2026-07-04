@@ -177,30 +177,53 @@
       }
     };
     if (stages.length) document.documentElement.classList.add("cinema");
+    /* All layout reads happen before all style writes, and the loop parks
+       itself once scroll and the smoothed values settle; scroll or resize
+       wakes it. (Named scrubActive: `running` belongs to the canvas loop.) */
     var smoothHero, smoothMani;
+    var scrubActive = false, lastY = -1;
     var frame = function () {
+      var settled = window.scrollY === lastY;
+      lastY = window.scrollY;
+
+      /* reads */
+      var hp = heroRefs ? progressOf(heroRefs.stage) : 0;
+      var mp = maniRefs ? progressOf(maniRefs.stage) : 0;
+      var qs = null;
+      if (canTranslate && plx.length) {
+        var vh = window.innerHeight;
+        qs = plx.map(function (el) {
+          var r = el.getBoundingClientRect();
+          return Math.max(-1, Math.min(1, (r.top + r.height / 2 - vh / 2) / vh));
+        });
+      }
+
+      /* writes */
       if (heroRefs) {
-        var hp = progressOf(heroRefs.stage);
         smoothHero = smoothHero === undefined ? hp : smoothHero + (hp - smoothHero) * 0.24;
+        if (Math.abs(hp - smoothHero) > 0.0005) settled = false;
         applyHero(smoothHero);
       }
       if (maniRefs) {
-        var mp = progressOf(maniRefs.stage);
         smoothMani = smoothMani === undefined ? mp : smoothMani + (mp - smoothMani) * 0.24;
+        if (Math.abs(mp - smoothMani) > 0.0005) settled = false;
         applyManifesto(smoothMani);
       }
-      if (canTranslate && plx.length) {
-        var vh = window.innerHeight;
-        plx.forEach(function (el) {
-          var r = el.getBoundingClientRect();
-          var q = (r.top + r.height / 2 - vh / 2) / vh;
-          q = Math.max(-1, Math.min(1, q));
-          el.style.translate = "0 " + (q * 36).toFixed(1) + "px";
+      if (qs) {
+        plx.forEach(function (el, i) {
+          el.style.translate = "0 " + (qs[i] * 36).toFixed(1) + "px";
         });
       }
+
+      if (settled) { scrubActive = false; return; }
       requestAnimationFrame(frame);
     };
-    requestAnimationFrame(frame);
+    var wake = function () {
+      if (!scrubActive) { scrubActive = true; lastY = -1; requestAnimationFrame(frame); }
+    };
+    window.addEventListener("scroll", wake, { passive: true });
+    window.addEventListener("resize", wake);
+    wake();
   }
 
   /* ---- rhodonea particle bloom -------------------------------- */
