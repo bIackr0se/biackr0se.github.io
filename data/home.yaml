@@ -1,16 +1,16 @@
 domains:
-  - title: Adversarial ML
-    copy: Evasion, poisoning, and model extraction against deployed detectors. Robustness evaluation that assumes the attacker adapts.
-    tags: [evasion, poisoning, extraction, robustness]
   - title: AI Red Teaming
-    copy: Stress-testing LLM agents, RAG stacks, and ML pipelines. Prompt injection, tool abuse, and the failure modes vendors miss.
-    tags: [llm-agents, prompt-injection, rag, mcp]
-  - title: OT / ICS Security
-    copy: Industrial protocols under fire. Modbus, CAN, PROFINET, and the intrusion detection that guards critical infrastructure.
-    tags: [modbus, can-bus, profinet, scada, kritis]
-  - title: Detection Engineering
-    copy: Building and breaking SIEM and IDS at the same time. MITRE ATT&CK mapping, Suricata, Zeek, and ML-assisted triage.
-    tags: [siem, ids, suricata, att&ck]
+    copy: Adversarial ML and LLM-agent offense. Evasion, model extraction, prompt injection, and the failure modes that survive a determined, well-resourced attacker.
+    tags: [adversarial-ml, llm-agents, evasion, prompt-injection]
+  - title: AI Blue Teaming
+    copy: Detection that holds when signatures do not. ML-driven SIEM and IDS, MITRE ATT&CK, and hardening detectors against evasion.
+    tags: [siem, ids, att&ck, detection]
+  - title: Critical Infrastructure
+    copy: Where these systems actually run. OT and ICS protocol security across Modbus, CAN, and PROFINET, and intrusion detection for KRITIS.
+    tags: [ot-ics, modbus, can, profinet]
+  - title: Vulnerability Research
+    copy: Breaking AI-agent infrastructure. MCP servers, agent runtimes, and coding assistants, disclosed responsibly.
+    tags: [cve, mcp, disclosure, appsec]
 
 work:
   - kind: CVE

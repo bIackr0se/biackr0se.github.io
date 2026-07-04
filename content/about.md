@@ -1,11 +1,11 @@
 ---
 title: "About"
-description: "Security engineer and PhD researcher. Adversarial ML, AI red teaming, offensive security."
+description: "Security engineer and PhD researcher. AI red teaming and blue teaming, and the ML-driven detection that defends critical infrastructure."
 ---
 
 ## whoami
 
-Security engineer and PhD researcher working on adversarial machine learning and AI red teaming. I break models to make them harder to break: evasion attacks against intrusion detection, red teaming of LLM agents and RAG pipelines, and hardening the AI that defends enterprise and industrial networks.
+Security engineer and PhD researcher in adversarial machine learning. I work both sides of AI security: red-teaming ML models, LLM agents, and RAG pipelines, and engineering the ML-driven detection that defends enterprise and industrial networks against a moving target. Nine peer-reviewed papers, a CVE, and a preference for attacks that reproduce.
 
 ## current
 
@@ -15,10 +15,10 @@ Security engineer and PhD researcher working on adversarial machine learning and
 
 ## arsenal
 
-- **Adversarial ML**: evasion attacks, model extraction, data poisoning, robustness evaluation
-- **Offensive security**: network pentesting, exploitation, pivoting, red teaming
-- **Industrial security**: OT/ICS protocols (Modbus, CAN, PROFINET), SCADA, fieldbus security
-- **Detection engineering**: SIEM, IDS (Suricata, Zeek), MITRE ATT&CK mapping
+- **AI red teaming**: evasion, model extraction, data poisoning, prompt injection, robustness evaluation
+- **AI blue teaming**: ML-driven detection, SIEM, IDS (Suricata, Zeek), MITRE ATT&CK mapping
+- **Critical infrastructure**: OT/ICS protocols (Modbus, CAN, PROFINET), SCADA, fieldbus security
+- **Vulnerability research**: AI-agent infrastructure, MCP servers, exploitation, responsible disclosure
 
 ## disclosures
 
