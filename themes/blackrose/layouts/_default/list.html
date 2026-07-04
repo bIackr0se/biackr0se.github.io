@@ -1,0 +1,21 @@
+{{ define "main" }}
+<section class="page-head">
+  <canvas class="inner-rose" data-rose-static aria-hidden="true"></canvas>
+  <p class="kicker mono">[ index // {{ .Section }} ]</p>
+  <h1 class="page-title glitch" data-glitch="{{ .Title | upper }}"><span>{{ .Title | upper }}</span></h1>
+  {{ with .Content }}<div class="page-intro">{{ . }}</div>{{ end }}
+</section>
+<section class="post-list list-page">
+  {{ $pages := .RegularPages }}
+  {{ if eq (len $pages) 0 }}
+  <p class="empty mono">// nothing declassified yet</p>
+  {{ end }}
+  {{ range $pages.ByDate.Reverse }}
+  <a class="post-row" href="{{ .RelPermalink }}">
+    <span class="post-date mono">{{ .Date.Format "2006.01.02" }}</span>
+    <span class="post-title">{{ .Title }}</span>
+    <span class="post-desc">{{ .Description }}</span>
+  </a>
+  {{ end }}
+</section>
+{{ end }}
