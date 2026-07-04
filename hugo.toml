@@ -9,6 +9,9 @@ theme = "blackrose"
   email = "jaafer.rahmani@owasp.org"
   # LinkedIn profile URL; the link renders only when this is non-empty.
   linkedin = "https://www.linkedin.com/in/jaafer-rahmani/"
+  # Keeps the site out of search engines while it is a work in progress.
+  # Set to false on the day you announce it (e.g. on LinkedIn) to allow indexing.
+  noindex = true
   description = "AI red teaming // adversarial ML // offensive security. Breaking models to make them harder to break."
 
 [markup]

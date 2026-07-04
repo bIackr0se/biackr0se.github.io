@@ -144,19 +144,38 @@
       if (total <= 0) return 0;
       return clamp01(-el.getBoundingClientRect().top / total);
     };
+    /* Cinematic dolly, not a zoom-through: layers rise at different rates
+       (depth parallax), the rose stays the living centerpiece and blooms
+       gently, the wordmark racks out of focus as it lifts, and the whole
+       atmosphere closes to black for the handoff. */
     var applyHero = function (p) {
-      var zoom = 1 + Math.pow(p, 1.55) * 6;
-      heroRefs.title.style.transform = "scale(" + zoom.toFixed(3) + ")";
-      heroRefs.title.style.opacity = (1 - ramp(p, 0.56, 0.86)).toFixed(3);
-      if (heroRefs.canvas) heroRefs.canvas.style.transform = "scale(" + (1 + Math.pow(p, 1.3) * 3.2).toFixed(3) + ")";
-      var side = (1 - ramp(p, 0.06, 0.3)).toFixed(3);
-      if (heroRefs.sub) {
-        heroRefs.sub.style.opacity = side;
-        heroRefs.sub.style.transform = "translateY(" + (ramp(p, 0.06, 0.3) * 30).toFixed(1) + "px)";
+      var e = 1 - Math.pow(1 - p, 2); /* eased, decelerating drift */
+      /* Baton-pass exit: front layer leaves, the wordmark racks out of
+         focus, the rose holds as the sole lit centerpiece, then the
+         atmosphere closes. Each element gets its own beat. */
+      /* wordmark: focus pulls off (blur leads) just before it dissolves */
+      var tf = ramp(p, 0.46, 0.78); tf = 1 - Math.pow(1 - tf, 3);
+      var bf = ramp(p, 0.42, 0.74); bf = 1 - Math.pow(1 - bf, 3);
+      heroRefs.title.style.transform =
+        "translate3d(0," + (-e * 120).toFixed(1) + "px,0) scale(" + (1 + p * 0.15).toFixed(3) + ")";
+      heroRefs.title.style.opacity = (1 - tf).toFixed(3);
+      heroRefs.title.style.filter = bf > 0 ? "blur(" + (bf * 7).toFixed(1) + "px)" : "";
+      /* rose: deepest layer, slowest rise, gentle bloom, holds lit longest */
+      if (heroRefs.canvas) {
+        heroRefs.canvas.style.transform =
+          "translate3d(0," + (-e * 55).toFixed(1) + "px,0) scale(" + (1 + p * 0.5).toFixed(3) + ")";
+        heroRefs.canvas.style.opacity = (1 - ramp(p, 0.80, 0.99)).toFixed(3);
       }
-      if (heroRefs.boot) heroRefs.boot.style.opacity = side;
-      if (heroRefs.cue) heroRefs.cue.style.opacity = (1 - ramp(p, 0.02, 0.12)).toFixed(3);
-      if (heroRefs.fade) heroRefs.fade.style.opacity = ramp(p, 0.72, 0.97).toFixed(3);
+      /* front layer: fastest rise, fades first */
+      var front = (1 - ramp(p, 0.04, 0.24)).toFixed(3);
+      if (heroRefs.sub) {
+        heroRefs.sub.style.opacity = front;
+        heroRefs.sub.style.transform = "translate3d(0," + (-e * 200).toFixed(1) + "px,0)";
+      }
+      if (heroRefs.boot) heroRefs.boot.style.opacity = front;
+      if (heroRefs.cue) heroRefs.cue.style.opacity = (1 - ramp(p, 0.02, 0.1)).toFixed(3);
+      /* atmosphere closes to black for the handoff */
+      if (heroRefs.fade) heroRefs.fade.style.opacity = ramp(p, 0.74, 0.99).toFixed(3);
     };
     var applyManifesto = function (p) {
       if (maniRefs.kicker) maniRefs.kicker.style.opacity = ramp(p, 0.02, 0.14).toFixed(3);
