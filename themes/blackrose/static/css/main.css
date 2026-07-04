@@ -241,12 +241,14 @@ section { position: relative; }
 }
 
 /* --- reveal ------------------------------------------------- */
-[data-reveal] {
+/* Hidden state only when JS is running (html.js set inline in head);
+   without JS the content must stay visible. */
+html.js [data-reveal] {
   opacity: 0; transform: translateY(28px);
   transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
   transition-delay: var(--d, 0ms);
 }
-[data-reveal].in { opacity: 1; transform: none; }
+html.js [data-reveal].in { opacity: 1; transform: none; }
 
 /* --- manifesto ---------------------------------------------- */
 .manifesto-inner { max-width: 60rem; }
@@ -325,7 +327,7 @@ section { position: relative; }
   border-bottom: 1px solid var(--line-soft);
   transition: background 250ms ease, padding 250ms ease;
 }
-.pub-row:hover { background: linear-gradient(90deg, rgba(255, 42, 77, 0.06), transparent 70%); padding-left: 1.2rem; }
+a.pub-row:hover { background: linear-gradient(90deg, rgba(255, 42, 77, 0.06), transparent 70%); padding-left: 1.2rem; }
 .pub-body { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
 .pub-title { font-weight: 500; font-size: 1.02rem; line-height: 1.45; }
 a.pub-row:hover .pub-title { color: var(--rose); }

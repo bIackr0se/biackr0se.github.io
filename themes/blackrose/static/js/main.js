@@ -114,6 +114,7 @@
       plx.forEach(function (el) {
         var r = el.getBoundingClientRect();
         var p = (r.top + r.height / 2 - vh / 2) / vh;
+        p = Math.max(-1, Math.min(1, p));
         el.style.translate = "0 " + (p * 36).toFixed(1) + "px";
       });
     };

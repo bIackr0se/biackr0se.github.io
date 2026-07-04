@@ -1,12 +1,22 @@
 {{- $reveal := . -}}
 <div class="pub-list">
   {{ range hugo.Data.publications }}
-  <{{ if .url }}a href="{{ .url }}" target="_blank" rel="noopener"{{ else }}div{{ end }} class="pub-row"{{ if $reveal }} data-reveal{{ end }}>
+  {{ if .url }}
+  <a href="{{ .url }}" target="_blank" rel="noopener" class="pub-row"{{ if $reveal }} data-reveal{{ end }}>
     <span class="pub-body">
       <span class="pub-title">{{ .title }}</span>
       <span class="pub-venue mono">{{ .venue }}{{ with .note }} &middot; {{ . }}{{ end }}</span>
     </span>
     <span class="pub-status mono {{ if eq .status "published" }}is-live{{ end }}">{{ .status }}</span>
-  </{{ if .url }}a{{ else }}div{{ end }}>
+  </a>
+  {{ else }}
+  <div class="pub-row"{{ if $reveal }} data-reveal{{ end }}>
+    <span class="pub-body">
+      <span class="pub-title">{{ .title }}</span>
+      <span class="pub-venue mono">{{ .venue }}{{ with .note }} &middot; {{ . }}{{ end }}</span>
+    </span>
+    <span class="pub-status mono {{ if eq .status "published" }}is-live{{ end }}">{{ .status }}</span>
+  </div>
+  {{ end }}
   {{ end }}
 </div>
