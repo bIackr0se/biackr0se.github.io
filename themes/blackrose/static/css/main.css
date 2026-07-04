@@ -142,6 +142,31 @@ img { max-width: 100%; display: block; }
   background: var(--grad); z-index: 110;
 }
 
+/* --- pinned scroll stages (GTA-style scenes) ------------------ */
+/* Pinning engages only with JS running and motion allowed; otherwise
+   stages collapse to normal flow and every scene reads statically. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js .stage { height: calc(var(--stage-vh, 100) * 1svh); }
+  html.js .stage .scene {
+    position: sticky; top: 0;
+    height: 100svh; overflow: hidden;
+  }
+  html.js .stage .hero-inner > *,
+  html.js .stage .statement .line,
+  html.js .stage .manifesto-copy,
+  html.js .stage .manifesto .kicker { will-change: transform, opacity; }
+}
+.hero-fade {
+  position: absolute; inset: 0; background: var(--bg);
+  opacity: 0; pointer-events: none; z-index: 3;
+}
+.manifesto-wash {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 22% 40%, rgba(255, 42, 77, 0.13), transparent 65%),
+    radial-gradient(ellipse 55% 45% at 80% 70%, rgba(161, 42, 255, 0.08), transparent 70%);
+}
+
 /* --- hero --------------------------------------------------- */
 .hero {
   position: relative; min-height: 100svh;
@@ -251,6 +276,17 @@ html.js [data-reveal] {
 html.js [data-reveal].in { opacity: 1; transform: none; }
 
 /* --- manifesto ---------------------------------------------- */
+.manifesto { position: relative; }
+@media (prefers-reduced-motion: no-preference) {
+  html.js .manifesto.scene {
+    display: flex; align-items: center;
+    max-width: none;
+  }
+  html.js .manifesto.scene .manifesto-inner {
+    max-width: var(--max); margin: 0 auto; width: 100%;
+    padding: 0 var(--pad);
+  }
+}
 .manifesto-inner { max-width: 60rem; }
 .statement {
   font-family: var(--display);

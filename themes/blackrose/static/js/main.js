@@ -106,20 +106,97 @@
     roseResizeTimer = setTimeout(renderStaticRoses, 200);
   });
 
-  /* ---- scroll-linked drift on display type -------------------- */
-  var plx = [].slice.call(document.querySelectorAll(".statement, .section-title, .contact-title"));
-  if (!reduced && plx.length && "translate" in document.documentElement.style) {
-    var onPlx = function () {
-      var vh = window.innerHeight;
-      plx.forEach(function (el) {
-        var r = el.getBoundingClientRect();
-        var p = (r.top + r.height / 2 - vh / 2) / vh;
-        p = Math.max(-1, Math.min(1, p));
-        el.style.translate = "0 " + (p * 36).toFixed(1) + "px";
-      });
+  /* ---- scroll-scrubbed scenes + display-type drift ------------- */
+  /* One rAF loop drives the pinned stages (hero push-through, manifesto
+     line scrub) and the parallax drift, all lerp-smoothed. */
+  var stages = [].slice.call(document.querySelectorAll("[data-stage]"));
+  var plx = [].slice.call(document.querySelectorAll(".section-title, .contact-title"));
+  var canTranslate = "translate" in document.documentElement.style;
+  if (!reduced && (stages.length || plx.length)) {
+    var clamp01 = function (v) { return v < 0 ? 0 : (v > 1 ? 1 : v); };
+    var ramp = function (p, a, b) { return clamp01((p - a) / (b - a)); };
+    var heroRefs = null, maniRefs = null;
+    stages.forEach(function (st) {
+      var kind = st.getAttribute("data-stage");
+      if (kind === "hero") {
+        heroRefs = {
+          stage: st,
+          title: st.querySelector(".hero-title"),
+          sub: st.querySelector(".hero-sub"),
+          boot: st.querySelector("[data-boot]"),
+          cue: st.querySelector(".hero-cue"),
+          canvas: st.querySelector("[data-rose]"),
+          fade: st.querySelector("[data-hero-fade]")
+        };
+      } else if (kind === "manifesto") {
+        maniRefs = {
+          stage: st,
+          kicker: st.querySelector(".kicker"),
+          lines: [].slice.call(st.querySelectorAll(".statement .line")),
+          copy: st.querySelector(".manifesto-copy"),
+          wash: st.querySelector("[data-wash]")
+        };
+      }
+    });
+    var progressOf = function (el) {
+      var total = el.offsetHeight - window.innerHeight;
+      if (total <= 0) return 0;
+      return clamp01(-el.getBoundingClientRect().top / total);
     };
-    window.addEventListener("scroll", function () { requestAnimationFrame(onPlx); }, { passive: true });
-    onPlx();
+    var applyHero = function (p) {
+      var zoom = 1 + Math.pow(p, 1.55) * 6;
+      heroRefs.title.style.transform = "scale(" + zoom.toFixed(3) + ")";
+      heroRefs.title.style.opacity = (1 - ramp(p, 0.42, 0.72)).toFixed(3);
+      if (heroRefs.canvas) heroRefs.canvas.style.transform = "scale(" + (1 + p * 0.45).toFixed(3) + ")";
+      var side = (1 - ramp(p, 0.06, 0.3)).toFixed(3);
+      if (heroRefs.sub) {
+        heroRefs.sub.style.opacity = side;
+        heroRefs.sub.style.transform = "translateY(" + (ramp(p, 0.06, 0.3) * 30).toFixed(1) + "px)";
+      }
+      if (heroRefs.boot) heroRefs.boot.style.opacity = side;
+      if (heroRefs.cue) heroRefs.cue.style.opacity = (1 - ramp(p, 0.02, 0.12)).toFixed(3);
+      if (heroRefs.fade) heroRefs.fade.style.opacity = ramp(p, 0.62, 0.94).toFixed(3);
+    };
+    var applyManifesto = function (p) {
+      if (maniRefs.kicker) maniRefs.kicker.style.opacity = ramp(p, 0.02, 0.14).toFixed(3);
+      maniRefs.lines.forEach(function (ln, i) {
+        var t = ramp(p, 0.08 + i * 0.2, 0.24 + i * 0.2);
+        ln.style.opacity = t.toFixed(3);
+        ln.style.transform = "translateY(" + ((1 - t) * 70).toFixed(1) + "px)";
+      });
+      if (maniRefs.copy) {
+        var c = ramp(p, 0.66, 0.86);
+        maniRefs.copy.style.opacity = c.toFixed(3);
+        maniRefs.copy.style.transform = "translateY(" + ((1 - c) * 40).toFixed(1) + "px)";
+      }
+      if (maniRefs.wash) {
+        maniRefs.wash.style.opacity = (0.6 * Math.sin(Math.PI * clamp01((p - 0.04) / 0.92))).toFixed(3);
+      }
+    };
+    var smoothHero, smoothMani;
+    var frame = function () {
+      if (heroRefs) {
+        var hp = progressOf(heroRefs.stage);
+        smoothHero = smoothHero === undefined ? hp : smoothHero + (hp - smoothHero) * 0.16;
+        applyHero(smoothHero);
+      }
+      if (maniRefs) {
+        var mp = progressOf(maniRefs.stage);
+        smoothMani = smoothMani === undefined ? mp : smoothMani + (mp - smoothMani) * 0.16;
+        applyManifesto(smoothMani);
+      }
+      if (canTranslate && plx.length) {
+        var vh = window.innerHeight;
+        plx.forEach(function (el) {
+          var r = el.getBoundingClientRect();
+          var q = (r.top + r.height / 2 - vh / 2) / vh;
+          q = Math.max(-1, Math.min(1, q));
+          el.style.translate = "0 " + (q * 36).toFixed(1) + "px";
+        });
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
   }
 
   /* ---- rhodonea particle bloom -------------------------------- */
