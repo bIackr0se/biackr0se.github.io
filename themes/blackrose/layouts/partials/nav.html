@@ -13,6 +13,7 @@
     {{ range site.Menus.main }}
     <a href="{{ .URL | relURL }}" {{ if $.IsMenuCurrent "main" . }}aria-current="page"{{ end }}>{{ .Name }}</a>
     {{ end }}
+    <a class="nav-cta" href="mailto:{{ site.Params.email }}">contact</a>
   </nav>
 </header>
 {{ if .IsPage }}<div class="readbar" data-readbar aria-hidden="true"></div>{{ end }}

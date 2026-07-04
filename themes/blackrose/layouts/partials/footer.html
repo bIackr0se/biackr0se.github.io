@@ -1,11 +1,36 @@
 <footer class="footer">
   <div class="footer-inner">
-    <p class="footer-line mono">// break things responsibly</p>
-    <div class="footer-links">
-      <a href="https://github.com/{{ site.Params.github }}" rel="me noopener" target="_blank">github</a>
-      <a href="{{ "feed/" | relURL }}">rss</a>
-      <a href="{{ "about/" | relURL }}">about</a>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <svg class="nav-rose" viewBox="0 0 32 32" width="22" height="22" aria-hidden="true">
+          <g fill="none" stroke="currentColor" stroke-width="1.4">
+            <path d="M16 4 C20 9 26 10 25 16 C24.4 20 20 22 16 21 C12 22 7.6 20 7 16 C6 10 12 9 16 4 Z"/>
+            <path d="M16 9 C18 12 21 12.5 20.5 16 C20.2 18.2 18 19.4 16 18.8 C14 19.4 11.8 18.2 11.5 16 C11 12.5 14 12 16 9 Z"/>
+            <circle cx="16" cy="15.4" r="1.6" fill="currentColor" stroke="none"/>
+          </g>
+        </svg>
+        <p class="footer-tag mono">adversarial ML // AI red teaming // offensive security</p>
+        <p class="footer-line mono">// break things responsibly</p>
+      </div>
+      <nav class="footer-col" aria-label="site index">
+        <p class="footer-head mono">index</p>
+        {{ range site.Menus.main }}
+        <a href="{{ .URL | relURL }}">{{ .Name }}</a>
+        {{ end }}
+        <a href="{{ "feed/" | relURL }}">subscribe</a>
+      </nav>
+      <div class="footer-col">
+        <p class="footer-head mono">elsewhere</p>
+        <a href="https://github.com/{{ site.Params.github }}" rel="me noopener" target="_blank">github</a>
+        {{ with site.Params.linkedin }}<a href="{{ . }}" rel="me noopener" target="_blank">linkedin</a>{{ end }}
+        <a href="https://owasp.org" rel="noopener" target="_blank">owasp</a>
+      </div>
+      <div class="footer-col">
+        <p class="footer-head mono">contact</p>
+        <a href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a>
+        <p class="footer-note mono">OWASP member</p>
+      </div>
     </div>
-    <p class="footer-copy mono">&copy; {{ now.Format "2006" }} {{ site.Params.author }} &middot; adversarial ML // AI red teaming // offensive security</p>
+    <p class="footer-copy mono">&copy; {{ now.Format "2006" }} {{ site.Params.author }}</p>
   </div>
 </footer>

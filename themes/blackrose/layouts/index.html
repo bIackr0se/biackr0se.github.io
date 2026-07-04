@@ -98,7 +98,11 @@
   <p class="kicker mono" data-reveal>[ 05 // handshake ]</p>
   <h2 class="contact-title glitch" data-glitch="GET IN TOUCH" data-reveal><span>GET IN TOUCH</span></h2>
   <p class="contact-copy" data-reveal>Research collaboration, responsible disclosure, or an interesting target model.</p>
-  <p data-reveal><a class="btn-solid mono" href="https://github.com/{{ site.Params.github }}" target="_blank" rel="me noopener">github.com/{{ site.Params.github }}</a></p>
+  <p data-reveal><a class="btn-solid mono" href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></p>
+  <p class="contact-alt" data-reveal>
+    <a class="btn-ghost mono" href="https://github.com/{{ site.Params.github }}" target="_blank" rel="me noopener">github</a>
+    {{ with site.Params.linkedin }}<a class="btn-ghost mono" href="{{ . }}" target="_blank" rel="me noopener">linkedin</a>{{ end }}
+  </p>
 </section>
 
 {{ end }}
