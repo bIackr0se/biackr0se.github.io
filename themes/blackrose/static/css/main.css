@@ -539,7 +539,6 @@ a.pub-row:hover .pub-title { color: var(--rose); }
   padding: 0.45rem 0.9rem;
   transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
 }
-.nav-links a.nav-cta { color: var(--rose); padding: 0.45rem 0.9rem; }
 .nav-links a.nav-cta:hover { background: var(--rose); color: #0a0508; border-color: var(--rose); }
 
 /* --- responsive --------------------------------------------- */
