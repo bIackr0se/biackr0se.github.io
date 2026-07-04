@@ -5,7 +5,7 @@
   <div class="hero-veil" aria-hidden="true"></div>
   <div class="hero-inner">
     <p class="hero-boot mono" data-boot aria-hidden="true"></p>
-    <h1 class="hero-title glitch" data-glitch="BIACKR0SE"><span>BIACKR0SE</span></h1>
+    <h1 class="hero-title glitch" data-glitch="BLACKR0SE"><span>BLACKR0SE</span></h1>
     <p class="hero-sub">adversarial machine learning <em>//</em> AI red teaming <em>//</em> offensive security</p>
   </div>
   <a class="hero-cue mono" href="#manifesto" aria-label="scroll down">scroll<span class="cue-line" aria-hidden="true"></span></a>
@@ -50,7 +50,7 @@
   </div>
   <div class="work-list">
     {{ range $i, $w := hugo.Data.home.work }}
-    <a class="work-item" data-reveal href="{{ if hasPrefix $w.url "http" }}{{ $w.url }}{{ else }}{{ $w.url | relURL }}{{ end }}" {{ if hasPrefix $w.url "http" }}target="_blank" rel="noopener"{{ end }}>
+    <a class="work-item" data-reveal href="{{ if or (hasPrefix $w.url "http") (hasPrefix $w.url "#") }}{{ $w.url }}{{ else }}{{ $w.url | relURL }}{{ end }}" {{ if hasPrefix $w.url "http" }}target="_blank" rel="noopener"{{ end }}>
       <span class="work-index" aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span>
       <span class="work-body">
         <span class="work-kind mono">{{ $w.kind }}</span>
@@ -63,9 +63,27 @@
   </div>
 </section>
 
+<section class="research" id="research">
+  <div class="section-head">
+    <p class="kicker mono" data-reveal>[ 03 // peer-reviewed ]</p>
+    <h2 class="section-title" data-reveal>Published<br><span class="accent">research.</span></h2>
+  </div>
+  <div class="pub-list">
+    {{ range hugo.Data.publications }}
+    <{{ if .url }}a href="{{ .url }}" target="_blank" rel="noopener"{{ else }}div{{ end }} class="pub-row" data-reveal>
+      <span class="pub-body">
+        <span class="pub-title">{{ .title }}</span>
+        <span class="pub-venue mono">{{ .venue }}{{ with .note }} &middot; {{ . }}{{ end }}</span>
+      </span>
+      <span class="pub-status mono {{ if eq .status "published" }}is-live{{ end }}">{{ .status }}</span>
+    </{{ if .url }}a{{ else }}div{{ end }}>
+    {{ end }}
+  </div>
+</section>
+
 <section class="writing" id="writing">
   <div class="section-head">
-    <p class="kicker mono" data-reveal>[ 03 // transmissions ]</p>
+    <p class="kicker mono" data-reveal>[ 04 // transmissions ]</p>
     <h2 class="section-title" data-reveal>Field<br><span class="accent">notes.</span></h2>
   </div>
   <div class="post-list">
@@ -81,7 +99,7 @@
 </section>
 
 <section class="contact" id="contact">
-  <p class="kicker mono" data-reveal>[ 04 // handshake ]</p>
+  <p class="kicker mono" data-reveal>[ 05 // handshake ]</p>
   <h2 class="contact-title glitch" data-glitch="GET IN TOUCH" data-reveal><span>GET IN TOUCH</span></h2>
   <p class="contact-copy" data-reveal>Research collaboration, responsible disclosure, or an interesting target model.</p>
   <p data-reveal><a class="btn-solid mono" href="https://github.com/{{ site.Params.github }}" target="_blank" rel="me noopener">github.com/{{ site.Params.github }}</a></p>

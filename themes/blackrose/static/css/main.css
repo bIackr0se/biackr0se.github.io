@@ -315,6 +315,32 @@ section { position: relative; }
 }
 .work-item:hover .work-arrow { color: var(--rose); transform: translate(4px, -4px); }
 
+/* --- publications ------------------------------------------- */
+.research { padding: clamp(5rem, 12vh, 9rem) var(--pad); max-width: var(--max); margin: 0 auto; }
+.pub-list { border-top: 1px solid var(--line-soft); }
+.pub-row {
+  display: grid; grid-template-columns: 1fr auto; gap: 0.5rem 2rem;
+  align-items: center;
+  padding: 1.5rem 0.5rem;
+  border-bottom: 1px solid var(--line-soft);
+  transition: background 250ms ease, padding 250ms ease;
+}
+.pub-row:hover { background: linear-gradient(90deg, rgba(255, 42, 77, 0.06), transparent 70%); padding-left: 1.2rem; }
+.pub-body { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
+.pub-title { font-weight: 500; font-size: 1.02rem; line-height: 1.45; }
+a.pub-row:hover .pub-title { color: var(--rose); }
+.pub-venue { color: var(--faint); font-size: 0.71875rem; text-transform: uppercase; letter-spacing: 0.1em; }
+.pub-status {
+  font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ember); border: 1px solid rgba(255, 106, 61, 0.35);
+  padding: 0.3rem 0.7rem; white-space: nowrap;
+}
+.pub-status.is-live { color: var(--rose); border-color: var(--line); }
+@media (max-width: 640px) {
+  .pub-row { grid-template-columns: 1fr; }
+  .pub-status { justify-self: start; }
+}
+
 /* --- writing / post lists ----------------------------------- */
 .post-list { border-top: 1px solid var(--line-soft); }
 .post-row {
