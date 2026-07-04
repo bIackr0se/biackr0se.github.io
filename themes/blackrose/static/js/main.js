@@ -150,18 +150,22 @@
        atmosphere closes to black for the handoff. */
     var applyHero = function (p) {
       var e = 1 - Math.pow(1 - p, 2); /* eased, decelerating drift */
-      /* rose: deepest layer, slowest rise, gentle bloom, holds longest */
-      if (heroRefs.canvas) {
-        heroRefs.canvas.style.transform =
-          "translate3d(0," + (-e * 55).toFixed(1) + "px,0) scale(" + (1 + p * 0.5).toFixed(3) + ")";
-        heroRefs.canvas.style.opacity = (1 - ramp(p, 0.62, 0.96)).toFixed(3);
-      }
-      /* wordmark: mid layer, modest scale, racks out of focus on exit */
-      var tf = ramp(p, 0.48, 0.8);
+      /* Baton-pass exit: front layer leaves, the wordmark racks out of
+         focus, the rose holds as the sole lit centerpiece, then the
+         atmosphere closes. Each element gets its own beat. */
+      /* wordmark: focus pulls off (blur leads) just before it dissolves */
+      var tf = ramp(p, 0.46, 0.78); tf = 1 - Math.pow(1 - tf, 3);
+      var bf = ramp(p, 0.42, 0.74); bf = 1 - Math.pow(1 - bf, 3);
       heroRefs.title.style.transform =
         "translate3d(0," + (-e * 120).toFixed(1) + "px,0) scale(" + (1 + p * 0.15).toFixed(3) + ")";
       heroRefs.title.style.opacity = (1 - tf).toFixed(3);
-      heroRefs.title.style.filter = tf > 0 ? "blur(" + (tf * 7).toFixed(1) + "px)" : "";
+      heroRefs.title.style.filter = bf > 0 ? "blur(" + (bf * 7).toFixed(1) + "px)" : "";
+      /* rose: deepest layer, slowest rise, gentle bloom, holds lit longest */
+      if (heroRefs.canvas) {
+        heroRefs.canvas.style.transform =
+          "translate3d(0," + (-e * 55).toFixed(1) + "px,0) scale(" + (1 + p * 0.5).toFixed(3) + ")";
+        heroRefs.canvas.style.opacity = (1 - ramp(p, 0.80, 0.99)).toFixed(3);
+      }
       /* front layer: fastest rise, fades first */
       var front = (1 - ramp(p, 0.04, 0.24)).toFixed(3);
       if (heroRefs.sub) {
@@ -171,7 +175,7 @@
       if (heroRefs.boot) heroRefs.boot.style.opacity = front;
       if (heroRefs.cue) heroRefs.cue.style.opacity = (1 - ramp(p, 0.02, 0.1)).toFixed(3);
       /* atmosphere closes to black for the handoff */
-      if (heroRefs.fade) heroRefs.fade.style.opacity = ramp(p, 0.66, 0.98).toFixed(3);
+      if (heroRefs.fade) heroRefs.fade.style.opacity = ramp(p, 0.74, 0.99).toFixed(3);
     };
     var applyManifesto = function (p) {
       if (maniRefs.kicker) maniRefs.kicker.style.opacity = ramp(p, 0.02, 0.14).toFixed(3);
