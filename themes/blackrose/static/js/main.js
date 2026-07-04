@@ -139,7 +139,8 @@
       }
     });
     var progressOf = function (el) {
-      var total = el.offsetHeight - window.innerHeight;
+      var scene = el.firstElementChild;
+      var total = el.offsetHeight - (scene ? scene.offsetHeight : window.innerHeight);
       if (total <= 0) return 0;
       return clamp01(-el.getBoundingClientRect().top / total);
     };
@@ -175,6 +176,7 @@
         maniRefs.wash.style.opacity = (0.75 * Math.sin(Math.PI * clamp01((p - 0.04) / 0.92))).toFixed(3);
       }
     };
+    if (stages.length) document.documentElement.classList.add("cinema");
     var smoothHero, smoothMani;
     var frame = function () {
       if (heroRefs) {
