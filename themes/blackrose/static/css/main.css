@@ -429,7 +429,7 @@ a.pub-row:hover .pub-title { color: var(--rose); }
   max-width: var(--max); margin: 0 auto;
   padding: clamp(2rem, 6vh, 4rem) var(--pad) 2rem;
 }
-.page-head, .post-head { position: relative; }
+.page-head, .post-head { position: relative; overflow: hidden; }
 .inner-rose {
   position: absolute; top: -5rem; right: -4rem;
   width: 28rem; max-width: 78vw;
