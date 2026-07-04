@@ -176,8 +176,8 @@
       }
       if (heroRefs.boot) heroRefs.boot.style.opacity = front;
       if (heroRefs.cue) heroRefs.cue.style.opacity = (1 - ramp(p, 0.02, 0.1)).toFixed(3);
-      /* atmosphere closes to black for the handoff */
-      if (heroRefs.fade) heroRefs.fade.style.opacity = ramp(p, 0.70, 0.99).toFixed(3);
+      /* atmosphere closes to black only after the rose has held bright */
+      if (heroRefs.fade) heroRefs.fade.style.opacity = ramp(p, 0.80, 0.99).toFixed(3);
     };
     var applyManifesto = function (p) {
       if (maniRefs.kicker) maniRefs.kicker.style.opacity = ramp(p, 0.02, 0.14).toFixed(3);

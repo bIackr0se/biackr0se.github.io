@@ -1,9 +1,9 @@
 domains:
   - title: AI Red Teaming
-    copy: Adversarial ML and LLM-agent offense. Evasion, model extraction, prompt injection, and the failure modes that survive a motivated, adaptive attacker.
+    copy: Adversarial ML and LLM-agent offense. Evasion, model extraction, prompt injection, and the failure modes that survive a determined, well-resourced attacker.
     tags: [adversarial-ml, llm-agents, evasion, prompt-injection]
   - title: AI Blue Teaming
-    copy: The detection that has to hold when the attacker adapts. ML-driven SIEM and IDS, MITRE ATT&CK, and hardening detectors against evasion.
+    copy: Detection that holds when signatures do not. ML-driven SIEM and IDS, MITRE ATT&CK, and hardening detectors against evasion.
     tags: [siem, ids, att&ck, detection]
   - title: Critical Infrastructure
     copy: Where these systems actually run. OT and ICS protocol security across Modbus, CAN, and PROFINET, and intrusion detection for KRITIS.

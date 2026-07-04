@@ -12,7 +12,7 @@ theme = "blackrose"
   # Keeps the site out of search engines while it is a work in progress.
   # Set to false on the day you announce it (e.g. on LinkedIn) to allow indexing.
   noindex = true
-  description = "AI red teaming // adversarial ML // offensive security. Breaking models to make them harder to break."
+  description = "AI red teaming // AI blue teaming // security engineering. Breaking models to make them harder to break."
 
 [markup]
   [markup.highlight]
