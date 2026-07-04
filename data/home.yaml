@@ -1,0 +1,31 @@
+domains:
+  - title: Adversarial ML
+    copy: Evasion, poisoning, and model extraction against deployed detectors. Robustness evaluation that assumes the attacker adapts.
+    tags: [evasion, poisoning, extraction, robustness]
+  - title: AI Red Teaming
+    copy: Stress-testing LLM agents, RAG stacks, and ML pipelines. Prompt injection, tool abuse, and the failure modes vendors miss.
+    tags: [llm-agents, prompt-injection, rag, mcp]
+  - title: OT / ICS Security
+    copy: Industrial protocols under fire. Modbus, CAN, PROFINET, and the intrusion detection that guards critical infrastructure.
+    tags: [modbus, can-bus, scada, kritis]
+  - title: Detection Engineering
+    copy: Building and breaking SIEM and IDS at the same time. MITRE ATT&CK mapping, Suricata, Zeek, and ML-assisted triage.
+    tags: [siem, ids, suricata, att&ck]
+
+work:
+  - kind: CVE
+    title: CVE-2026-58196 / ToolHive SSRF
+    desc: Host-side SSRF in remote MCP server authentication discovery, bypassing container isolation. Reported, confirmed, fixed in v0.31.0.
+    url: https://github.com/stacklok/toolhive/security/advisories/GHSA-pr64-jmmf-jp54
+  - kind: Tool
+    title: AutoMCP
+    desc: Elastic purple-team MCP server. Extracts security alerts, analyzes them, responds, and runs counter-reconnaissance.
+    url: https://github.com/bIackr0se/AutoMCP
+  - kind: Paper
+    title: MITRE ATT&CK for Modbus Attacks
+    desc: Mapping the ATT&CK framework to Modbus cyber attacks in industrial OT networks. IEEE, 2025.
+    url: about/
+  - kind: Tool
+    title: pasteclean
+    desc: A clipboard sanitizer for terminal users in 25 lines of bash. Someone was charging seven dollars for this.
+    url: posts/pasteclean/

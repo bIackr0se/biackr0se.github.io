@@ -1,0 +1,22 @@
+{{ define "main" }}
+<article class="post">
+  <header class="post-head">
+    <p class="kicker mono">
+      {{ if not .Date.IsZero }}{{ .Date.Format "2006.01.02" }}{{ end }}
+      {{ with .Params.tags }} &middot; {{ delimit . " / " }}{{ end }}
+      {{ if .IsPage }}{{ if not .Date.IsZero }} &middot; {{ .ReadingTime }} min{{ end }}{{ end }}
+    </p>
+    <h1 class="post-title-main">{{ .Title }}</h1>
+    {{ with .Description }}<p class="post-standfirst">{{ . }}</p>{{ end }}
+  </header>
+  <div class="prose">
+    {{ .Content }}
+  </div>
+  <footer class="post-foot">
+    <div class="post-nav">
+      {{ with .PrevInSection }}<a class="btn-ghost mono" href="{{ .RelPermalink }}">&larr; {{ .Title }}</a>{{ end }}
+      {{ with .NextInSection }}<a class="btn-ghost mono" href="{{ .RelPermalink }}">{{ .Title }} &rarr;</a>{{ end }}
+    </div>
+  </footer>
+</article>
+{{ end }}

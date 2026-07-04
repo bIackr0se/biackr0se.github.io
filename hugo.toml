@@ -1,17 +1,17 @@
 baseURL = "https://bIackr0se.github.io/blog/"
 languageCode = "en-us"
 title = "b̷I̶a̸c̷k̶r̷0̴s̸e̷"
-theme = "glitch"
+theme = "blackrose"
 
 [params]
   author = "bIackr0se"
-  description = "AI red teaming // adversarial ML // offensive security"
-  ascii_header = true
+  github = "bIackr0se"
+  description = "AI red teaming // adversarial ML // offensive security. Breaking models to make them harder to break."
 
 [markup]
   [markup.highlight]
     style = "monokai"
-    lineNos = true
+    lineNos = false
     guessSyntax = true
   [markup.goldmark]
     [markup.goldmark.renderer]
@@ -19,21 +19,17 @@ theme = "glitch"
 
 [menu]
   [[menu.main]]
-    name = "blog"
-    url = "/posts/"
+    name = "work"
+    url = "/projects/"
     weight = 1
   [[menu.main]]
-    name = "ctf"
-    url = "/ctf/"
+    name = "writing"
+    url = "/posts/"
     weight = 2
-  [[menu.main]]
-    name = "projects"
-    url = "/projects/"
-    weight = 3
   [[menu.main]]
     name = "about"
     url = "/about/"
-    weight = 4
+    weight = 3
 
 [outputs]
   home = ["HTML", "RSS"]
