@@ -17,7 +17,7 @@ Security engineer and PhD researcher working on adversarial machine learning and
 
 - **Adversarial ML**: evasion attacks, model extraction, data poisoning, robustness evaluation
 - **Offensive security**: network pentesting, exploitation, pivoting, red teaming
-- **Industrial security**: OT/ICS protocols (Modbus, CAN), SCADA, fieldbus security
+- **Industrial security**: OT/ICS protocols (Modbus, CAN, PROFINET), SCADA, fieldbus security
 - **Detection engineering**: SIEM, IDS (Suricata, Zeek), MITRE ATT&CK mapping
 
 ## disclosures
@@ -38,7 +38,7 @@ More reports are in vendor queues. They land here when they go public.
 
 ## publications
 
-- *Mapping the MITRE ATT&CK Framework to Modbus Cyber Attacks in Industrial OT Networks*, IEEE, 2025
+Nine peer-reviewed papers across IEEE and MDPI venues (2025-2026), spanning SIEM frameworks for OT anomaly detection, MITRE-mapped attack emulation testbeds, PROFINET intrusion detection, agentic LLM security analysts, and adversarial campaign evaluation of ML-based IDS. Full list with venues and status on the [work page]({{< relref "/projects" >}}#papers).
 
 ## contact
 
