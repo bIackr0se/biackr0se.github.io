@@ -8,7 +8,7 @@ theme = "blackrose"
   github = "bIackr0se"
   email = "jaafer.rahmani@owasp.org"
   # LinkedIn profile URL; the link renders only when this is non-empty.
-  linkedin = ""
+  linkedin = "https://www.linkedin.com/in/jaafer-rahmani/"
   description = "AI red teaming // adversarial ML // offensive security. Breaking models to make them harder to break."
 
 [markup]
