@@ -88,7 +88,7 @@
 <section class="research" id="research">
   <div class="section-head">
     <p class="kicker mono" data-reveal>[ 04 // peer-reviewed ]</p>
-    <h2 class="section-title" data-reveal>Published<br><span class="accent">research.</span></h2>
+    <h2 class="section-title" data-reveal>Peer-reviewed<br><span class="accent">research.</span></h2>
   </div>
   {{ with hugo.Data.home.spotlight }}
   <div class="spotlight" data-reveal>
@@ -107,7 +107,7 @@
     <h2 class="section-title" data-reveal>Field<br><span class="accent">notes.</span></h2>
   </div>
   <div class="post-list">
-    {{ range first 5 (where site.RegularPages "Section" "posts").ByDate.Reverse }}
+    {{ range first 5 (where (where site.RegularPages "Section" "posts") "Params.featured" "ne" false).ByDate.Reverse }}
     <a class="post-row" data-reveal href="{{ .RelPermalink }}">
       <span class="post-date mono">{{ .Date.Format "2006.01.02" }}</span>
       <span class="post-title">{{ .Title }}</span>

@@ -24,16 +24,16 @@ stats:
     sub: CVE-2026-58196, fixed upstream
 
 spotlight:
-  kicker: latest acceptance
+  kicker: featured // latest acceptance
   title: "When the Analyst Scans for the Attacker"
   venue: "SHIELD-AI @ ECML PKDD 2026 / Springer CCIS / to appear"
   copy: >-
     SOC teams are wiring LLM agents into alert triage. This paper asks what the
-    adversary gains. The answer, on a deployed OT security analyst: expose one
-    extra alert field to the model, and a crafted alert steers the agent into
-    scanning the live PLC it is meant to protect. Three vulnerabilities in the
-    agentic layer, one matched mitigation each, and the hostile scan drops from
-    52 of 100 runs to 0 on the patched pipeline.
+    adversary gains. The answer, on a deployed agentic analyst in an OT
+    network: expose one extra alert field to the model, and a crafted alert
+    steers the agent into scanning the live PLC it is meant to protect. Three
+    vulnerabilities in the agentic layer, one matched mitigation each, and the
+    hostile scan drops from 52 of 100 runs to 0 on the patched pipeline.
 
 work:
   - kind: CVE

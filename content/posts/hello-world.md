@@ -2,6 +2,7 @@
 title: "Hello, World"
 date: 2026-04-05
 draft: false
+featured: false
 description: "First post. Boot sequence complete."
 tags: ["meta"]
 ---
