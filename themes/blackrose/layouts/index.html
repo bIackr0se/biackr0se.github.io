@@ -34,9 +34,24 @@
 </section>
 </div>
 
+<section class="record" id="record">
+  <div class="section-head">
+    <p class="kicker mono" data-reveal>[ 01 // the record ]</p>
+  </div>
+  <div class="stat-grid">
+    {{ range $i, $s := hugo.Data.home.stats }}
+    <div class="stat-card" data-reveal style="--d:{{ mul $i 80 }}ms">
+      <span class="stat-n accent" data-count="{{ $s.n }}">{{ $s.n }}</span>
+      <span class="stat-label">{{ $s.label }}</span>
+      <span class="stat-sub mono">{{ $s.sub }}</span>
+    </div>
+    {{ end }}
+  </div>
+</section>
+
 <section class="domains" id="domains">
   <div class="section-head">
-    <p class="kicker mono" data-reveal>[ 01 // operating domains ]</p>
+    <p class="kicker mono" data-reveal>[ 02 // operating domains ]</p>
   </div>
   <div class="domain-grid">
     {{ range $i, $d := hugo.Data.home.domains }}
@@ -52,7 +67,7 @@
 
 <section class="work" id="work">
   <div class="section-head">
-    <p class="kicker mono" data-reveal>[ 02 // selected work ]</p>
+    <p class="kicker mono" data-reveal>[ 03 // selected work ]</p>
     <h2 class="section-title" data-reveal>Proof of<br><span class="accent">damage.</span></h2>
   </div>
   <div class="work-list">
@@ -72,15 +87,23 @@
 
 <section class="research" id="research">
   <div class="section-head">
-    <p class="kicker mono" data-reveal>[ 03 // peer-reviewed ]</p>
+    <p class="kicker mono" data-reveal>[ 04 // peer-reviewed ]</p>
     <h2 class="section-title" data-reveal>Published<br><span class="accent">research.</span></h2>
   </div>
+  {{ with hugo.Data.home.spotlight }}
+  <div class="spotlight" data-reveal>
+    <p class="spotlight-kicker mono">{{ .kicker }}</p>
+    <h3 class="spotlight-title">{{ .title }}</h3>
+    <p class="spotlight-copy">{{ .copy }}</p>
+    <p class="spotlight-venue mono">{{ .venue }}</p>
+  </div>
+  {{ end }}
   {{ partial "publications.html" true }}
 </section>
 
 <section class="writing" id="writing">
   <div class="section-head">
-    <p class="kicker mono" data-reveal>[ 04 // transmissions ]</p>
+    <p class="kicker mono" data-reveal>[ 05 // transmissions ]</p>
     <h2 class="section-title" data-reveal>Field<br><span class="accent">notes.</span></h2>
   </div>
   <div class="post-list">
@@ -96,7 +119,7 @@
 </section>
 
 <section class="contact" id="contact">
-  <p class="kicker mono" data-reveal>[ 05 // handshake ]</p>
+  <p class="kicker mono" data-reveal>[ 06 // handshake ]</p>
   <h2 class="contact-title glitch" data-glitch="GET IN TOUCH" data-reveal><span>GET IN TOUCH</span></h2>
   <p class="contact-copy" data-reveal>Research collaboration, responsible disclosure, or an interesting target model.</p>
   <p data-reveal><a class="btn-solid mono" href="mailto:{{ site.Params.email }}">{{ site.Params.email }}</a></p>

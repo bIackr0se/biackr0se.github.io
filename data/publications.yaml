@@ -1,4 +1,7 @@
 # Accepted or published only. Under-review work stays off the site until it lands.
+- title: "When the Analyst Scans for the Attacker: Subverting Agentic LLM Security Operations in OT Networks"
+  venue: "SHIELD-AI @ ECML PKDD 2026, Springer CCIS"
+  status: "to appear"
 - title: "KEYSER: Stateful Adversarial Campaign Evaluation of ML-Based Intrusion Detection in Industrial Automation"
   venue: "IEEE ETFA 2026"
   status: "to appear"
