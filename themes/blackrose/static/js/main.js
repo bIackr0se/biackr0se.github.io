@@ -25,6 +25,30 @@
   onScrollChrome();
 
   /* ---- scroll reveals ---------------------------------------- */
+  /* Count-up rides the reveal: final values are already in the markup
+     (no-JS and reduced-motion users see them untouched), and starting
+     the count when its card reveals keeps the two in lockstep. */
+  var countUp = function (scope) {
+    var nodes = scope.querySelectorAll("[data-count]");
+    if (!nodes.length) return;
+    /* the reveal's stagger (--d transition-delay) defers the fade; defer the
+       count by the same amount so the two stay in lockstep on every card */
+    var delay = (parseFloat(getComputedStyle(scope).transitionDelay) || 0) * 1000;
+    [].slice.call(nodes).forEach(function (el) {
+      var raw = el.getAttribute("data-count");
+      var target = parseInt(raw, 10);
+      /* animate plain integers only; formatted values ("10+") stay static */
+      if (isNaN(target) || String(target) !== raw) return;
+      var start = null;
+      var tick = function (ts) {
+        if (start === null) start = ts;
+        var p = Math.min(1, (ts - start) / 900);
+        el.textContent = String(Math.round((1 - Math.pow(1 - p, 3)) * target));
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      setTimeout(function () { requestAnimationFrame(tick); }, delay);
+    });
+  };
   var revealables = [].slice.call(document.querySelectorAll("[data-reveal]"));
   if (reduced || !("IntersectionObserver" in window)) {
     revealables.forEach(function (el) { el.classList.add("in"); });
@@ -33,6 +57,7 @@
       entries.forEach(function (e) {
         if (e.isIntersecting) {
           e.target.classList.add("in");
+          countUp(e.target);
           io.unobserve(e.target);
         }
       });
