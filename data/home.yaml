@@ -12,6 +12,8 @@ domains:
     copy: Breaking AI-agent infrastructure. MCP servers, agent runtimes, and coding assistants, disclosed responsibly.
     tags: [cve, mcp, disclosure, appsec]
 
+# stats and spotlight mirror data/publications.yaml by hand; update together
+# (see the header note there).
 stats:
   - n: "10"
     label: peer-reviewed papers

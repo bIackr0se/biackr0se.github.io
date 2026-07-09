@@ -25,6 +25,23 @@
   onScrollChrome();
 
   /* ---- scroll reveals ---------------------------------------- */
+  /* Count-up rides the reveal: final values are already in the markup
+     (no-JS and reduced-motion users see them untouched), and starting
+     the count when its card reveals keeps the two in lockstep. */
+  var countUp = function (scope) {
+    [].slice.call(scope.querySelectorAll("[data-count]")).forEach(function (el) {
+      var target = parseInt(el.getAttribute("data-count"), 10);
+      if (isNaN(target)) return;
+      var start = null;
+      var tick = function (ts) {
+        if (start === null) start = ts;
+        var p = Math.min(1, (ts - start) / 900);
+        el.textContent = String(Math.round((1 - Math.pow(1 - p, 3)) * target));
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+  };
   var revealables = [].slice.call(document.querySelectorAll("[data-reveal]"));
   if (reduced || !("IntersectionObserver" in window)) {
     revealables.forEach(function (el) { el.classList.add("in"); });
@@ -33,36 +50,12 @@
       entries.forEach(function (e) {
         if (e.isIntersecting) {
           e.target.classList.add("in");
+          countUp(e.target);
           io.unobserve(e.target);
         }
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
     revealables.forEach(function (el) { io.observe(el); });
-  }
-
-  /* ---- record count-up ---------------------------------------- */
-  /* Final values are already in the markup (no-JS and reduced-motion
-     users see them untouched); motion users get a short count-in. */
-  var counters = [].slice.call(document.querySelectorAll("[data-count]"));
-  if (counters.length && !reduced && "IntersectionObserver" in window) {
-    var co = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        co.unobserve(e.target);
-        var el = e.target;
-        var target = parseInt(el.getAttribute("data-count"), 10);
-        if (isNaN(target)) return;
-        var start = null;
-        var tick = function (ts) {
-          if (start === null) start = ts;
-          var p = Math.min(1, (ts - start) / 900);
-          el.textContent = String(Math.round((1 - Math.pow(1 - p, 3)) * target));
-          if (p < 1) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
-      });
-    }, { threshold: 0.4 });
-    counters.forEach(function (el) { co.observe(el); });
   }
 
   /* ---- periodic glitch bursts -------------------------------- */

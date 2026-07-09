@@ -311,7 +311,7 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
 }
 .stat-grid {
   display: grid; gap: 1px;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
   background: var(--line-soft);
   border: 1px solid var(--line-soft);
 }

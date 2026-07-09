@@ -1,4 +1,7 @@
 # Accepted or published only. Under-review work stays off the site until it lands.
+# When an entry is added or changes status, also update: the stats block and
+# spotlight in data/home.yaml, and the paper counts in content/about.md
+# (whoami paragraph + publications section).
 - title: "When the Analyst Scans for the Attacker: Subverting Agentic LLM Security Operations in OT Networks"
   venue: "SHIELD-AI @ ECML PKDD 2026, Springer CCIS"
   status: "to appear"
