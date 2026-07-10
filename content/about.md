@@ -32,11 +32,38 @@ More reports are in vendor queues. They land here when they go public.
 
 ## certs & affiliations
 
-```
-[+] NVIDIA - Exploring Adversarial Machine Learning
-[+] INE - eJPTv2 (Junior Penetration Tester)
-[+] OWASP - member
-```
+<div class="cert-grid">
+  <a class="cert-card" href="{{< relref "/" >}}certs/ejpt.jpg" target="_blank" rel="noopener">
+    <img src="{{< relref "/" >}}certs/ejpt.jpg" alt="eJPT certificate issued by INE Security" loading="lazy" width="1400" height="1081">
+    <span class="cert-body">
+      <span class="cert-name">eJPTv2, Junior Penetration Tester</span>
+      <span class="cert-meta">INE Security &middot; 2025</span>
+    </span>
+  </a>
+  <a class="cert-card" href="{{< relref "/" >}}certs/isc2-cc.jpg" target="_blank" rel="noopener">
+    <img src="{{< relref "/" >}}certs/isc2-cc.jpg" alt="ISC2 Certified in Cybersecurity certificate" loading="lazy" width="1400" height="1081">
+    <span class="cert-body">
+      <span class="cert-name">Certified in Cybersecurity (CC)</span>
+      <span class="cert-meta">ISC2 &middot; 2024-2027 cycle</span>
+    </span>
+  </a>
+  <a class="cert-card" href="{{< relref "/" >}}certs/nvidia-adversarial-ml.jpg" target="_blank" rel="noopener">
+    <img src="{{< relref "/" >}}certs/nvidia-adversarial-ml.jpg" alt="NVIDIA certificate of competency in Exploring Adversarial Machine Learning" loading="lazy" width="1400" height="1242">
+    <span class="cert-body">
+      <span class="cert-name">Exploring Adversarial Machine Learning</span>
+      <span class="cert-meta">NVIDIA &middot; 2026</span>
+    </span>
+  </a>
+  <a class="cert-card" href="{{< relref "/" >}}certs/isc2-exam-dev-volunteer.jpg" target="_blank" rel="noopener">
+    <img src="{{< relref "/" >}}certs/isc2-exam-dev-volunteer.jpg" alt="ISC2 exam development volunteer badge" loading="lazy" width="600" height="600">
+    <span class="cert-body">
+      <span class="cert-name">CC Exam Development Volunteer</span>
+      <span class="cert-meta">ISC2 &middot; 2025</span>
+    </span>
+  </a>
+</div>
+
+On the other side of the exam table: contributed to developing the ISC2 Certified in Cybersecurity exam as an ISC2 volunteer (August 2025). Also an OWASP member.
 
 ## publications
 

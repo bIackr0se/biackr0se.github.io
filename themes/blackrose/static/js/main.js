@@ -98,6 +98,34 @@
     }
   }
 
+  /* ---- footer status strip ------------------------------------ */
+  var statusbar = document.querySelector("[data-statusbar]");
+  if (statusbar) {
+    var sbUtc = statusbar.querySelector("[data-sb-utc]");
+    var sbLocal = statusbar.querySelector("[data-sb-local]");
+    var sbZone = statusbar.querySelector("[data-sb-zone]");
+    var sbViewport = statusbar.querySelector("[data-sb-viewport]");
+    var pad2 = function (n) { return (n < 10 ? "0" : "") + n; };
+    var hms = function (d, utc) {
+      return utc
+        ? pad2(d.getUTCHours()) + ":" + pad2(d.getUTCMinutes()) + ":" + pad2(d.getUTCSeconds())
+        : pad2(d.getHours()) + ":" + pad2(d.getMinutes()) + ":" + pad2(d.getSeconds());
+    };
+    var offset = -new Date().getTimezoneOffset() / 60;
+    sbZone.textContent = "ZONE GMT" + (offset >= 0 ? "+" : "") + offset;
+    var sbClock = function () {
+      var d = new Date();
+      sbUtc.textContent = "UTC " + hms(d, true);
+      sbLocal.textContent = "LOCAL " + hms(d, false);
+    };
+    var sbSize = function () {
+      sbViewport.textContent = "VIEWPORT " + window.innerWidth + "x" + window.innerHeight;
+    };
+    sbClock(); sbSize();
+    setInterval(sbClock, 1000);
+    window.addEventListener("resize", sbSize);
+  }
+
   /* ---- static rose for inner-page headers --------------------- */
   function renderStaticRoses() {
     [].slice.call(document.querySelectorAll("[data-rose-static]")).forEach(function (c) {

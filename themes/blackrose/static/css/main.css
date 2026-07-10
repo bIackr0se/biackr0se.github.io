@@ -3,8 +3,8 @@
    ============================================================ */
 
 @font-face {
-  font-family: "Archivo Black";
-  src: url("../fonts/archivo-black-v23-latin-regular.woff2") format("woff2");
+  font-family: "Anton";
+  src: url("../fonts/anton-v27-latin-regular.woff2") format("woff2");
   font-weight: 400; font-style: normal; font-display: swap;
 }
 @font-face {
@@ -46,7 +46,7 @@
   --ember: #ff6a3d;
   --violet: #a12aff;
   --grad: linear-gradient(100deg, var(--rose) 0%, var(--ember) 55%, #ffb03a 100%);
-  --display: "Archivo Black", "Arial Black", sans-serif;
+  --display: "Anton", Impact, "Arial Narrow", sans-serif;
   --body: "Space Grotesk", "Helvetica Neue", sans-serif;
   --mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
   --pad: clamp(1.25rem, 4vw, 4rem);
@@ -198,8 +198,8 @@ img { max-width: 100%; display: block; }
 @keyframes blink { 50% { opacity: 0; } }
 .hero-title {
   font-family: var(--display);
-  font-size: clamp(3.2rem, 13.5vw, 11.5rem);
-  line-height: 0.92; letter-spacing: -0.015em;
+  font-size: clamp(3.4rem, 14.5vw, 12.5rem);
+  line-height: 0.92; letter-spacing: 0.015em;
   color: var(--ink);
   text-transform: uppercase;
   text-shadow: 0 0 90px rgba(255, 42, 77, 0.28), 0 0 24px rgba(6, 4, 7, 0.8);
@@ -265,8 +265,8 @@ section { position: relative; }
 }
 .section-title {
   font-family: var(--display);
-  font-size: clamp(2.6rem, 7.5vw, 5.8rem);
-  line-height: 0.95; text-transform: uppercase; letter-spacing: -0.01em;
+  font-size: clamp(2.7rem, 8vw, 6.1rem);
+  line-height: 0.98; text-transform: uppercase; letter-spacing: 0.012em;
   margin-bottom: 3rem;
 }
 
@@ -295,13 +295,42 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
 .manifesto-inner { max-width: 60rem; }
 .statement {
   font-family: var(--display);
-  font-size: clamp(2.8rem, 8.5vw, 7rem);
-  line-height: 1.02; text-transform: uppercase; letter-spacing: -0.01em;
+  font-size: clamp(3rem, 9vw, 7.4rem);
+  line-height: 1.04; text-transform: uppercase; letter-spacing: 0.012em;
 }
 .statement .line { display: block; }
 .manifesto-copy {
   margin-top: 2.6rem; max-width: 44rem;
   color: var(--dim); font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+}
+
+/* --- ticker (passing record strip) ---------------------------- */
+.ticker {
+  overflow: hidden;
+  border-top: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+  padding: 1.05rem 0;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+.ticker-track {
+  display: flex; width: max-content;
+  animation: ticker-scroll 48s linear infinite;
+}
+.ticker:hover .ticker-track { animation-play-state: paused; }
+.ticker-group { display: flex; align-items: center; }
+.ticker-item {
+  color: var(--dim); white-space: nowrap;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  font-size: 0.75rem;
+}
+.ticker-sep { color: var(--rose); margin: 0 1.9rem; font-family: var(--mono); font-size: 0.7rem; opacity: 0.65; }
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation: none; }
 }
 
 /* --- record (proof by numbers) ------------------------------- */
@@ -464,8 +493,8 @@ a.pub-row:hover .pub-title { color: var(--rose); }
 .contact { text-align: center; padding-bottom: clamp(6rem, 16vh, 11rem); }
 .contact-title {
   font-family: var(--display);
-  font-size: clamp(2.6rem, 9vw, 7rem);
-  text-transform: uppercase; line-height: 0.95; letter-spacing: -0.01em;
+  font-size: clamp(2.7rem, 9.5vw, 7.4rem);
+  text-transform: uppercase; line-height: 0.98; letter-spacing: 0.012em;
   margin-bottom: 1.6rem;
 }
 .contact-copy { color: var(--dim); margin-bottom: 2.6rem; }
@@ -507,8 +536,8 @@ a.pub-row:hover .pub-title { color: var(--rose); }
 .post-head .kicker { margin-bottom: 1.2rem; color: var(--faint); }
 .post-title-main {
   font-family: var(--display);
-  font-size: clamp(2rem, 6vw, 3.6rem);
-  line-height: 1.02; text-transform: uppercase; letter-spacing: -0.01em;
+  font-size: clamp(2.1rem, 6.5vw, 3.9rem);
+  line-height: 1.05; text-transform: uppercase; letter-spacing: 0.012em;
 }
 .post-standfirst {
   margin-top: 1.4rem; color: var(--dim);
@@ -545,6 +574,25 @@ a.pub-row:hover .pub-title { color: var(--rose); }
 .prose th, .prose td { border: 1px solid var(--line-soft); padding: 0.6rem 0.9rem; text-align: left; }
 .prose th { background: var(--panel); font-family: var(--mono); font-size: 0.78rem; }
 
+/* --- cert grid (about page) ----------------------------------- */
+.cert-grid {
+  display: grid; gap: 1.2rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
+  margin-top: 1.6rem;
+}
+.cert-card {
+  display: flex; flex-direction: column;
+  background: var(--panel);
+  border: 1px solid var(--line-soft);
+  transition: border-color 250ms ease, transform 250ms ease;
+}
+.cert-card:hover { border-color: var(--line); transform: translateY(-3px); }
+.cert-card img { width: 100%; height: auto; }
+.cert-body { padding: 1rem 1.1rem 1.2rem; display: flex; flex-direction: column; gap: 0.3rem; }
+.cert-name { font-weight: 700; font-size: 0.98rem; }
+.cert-card:hover .cert-name { color: var(--rose); }
+.cert-meta { font-family: var(--mono); color: var(--faint); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; }
+
 .post-foot { margin-top: 4rem; border-top: 1px solid var(--line-soft); padding-top: 2rem; }
 .post-nav { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
 
@@ -579,6 +627,18 @@ a.pub-row:hover .pub-title { color: var(--rose); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer-brand { grid-column: 1 / -1; }
 }
+
+/* --- footer status strip -------------------------------------- */
+/* Populated by JS; without JS it stays hidden so no dead placeholders show. */
+.statusbar { display: none; }
+html.js .statusbar {
+  display: flex; flex-wrap: wrap; gap: 0.4rem 2.2rem;
+  border-top: 1px solid var(--line-soft);
+  padding: 0.65rem var(--pad);
+  color: var(--faint); font-size: 0.65rem;
+  text-transform: uppercase; letter-spacing: 0.12em;
+}
+.sb-status em { color: var(--rose); font-style: normal; }
 
 /* --- nav contact cta ----------------------------------------- */
 .nav-links a.nav-cta {
