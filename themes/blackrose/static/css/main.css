@@ -3,9 +3,9 @@
    ============================================================ */
 
 @font-face {
-  font-family: "Anton";
-  src: url("../fonts/anton-v27-latin-regular.woff2") format("woff2");
-  font-weight: 400; font-style: normal; font-display: swap;
+  font-family: "Archivo Expanded";
+  src: url("../fonts/archivo-expanded-v25-latin-900.woff2") format("woff2");
+  font-weight: 900; font-stretch: 125%; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "Space Grotesk";
@@ -46,9 +46,9 @@
   --ember: #ff6a3d;
   --violet: #a12aff;
   --grad: linear-gradient(100deg, var(--rose) 0%, var(--ember) 55%, #ffb03a 100%);
-  --display: "Anton", Impact, "Arial Narrow", sans-serif;
-  /* Anton is condensed; display type gets a touch of positive tracking */
-  --disp-track: 0.012em;
+  --display: "Archivo Expanded", "Arial Black", sans-serif;
+  /* expanded grotesque runs tight, like the original Archivo Black */
+  --disp-track: -0.01em;
   --body: "Space Grotesk", "Helvetica Neue", sans-serif;
   --mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
   --pad: clamp(1.25rem, 4vw, 4rem);
@@ -200,8 +200,8 @@ img { max-width: 100%; display: block; }
 @keyframes blink { 50% { opacity: 0; } }
 .hero-title {
   font-family: var(--display);
-  font-size: clamp(3.4rem, 14.5vw, 12.5rem);
-  line-height: 0.92; letter-spacing: 0.015em;
+  font-size: clamp(3rem, 12.5vw, 11rem);
+  line-height: 0.92; letter-spacing: -0.015em;
   color: var(--ink);
   text-transform: uppercase;
   text-shadow: 0 0 90px rgba(255, 42, 77, 0.28), 0 0 24px rgba(6, 4, 7, 0.8);
@@ -267,8 +267,8 @@ section { position: relative; }
 }
 .section-title {
   font-family: var(--display);
-  font-size: clamp(2.7rem, 8vw, 6.1rem);
-  line-height: 0.98; text-transform: uppercase; letter-spacing: var(--disp-track);
+  font-size: clamp(2.6rem, 7.5vw, 5.8rem);
+  line-height: 0.95; text-transform: uppercase; letter-spacing: var(--disp-track);
   margin-bottom: 3rem;
 }
 
@@ -297,8 +297,8 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
 .manifesto-inner { max-width: 60rem; }
 .statement {
   font-family: var(--display);
-  font-size: clamp(3rem, 9vw, 7.4rem);
-  line-height: 1.04; text-transform: uppercase; letter-spacing: var(--disp-track);
+  font-size: clamp(2.6rem, 8vw, 6.6rem);
+  line-height: 1.02; text-transform: uppercase; letter-spacing: var(--disp-track);
 }
 .statement .line { display: block; }
 .manifesto-copy {
@@ -494,8 +494,8 @@ a.pub-row:hover .pub-title { color: var(--rose); }
 .contact { text-align: center; padding-bottom: clamp(6rem, 16vh, 11rem); }
 .contact-title {
   font-family: var(--display);
-  font-size: clamp(2.7rem, 9.5vw, 7.4rem);
-  text-transform: uppercase; line-height: 0.98; letter-spacing: var(--disp-track);
+  font-size: clamp(2.4rem, 8.5vw, 6.6rem);
+  text-transform: uppercase; line-height: 0.95; letter-spacing: var(--disp-track);
   margin-bottom: 1.6rem;
 }
 .contact-copy { color: var(--dim); margin-bottom: 2.6rem; }
@@ -537,8 +537,8 @@ a.pub-row:hover .pub-title { color: var(--rose); }
 .post-head .kicker { margin-bottom: 1.2rem; color: var(--faint); }
 .post-title-main {
   font-family: var(--display);
-  font-size: clamp(2.1rem, 6.5vw, 3.9rem);
-  line-height: 1.05; text-transform: uppercase; letter-spacing: var(--disp-track);
+  font-size: clamp(1.9rem, 5.5vw, 3.4rem);
+  line-height: 1.02; text-transform: uppercase; letter-spacing: var(--disp-track);
 }
 .post-standfirst {
   margin-top: 1.4rem; color: var(--dim);
