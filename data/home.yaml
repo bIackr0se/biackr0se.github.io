@@ -1,3 +1,20 @@
+# Scrolling strip on the home page: venues published in, credentials held,
+# and the public record. Keep every entry publicly verifiable. Entries render
+# exactly as written (no CSS case transform), so author the display case here.
+ticker:
+  - IEEE ETFA 2026
+  - IEEE WFCS 2026
+  - ECML PKDD 2026
+  - MDPI Sensors
+  - IEEE IDAACS
+  - IEEE ICEST
+  - CVE-2026-58196
+  - MITRE ATT&CK
+  - OWASP
+  - ISC2 CC
+  - eJPT
+  - NVIDIA Adversarial ML
+
 domains:
   - title: AI Red Teaming
     copy: Adversarial ML and LLM-agent offense. Evasion, model extraction, prompt injection, and the failure modes that survive a determined, well-resourced attacker.

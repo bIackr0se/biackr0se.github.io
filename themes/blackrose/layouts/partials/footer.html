@@ -27,4 +27,11 @@
     </div>
     <p class="footer-copy mono">&copy; {{ now.Format "2006" }} {{ site.Params.author }}</p>
   </div>
+  <div class="statusbar mono" data-statusbar aria-hidden="true">
+    <span data-sb-utc>UTC --:--:--</span>
+    <span data-sb-local>LOCAL --:--:--</span>
+    <span data-sb-zone>ZONE ---</span>
+    <span data-sb-viewport>VIEWPORT ----x----</span>
+    <span class="sb-status">STATUS: <em>&#9679; ON</em></span>
+  </div>
 </footer>

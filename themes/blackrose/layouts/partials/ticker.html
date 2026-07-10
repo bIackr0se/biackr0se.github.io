@@ -1,0 +1,15 @@
+{{- $items := hugo.Data.home.ticker -}}
+{{- if $items -}}
+<div class="ticker" role="marquee" aria-label="venues and credentials">
+  <div class="ticker-track" style="--ticker-n: {{ len $items }}">
+    {{- range $pass := seq 2 }}
+    <div class="ticker-group"{{ if eq $pass 2 }} aria-hidden="true"{{ end }}>
+      {{- range $items }}
+      <span class="ticker-item mono">{{ . }}</span>
+      <span class="ticker-sep" aria-hidden="true">//</span>
+      {{- end }}
+    </div>
+    {{- end }}
+  </div>
+</div>
+{{- end -}}

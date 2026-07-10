@@ -32,11 +32,9 @@ More reports are in vendor queues. They land here when they go public.
 
 ## certs & affiliations
 
-```
-[+] NVIDIA - Exploring Adversarial Machine Learning
-[+] INE - eJPTv2 (Junior Penetration Tester)
-[+] OWASP - member
-```
+{{< certs >}}
+
+Affiliations: OWASP member.
 
 ## publications
 
