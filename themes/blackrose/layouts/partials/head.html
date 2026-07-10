@@ -7,7 +7,13 @@
 <meta name="author" content="{{ site.Params.author }}">
 <meta name="theme-color" content="#060407">
 {{ if site.Params.noindex }}<meta name="robots" content="noindex, nofollow">{{ end }}
-<meta property="og:title" content="{{ $title }}">
+{{- /* Link previews and search get a plain, searchable title; the on-page
+       brand and the <title> tag keep the glitched wordmark. */ -}}
+{{- $ogTitle := printf "%s | %s" site.Params.author site.Params.role -}}
+{{- if and (not .IsHome) .Title -}}
+  {{- $ogTitle = printf "%s // %s" .Title site.Params.author -}}
+{{- end -}}
+<meta property="og:title" content="{{ $ogTitle }}">
 <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">

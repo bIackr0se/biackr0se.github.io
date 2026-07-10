@@ -1,6 +1,8 @@
-# Scrolling strip on the home page: venues published in, credentials held,
-# and the public record. Keep every entry publicly verifiable. Entries render
+# Scrolling strip on the home page: venues published in, affiliations, and
+# the public record. Keep every entry publicly verifiable. Entries render
 # exactly as written (no CSS case transform), so author the display case here.
+# Strong signals only: entry-level certs (eJPT, ISC2 CC, NVIDIA course) live
+# on the About page certs section, not here.
 ticker:
   - IEEE ETFA 2026
   - IEEE WFCS 2026
@@ -11,9 +13,6 @@ ticker:
   - CVE-2026-58196
   - MITRE ATT&CK
   - OWASP
-  - ISC2 CC
-  - eJPT
-  - NVIDIA Adversarial ML
 
 domains:
   - title: AI Red Teaming

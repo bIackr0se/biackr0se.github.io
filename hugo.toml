@@ -4,7 +4,10 @@ title = "b̷I̶a̸c̷k̶r̷0̴s̸e̷"
 theme = "blackrose"
 
 [params]
-  author = "bIackr0se"
+  author = "Jaafer Rahmani"
+  # author + role drive the hero identity line and the plain og:title;
+  # the visual brand and the <title> tag keep the glitched wordmark.
+  role = "AI Security Researcher"
   github = "bIackr0se"
   email = "jaafer.rahmani@owasp.org"
   # LinkedIn profile URL; the link renders only when this is non-empty.
@@ -12,7 +15,7 @@ theme = "blackrose"
   # Keeps the site out of search engines while it is a work in progress.
   # Set to false on the day you announce it (e.g. on LinkedIn) to allow indexing.
   noindex = false
-  description = "AI red teaming // security engineering. Breaking models to make them harder to break."
+  description = "Jaafer Rahmani. AI red teaming // security engineering. Breaking models to make them harder to break."
 
 [markup]
   [markup.highlight]
