@@ -187,6 +187,7 @@
         heroRefs = {
           stage: st,
           title: st.querySelector(".hero-title"),
+          name: st.querySelector(".hero-name"),
           sub: st.querySelector(".hero-sub"),
           boot: st.querySelector("[data-boot]"),
           cue: st.querySelector(".hero-cue"),
@@ -238,6 +239,10 @@
       if (heroRefs.sub) {
         heroRefs.sub.style.opacity = front;
         heroRefs.sub.style.transform = "translate3d(0," + (-e * 140).toFixed(1) + "px,0)";
+      }
+      if (heroRefs.name) {
+        heroRefs.name.style.opacity = front;
+        heroRefs.name.style.transform = "translate3d(0," + (-e * 140).toFixed(1) + "px,0)";
       }
       if (heroRefs.boot) heroRefs.boot.style.opacity = front;
       if (heroRefs.cue) heroRefs.cue.style.opacity = (1 - ramp(p, 0.02, 0.1)).toFixed(3);
