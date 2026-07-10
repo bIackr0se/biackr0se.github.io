@@ -1,0 +1,30 @@
+# Rendered by the {{< certs >}} shortcode (themes/blackrose/layouts/shortcodes/certs.html)
+# on the about page. image paths are relative to static/.
+- name: "eJPTv2, Junior Penetration Tester"
+  issuer: "INE Security"
+  when: "2025"
+  image: "certs/ejpt.jpg"
+  alt: "eJPT certificate issued by INE Security"
+  width: 900
+  height: 695
+- name: "Certified in Cybersecurity (CC)"
+  issuer: "ISC2"
+  when: "2024-2027 cycle"
+  image: "certs/isc2-cc.jpg"
+  alt: "ISC2 Certified in Cybersecurity certificate"
+  width: 900
+  height: 695
+- name: "Exploring Adversarial Machine Learning"
+  issuer: "NVIDIA"
+  when: "2026"
+  image: "certs/nvidia-adversarial-ml.jpg"
+  alt: "NVIDIA certificate of competency in Exploring Adversarial Machine Learning"
+  width: 900
+  height: 798
+- name: "CC Exam Development Volunteer"
+  issuer: "ISC2"
+  when: "Aug 2025"
+  image: "certs/isc2-exam-dev-volunteer.jpg"
+  alt: "ISC2 exam development volunteer badge"
+  width: 600
+  height: 600

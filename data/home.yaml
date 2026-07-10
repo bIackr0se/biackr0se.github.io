@@ -1,10 +1,11 @@
 # Scrolling strip on the home page: venues published in, credentials held,
-# and the public record. Keep every entry publicly verifiable.
+# and the public record. Keep every entry publicly verifiable. Entries render
+# exactly as written (no CSS case transform), so author the display case here.
 ticker:
   - IEEE ETFA 2026
   - IEEE WFCS 2026
   - ECML PKDD 2026
-  - MDPI SENSORS
+  - MDPI Sensors
   - IEEE IDAACS
   - IEEE ICEST
   - CVE-2026-58196
@@ -12,7 +13,7 @@ ticker:
   - OWASP
   - ISC2 CC
   - eJPT
-  - NVIDIA ADVERSARIAL ML
+  - NVIDIA Adversarial ML
 
 domains:
   - title: AI Red Teaming

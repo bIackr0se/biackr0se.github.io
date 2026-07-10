@@ -1,0 +1,11 @@
+<div class="cert-grid">
+  {{- range hugo.Data.certs }}
+  <a class="cert-card" href="{{ .image | relURL }}" target="_blank" rel="noopener">
+    <img src="{{ .image | relURL }}" alt="{{ .alt }}" loading="lazy" width="{{ .width }}" height="{{ .height }}">
+    <span class="cert-body">
+      <span class="cert-name">{{ .name }}</span>
+      <span class="cert-meta">{{ .issuer }} &middot; {{ .when }}</span>
+    </span>
+  </a>
+  {{- end }}
+</div>

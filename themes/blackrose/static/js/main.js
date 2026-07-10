@@ -111,19 +111,31 @@
         ? pad2(d.getUTCHours()) + ":" + pad2(d.getUTCMinutes()) + ":" + pad2(d.getUTCSeconds())
         : pad2(d.getHours()) + ":" + pad2(d.getMinutes()) + ":" + pad2(d.getSeconds());
     };
-    var offset = -new Date().getTimezoneOffset() / 60;
-    sbZone.textContent = "ZONE GMT" + (offset >= 0 ? "+" : "") + offset;
+    /* zone is derived inside the tick so it tracks DST flips and travel;
+       fractional offsets (UTC+5:30) render as clock minutes, not decimals */
     var sbClock = function () {
+      if (document.hidden) return;
       var d = new Date();
       sbUtc.textContent = "UTC " + hms(d, true);
       sbLocal.textContent = "LOCAL " + hms(d, false);
+      var m = -d.getTimezoneOffset();
+      var sign = m < 0 ? "-" : "+";
+      m = Math.abs(m);
+      sbZone.textContent = "ZONE GMT" + sign + Math.floor(m / 60) + (m % 60 ? ":" + pad2(m % 60) : "");
     };
     var sbSize = function () {
       sbViewport.textContent = "VIEWPORT " + window.innerWidth + "x" + window.innerHeight;
     };
     sbClock(); sbSize();
     setInterval(sbClock, 1000);
-    window.addEventListener("resize", sbSize);
+    document.addEventListener("visibilitychange", function () {
+      if (!document.hidden) sbClock();
+    });
+    var sbResizeTimer = null;
+    window.addEventListener("resize", function () {
+      clearTimeout(sbResizeTimer);
+      sbResizeTimer = setTimeout(sbSize, 160);
+    });
   }
 
   /* ---- static rose for inner-page headers --------------------- */
