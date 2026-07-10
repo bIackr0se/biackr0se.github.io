@@ -5,9 +5,9 @@ theme = "blackrose"
 
 [params]
   author = "Jaafer Rahmani"
-  # Plain, searchable title for search results and link previews; the visual
-  # brand and the <title> tag keep the glitched wordmark.
-  plainTitle = "Jaafer Rahmani | AI Security Researcher"
+  # author + role drive the hero identity line and the plain og:title;
+  # the visual brand and the <title> tag keep the glitched wordmark.
+  role = "AI Security Researcher"
   github = "bIackr0se"
   email = "jaafer.rahmani@owasp.org"
   # LinkedIn profile URL; the link renders only when this is non-empty.

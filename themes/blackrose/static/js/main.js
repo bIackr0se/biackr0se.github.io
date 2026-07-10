@@ -236,14 +236,11 @@
       }
       /* front layer: rises and fades first */
       var front = (1 - ramp(p, 0.04, 0.22)).toFixed(3);
-      if (heroRefs.sub) {
-        heroRefs.sub.style.opacity = front;
-        heroRefs.sub.style.transform = "translate3d(0," + (-e * 140).toFixed(1) + "px,0)";
-      }
-      if (heroRefs.name) {
-        heroRefs.name.style.opacity = front;
-        heroRefs.name.style.transform = "translate3d(0," + (-e * 140).toFixed(1) + "px,0)";
-      }
+      [heroRefs.name, heroRefs.sub].forEach(function (el) {
+        if (!el) return;
+        el.style.opacity = front;
+        el.style.transform = "translate3d(0," + (-e * 140).toFixed(1) + "px,0)";
+      });
       if (heroRefs.boot) heroRefs.boot.style.opacity = front;
       if (heroRefs.cue) heroRefs.cue.style.opacity = (1 - ramp(p, 0.02, 0.1)).toFixed(3);
       /* atmosphere closes to black only after the rose has held bright */
