@@ -58,12 +58,12 @@ More reports are in vendor queues. They land here when they go public.
     <img src="{{< relref "/" >}}certs/isc2-exam-dev-volunteer.jpg" alt="ISC2 exam development volunteer badge" loading="lazy" width="600" height="600">
     <span class="cert-body">
       <span class="cert-name">CC Exam Development Volunteer</span>
-      <span class="cert-meta">ISC2 &middot; 2025</span>
+      <span class="cert-meta">ISC2 &middot; AUG 2025</span>
     </span>
   </a>
 </div>
 
-On the other side of the exam table: contributed to developing the ISC2 Certified in Cybersecurity exam as an ISC2 volunteer (August 2025). Also an OWASP member.
+Affiliations: OWASP member.
 
 ## publications
 
