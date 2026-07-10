@@ -1,6 +1,6 @@
 ---
 title: "About"
-description: "Security engineer and PhD researcher. AI red teaming and blue teaming, and the ML-driven detection that defends critical infrastructure."
+description: "Security engineer and PhD researcher. AI red teaming, and the security engineering that defends critical infrastructure."
 ---
 
 ## whoami
@@ -17,7 +17,7 @@ Security engineer and PhD researcher in adversarial machine learning. I work bot
 ## arsenal
 
 - **AI red teaming**: evasion, model extraction, data poisoning, prompt injection, robustness evaluation
-- **AI blue teaming**: ML-driven detection, SIEM, IDS (Suricata, Zeek), MITRE ATT&CK mapping
+- **Security engineering**: ML-driven detection, SIEM, IDS (Suricata, Zeek), MITRE ATT&CK mapping
 - **Critical infrastructure**: OT/ICS protocols (Modbus, CAN, PROFINET), SCADA, fieldbus security
 - **Vulnerability research**: AI-agent infrastructure, MCP servers, exploitation, responsible disclosure
 
