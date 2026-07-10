@@ -41,7 +41,7 @@
   --line-soft: rgba(232, 228, 221, 0.09);
   --ink: #ece7de;
   --dim: #9a938a;
-  --faint: #5d5852;
+  --faint: #7a746c;
   --rose: #ff2a4d;
   --ember: #ff6a3d;
   --violet: #a12aff;
@@ -193,8 +193,9 @@ img { max-width: 100%; display: block; }
   padding: 0 var(--pad); max-width: 100%;
 }
 .hero-boot {
-  min-height: 1.4em; color: var(--faint);
+  min-height: 1.4em; color: var(--dim);
   margin-bottom: clamp(1.6rem, 5vh, 3.4rem);
+  text-shadow: 0 1px 10px rgba(6, 4, 7, 0.9);
 }
 .hero-boot::after { content: "_"; animation: blink 1s steps(1) infinite; color: var(--rose); }
 @keyframes blink { 50% { opacity: 0; } }

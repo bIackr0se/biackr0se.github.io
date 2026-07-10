@@ -17,17 +17,11 @@ ticker:
 
 domains:
   - title: AI Red Teaming
-    copy: Adversarial ML and LLM-agent offense. Evasion, model extraction, prompt injection, and the failure modes that survive a determined, well-resourced attacker.
-    tags: [adversarial-ml, llm-agents, evasion, prompt-injection]
-  - title: AI Blue Teaming
-    copy: Detection that holds when signatures do not. ML-driven SIEM and IDS, MITRE ATT&CK, and hardening detectors against evasion.
-    tags: [siem, ids, att&ck, detection]
-  - title: Critical Infrastructure
-    copy: Where these systems actually run. OT and ICS protocol security across Modbus, CAN, and PROFINET, and intrusion detection for KRITIS.
-    tags: [ot-ics, modbus, can, profinet]
-  - title: Vulnerability Research
-    copy: Breaking AI-agent infrastructure. MCP servers, agent runtimes, and coding assistants, disclosed responsibly.
-    tags: [cve, mcp, disclosure, appsec]
+    copy: Adversarial ML and LLM-agent offense. Evasion, model extraction, data poisoning, prompt injection against agent pipelines, and breaking AI-agent infrastructure, proven against the ML that defends live industrial networks.
+    tags: [adversarial-ml, llm-agents, evasion, prompt-injection, cve]
+  - title: Security Engineering
+    copy: The build side of the same fight. ML-driven SIEM and IDS for critical infrastructure, OT/ICS protocol security across Modbus, CAN, and PROFINET, MITRE ATT&CK mapping, detection hardened against adaptive evasion, fixes disclosed upstream.
+    tags: [siem, ids, ot-ics, att&ck, disclosure]
 
 # stats and spotlight mirror data/publications.yaml by hand; update together
 # (see the header note there).
