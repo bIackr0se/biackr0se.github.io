@@ -12,6 +12,8 @@ theme = "blackrose"
   email = "jaafer.rahmani@owasp.org"
   # LinkedIn profile URL; the link renders only when this is non-empty.
   linkedin = "https://www.linkedin.com/in/jaafer-rahmani/"
+  # ORCID profile URL; the link renders only when this is non-empty.
+  orcid = "https://orcid.org/0009-0008-0975-2301"
   # Keeps the site out of search engines while it is a work in progress.
   # Set to false on the day you announce it (e.g. on LinkedIn) to allow indexing.
   noindex = false

@@ -509,7 +509,7 @@ a.pub-row:hover .pub-title { color: var(--rose); }
   margin-bottom: 1.6rem;
 }
 .contact-copy { color: var(--dim); margin-bottom: 2.6rem; }
-.contact-alt { margin-top: 1.4rem; display: flex; gap: 1rem; justify-content: center; }
+.contact-alt { margin-top: 1.4rem; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
 
 /* --- inner pages -------------------------------------------- */
 .is-inner main { padding-top: 7rem; }
