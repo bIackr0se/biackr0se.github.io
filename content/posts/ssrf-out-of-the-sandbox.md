@@ -36,5 +36,5 @@ Apply the hardening the project already wrote for its DCR client to the discover
 
 The lesson generalizes past this one bug. Auth discovery, health checks, and update probes tend to run host-side and inherit none of the isolation a product advertises. And a `#nosec` with a confident rationale is worth reading twice: the analyzer had already found this, and a trust assumption written in a comment overrode it.
 
-<p class="br-src">The short version and CVSS breakdown live on the <a href="/blog/projects/toolhive-ssrf/">project page</a>.</p>
+<p class="br-src">The short version and CVSS breakdown live on the <a href="/projects/toolhive-ssrf/">project page</a>.</p>
 <style>.br-src{font-family:var(--mono);font-size:.8rem;color:var(--faint);border-top:1px solid var(--line-soft);padding-top:1rem;margin-top:2.5rem}</style>
