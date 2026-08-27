@@ -32,7 +32,7 @@ The first-hop HTTPS check is the kind of guard that looks sufficient and is not.
 
 ## The fix
 
-Apply the hardening the project already wrote for its DCR client to the discovery clients: reject cross-host and scheme-downgrade redirects, and wrap the dialer in the existing private-IP guard. The load-bearing part is re-validating the redirect target on every hop, since the first-hop scheme test only ever checks one URL. Fixed in [v0.31.0](https://github.com/stacklok/toolhive/releases/tag/v0.31.0); full advisory at [GHSA-pr64-jmmf-jp54](https://github.com/stacklok/toolhive/security/advisories/GHSA-pr64-jmmf-jp54).
+Apply the hardening the project already wrote for its DCR client to the discovery clients: reject cross-host and scheme-downgrade redirects, and wrap the dialer in the existing private-IP guard. Re-validating the redirect target on every hop closes the gap, since the first-hop scheme test only ever checks one URL. Fixed in [v0.31.0](https://github.com/stacklok/toolhive/releases/tag/v0.31.0); full advisory at [GHSA-pr64-jmmf-jp54](https://github.com/stacklok/toolhive/security/advisories/GHSA-pr64-jmmf-jp54).
 
 The lesson generalizes past this one bug. Auth discovery, health checks, and update probes tend to run host-side and inherit none of the isolation a product advertises. And a `#nosec` with a confident rationale is worth reading twice: the analyzer had already found this, and a trust assumption written in a comment overrode it.
 
