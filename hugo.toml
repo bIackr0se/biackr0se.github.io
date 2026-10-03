@@ -31,15 +31,15 @@ theme = "blackrose"
 [menu]
   [[menu.main]]
     name = "work"
-    url = "/projects/"
+    pageRef = "/projects"
     weight = 1
   [[menu.main]]
     name = "writing"
-    url = "/posts/"
+    pageRef = "/posts"
     weight = 2
   [[menu.main]]
     name = "about"
-    url = "/about/"
+    pageRef = "/about"
     weight = 3
 
 [outputs]
