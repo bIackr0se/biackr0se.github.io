@@ -9,6 +9,7 @@ Jaafer Rahmani. Security engineer and PhD researcher in adversarial machine lear
 
 ## current
 
+- [Agentarium](https://github.com/bIackr0se/agentarium): a localhost-only, read-only map of agent work built on a provider-neutral `WorldSnapshot` contract, with synthetic Demo data and an optional Codex adapter tested against local SQLite state
 - Doctoral research in adversarial ML: evaluating and hardening intrusion detection systems against adaptive evasion
 - Security analysis of agentic LLM SOC assistants: prompt injection against tool-wielding analysts that act on live OT networks
 - Engineering AI-supported SIEM for critical infrastructure (IT/OT networks)
