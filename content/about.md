@@ -5,7 +5,7 @@ description: "Jaafer Rahmani. Security engineer and PhD researcher. AI red teami
 
 ## whoami
 
-Jaafer Rahmani. Security engineer and PhD researcher in adversarial machine learning. I work both sides of AI security: red-teaming ML models, LLM agents, and RAG pipelines, and engineering the ML-driven detection that defends enterprise and industrial networks against a moving target. Ten peer-reviewed papers, a CVE, and a preference for attacks that reproduce.
+Jaafer Rahmani. Security engineer and PhD researcher in adversarial machine learning. I work both sides of AI security: red-teaming ML models, LLM agents, and RAG pipelines, and engineering the ML-driven detection that defends enterprise and industrial networks against a moving target. Twelve peer-reviewed papers, a CVE, and a preference for attacks that reproduce.
 
 ## current
 
@@ -39,7 +39,7 @@ Affiliations: OWASP member.
 
 ## publications
 
-Ten peer-reviewed papers across IEEE, Springer, and MDPI venues (2025-2026), spanning SIEM frameworks for OT anomaly detection, MITRE-mapped attack emulation testbeds, PROFINET intrusion detection, agentic LLM security analysts and the prompt-injection attacks that subvert them, and adversarial campaign evaluation of ML-based IDS. Full list with venues and status on the [work page]({{< relref "/projects" >}}#papers).
+Twelve peer-reviewed papers across IEEE, Springer, and MDPI venues (2025-2026), spanning SIEM frameworks for OT anomaly detection, MITRE-mapped attack emulation testbeds, public datasets for ML-based intrusion detection, PROFINET intrusion detection, agentic LLM security analysts and the prompt-injection attacks that subvert them, reinforcement-learning incident response for IT/OT, and adversarial campaign evaluation of ML-based IDS. Full list with venues and status on the [work page]({{< relref "/projects" >}}#papers).
 
 ## contact
 
