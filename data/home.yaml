@@ -25,10 +25,10 @@ domains:
 # stats and spotlight mirror data/publications.yaml by hand; update together
 # (see the header note there).
 stats:
-  - n: "10"
+  - n: "12"
     label: peer-reviewed papers
     sub: IEEE / Springer / MDPI, 2025-2026
-  - n: "7"
+  - n: "8"
     label: accepted in 2026 alone
     sub: adversarial ML, LLM agents, OT security
   - n: "1"
