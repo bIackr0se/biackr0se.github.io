@@ -49,6 +49,10 @@ spotlight:
 
 work:
   - kind: CVE
+    title: "CVE-2026-91141: vsomeip memory exhaustion"
+    desc: My vsomeip 3.7.3 test measured a 512.3 MiB rise in process memory after an incomplete SOME/IP message. Published by CERT/CC as VU#128947. Fixed in 3.7.4.
+    url: posts/cve-2026-91141-vsomeip/
+  - kind: CVE
     title: "CVE-2026-58196: SSRF in ToolHive"
     desc: Host-side SSRF in an MCP runtime's auth discovery, reaching cloud instance metadata from outside the container sandbox the tool exists to enforce. Full writeup, fixed in v0.31.0.
     url: projects/toolhive-ssrf/
