@@ -25,6 +25,8 @@ Jaafer Rahmani. Security engineer and PhD researcher in adversarial machine lear
 ## disclosures
 
 ```
+[+] CVE-2026-91141 - vsomeip: a 16-byte SOME/IP header makes the
+    receiver allocate 512 MiB. Fixed in 3.7.4. CERT/CC VU#128947.
 [+] CVE-2026-58196 - ToolHive: host-side SSRF bypassing container
     isolation. Fixed in v0.31.0. Advisory GHSA-pr64-jmmf-jp54.
 ```

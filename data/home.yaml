@@ -10,6 +10,7 @@ ticker:
   - MDPI Sensors
   - IEEE IDAACS
   - IEEE ICEST
+  - CVE-2026-91141
   - CVE-2026-58196
   - MITRE ATT&CK
   - OWASP
@@ -31,9 +32,9 @@ stats:
   - n: "8"
     label: accepted in 2026 alone
     sub: adversarial ML, LLM agents, OT security
-  - n: "1"
-    label: CVE in AI-agent infrastructure
-    sub: CVE-2026-58196, fixed upstream
+  - n: "2"
+    label: published CVEs
+    sub: AI-agent infrastructure and vehicle software, both fixed upstream
 
 spotlight:
   kicker: featured // latest acceptance
