@@ -33,7 +33,7 @@ stats:
     label: accepted in 2026 alone
     sub: adversarial ML, LLM agents, OT security
   - n: "2"
-    label: CVEs
+    label: published CVEs
     sub: AI-agent infrastructure and vehicle software, both fixed upstream
 
 spotlight:
