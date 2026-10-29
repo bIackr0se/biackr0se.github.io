@@ -59,8 +59,8 @@ work:
     url: projects/toolhive-ssrf/
   - kind: Framework
     title: KEYSER
-    desc: Stateful adversarial campaign evaluation against ML-based intrusion detection in industrial automation. To appear at IEEE ETFA 2026.
-    url: "#research"
+    desc: Stateful adversarial campaign evaluation against ML-based intrusion detection in industrial automation. Published at IEEE ETFA 2026.
+    url: "https://doi.org/10.1109/ETFA68377.2026.11724909"
   - kind: Tool
     title: AutoMCP
     desc: Elastic purple-team MCP server. Extracts security alerts, analyzes them, responds, and runs counter-reconnaissance.
