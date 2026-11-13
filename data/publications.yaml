@@ -5,6 +5,11 @@
 - title: "When the Analyst Scans for the Attacker: Subverting Agentic LLM Security Operations in OT Networks"
   venue: "SHIELD-AI @ ECML PKDD 2026, Springer CCIS"
   status: "to appear"
+  note: "accepted manuscript (PDF)"
+  # Self-archived under the Springer licence clause for the author's own website.
+  # When the CCIS volume is out, replace the DOI placeholder in the PDF's page-1
+  # notice with the real DOI.
+  url: "/papers/rahmani-shield-ai-2026-accepted.pdf"
 - title: "KEYSER: Stateful Adversarial Campaign Evaluation of ML-Based Intrusion Detection in Industrial Automation"
   venue: "IEEE ETFA 2026"
   status: "published"
