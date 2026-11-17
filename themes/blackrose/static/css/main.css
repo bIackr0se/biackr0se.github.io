@@ -528,6 +528,13 @@ a.pub-row:hover .pub-title { color: var(--rose); }
   aspect-ratio: 1 / 1; height: auto;
   opacity: 0.5; pointer-events: none; z-index: 0;
 }
+/* In a single page the head is the narrow text column, so the rose would sit
+   behind the standfirst; it fades back there and moves beside the column
+   when the screen has room. */
+.post-head .inner-rose { opacity: 0.22; }
+@media (min-width: 1360px) {
+  .post-head .inner-rose { width: 20rem; top: -3rem; right: -24rem; opacity: 0.5; }
+}
 .page-head > *:not(.inner-rose), .post-head > *:not(.inner-rose) {
   position: relative; z-index: 1;
 }
@@ -606,7 +613,9 @@ a.pub-row:hover .pub-title { color: var(--rose); }
   transition: border-color 250ms ease, transform 250ms ease;
 }
 .cert-card:hover { border-color: var(--line); transform: translateY(-3px); }
-.cert-card img { width: 100%; height: auto; }
+/* One frame for every credential, so a square badge and landscape certificates
+   line up; contain keeps the whole document readable. */
+.cert-card img { width: 100%; height: auto; aspect-ratio: 900 / 695; object-fit: contain; background: #fff; }
 .cert-body { padding: 1rem 1.1rem 1.2rem; display: flex; flex-direction: column; gap: 0.3rem; }
 .cert-name { font-weight: 700; font-size: 0.98rem; }
 .cert-card:hover .cert-name { color: var(--rose); }
