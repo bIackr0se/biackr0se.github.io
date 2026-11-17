@@ -91,6 +91,7 @@ img { max-width: 100%; display: block; }
   font-family: var(--mono);
 }
 .skip:focus { left: 0; }
+:focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; }
 
 /* --- film grain overlay ------------------------------------ */
 .grain {
@@ -406,9 +407,13 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
   align-items: center;
   padding: 2.4rem 0.5rem 2.4rem 0;
   border-bottom: 1px solid var(--line-soft);
-  transition: background 250ms ease, padding 250ms ease;
+  transition: background 250ms ease;
 }
-.work-item:hover { background: linear-gradient(90deg, rgba(255, 42, 77, 0.06), transparent 70%); padding-left: 1.2rem; }
+.work-item:hover, .work-item:focus-visible { background: linear-gradient(90deg, rgba(255, 42, 77, 0.06), transparent 70%); }
+.work-body, .pub-body, .post-row > * { transition: transform 250ms ease; }
+.work-item:hover .work-body, .work-item:focus-visible .work-body,
+a.pub-row:hover .pub-body, a.pub-row:focus-visible .pub-body,
+.post-row:hover > *, .post-row:focus-visible > * { transform: translateX(0.7rem); }
 .work-index {
   font-family: var(--display); font-size: clamp(1.6rem, 4vw, 2.8rem);
   color: transparent; -webkit-text-stroke: 1px var(--faint);
@@ -444,6 +449,7 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
   margin-bottom: 1rem;
 }
 .spotlight-copy { color: var(--dim); max-width: 52rem; font-size: 1rem; }
+.spotlight-link { margin-top: 1.8rem; }
 .spotlight-venue {
   margin-top: 1.5rem; color: var(--faint);
   font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;
@@ -454,9 +460,9 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
   align-items: center;
   padding: 1.5rem 0.5rem 1.5rem 0;
   border-bottom: 1px solid var(--line-soft);
-  transition: background 250ms ease, padding 250ms ease;
+  transition: background 250ms ease;
 }
-a.pub-row:hover { background: linear-gradient(90deg, rgba(255, 42, 77, 0.06), transparent 70%); padding-left: 1.2rem; }
+a.pub-row:hover, a.pub-row:focus-visible { background: linear-gradient(90deg, rgba(255, 42, 77, 0.06), transparent 70%); }
 .pub-body { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
 .pub-title { font-weight: 500; font-size: 1.02rem; line-height: 1.45; }
 a.pub-row:hover .pub-title { color: var(--rose); }
@@ -483,9 +489,9 @@ a.pub-row:hover .pub-title { color: var(--rose); }
   padding: 1.7rem 0.5rem 1.7rem 0;
   border-bottom: 1px solid var(--line-soft);
   align-items: baseline;
-  transition: background 250ms ease, padding 250ms ease;
+  transition: background 250ms ease;
 }
-.post-row:hover { background: linear-gradient(90deg, rgba(255, 42, 77, 0.06), transparent 70%); padding-left: 1.2rem; }
+.post-row:hover, .post-row:focus-visible { background: linear-gradient(90deg, rgba(255, 42, 77, 0.06), transparent 70%); }
 .post-date { color: var(--faint); }
 .post-title { font-weight: 700; font-size: 1.2rem; }
 .post-row:hover .post-title { color: var(--rose); }

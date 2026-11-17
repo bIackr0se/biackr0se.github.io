@@ -99,6 +99,7 @@
     <h3 class="spotlight-title">{{ .title }}</h3>
     <p class="spotlight-copy">{{ .copy }}</p>
     <p class="spotlight-venue mono">{{ .venue }}</p>
+    {{ with .url }}<p class="spotlight-link"><a class="btn-ghost mono" href="{{ . | relURL }}">read the accepted manuscript &rarr;</a></p>{{ end }}
   </div>
   {{ end }}
   {{ partial "publications.html" true }}
