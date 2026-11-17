@@ -210,6 +210,10 @@
       if (total <= 0) return 0;
       return clamp01(-el.getBoundingClientRect().top / total);
     };
+    /* 0 while the stage's top is a full screen below, 1 once it reaches the top. */
+    var entryOf = function (el) {
+      return clamp01(1 - el.getBoundingClientRect().top / window.innerHeight);
+    };
     /* Cinematic dolly, not a zoom-through: layers rise at different rates
        (depth parallax), the rose stays the living centerpiece and blooms
        gently, the wordmark racks out of focus as it lifts, and the whole
@@ -281,7 +285,7 @@
       /* reads */
       var hp = heroRefs ? progressOf(heroRefs.stage) : 0;
       var mp = maniRefs ? progressOf(maniRefs.stage) : 0;
-      var me = maniRefs ? clamp01(1 - maniRefs.stage.getBoundingClientRect().top / window.innerHeight) : 0;
+      var me = maniRefs ? entryOf(maniRefs.stage) : 0;
       var qs = null;
       if (canTranslate && plx.length) {
         var vh = window.innerHeight;

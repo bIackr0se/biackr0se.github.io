@@ -46,6 +46,8 @@
   --ember: #ff6a3d;
   --violet: #a12aff;
   --grad: linear-gradient(100deg, var(--rose) 0%, var(--ember) 55%, #ffb03a 100%);
+  --row-tint: linear-gradient(90deg, rgba(255, 42, 77, 0.06), transparent 70%);
+  --fs-label: 0.75rem; /* floor for small mono labels */
   --display: "Archivo Expanded", "Arial Black", sans-serif;
   /* expanded grotesque runs tight, like the original Archivo Black */
   --disp-track: -0.01em;
@@ -230,7 +232,7 @@ img { max-width: 100%; display: block; }
 .hero-cue {
   position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
   z-index: 2; color: var(--faint); letter-spacing: 0.3em; text-transform: uppercase;
-  font-size: 0.75rem; display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+  font-size: var(--fs-label); display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
 }
 .cue-line {
   width: 1px; height: 3rem; background: linear-gradient(to bottom, var(--rose), transparent);
@@ -340,7 +342,7 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
 .ticker-item {
   color: var(--dim); white-space: nowrap;
   letter-spacing: 0.14em;
-  font-size: 0.75rem;
+  font-size: var(--fs-label);
 }
 .ticker-sep { color: var(--rose); margin: 0 1.9rem; font-family: var(--mono); font-size: 0.7rem; opacity: 0.65; }
 @keyframes ticker-scroll {
@@ -373,7 +375,7 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
   font-variant-numeric: tabular-nums;
 }
 .stat-label { font-weight: 700; font-size: 1.05rem; letter-spacing: 0.01em; }
-.stat-sub { color: var(--faint); font-size: 0.75rem; }
+.stat-sub { color: var(--faint); font-size: var(--fs-label); }
 
 /* --- domains ------------------------------------------------ */
 .domain-grid {
@@ -391,7 +393,7 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
 .domain-card:hover { background: var(--bg-2); }
 .domain-card:hover .domain-index { color: var(--rose); }
 .domain-index {
-  color: var(--faint); font-size: 0.75rem; display: block; margin-bottom: 1.6rem;
+  color: var(--faint); font-size: var(--fs-label); display: block; margin-bottom: 1.6rem;
   transition: color 300ms ease;
 }
 .domain-card h3 {
@@ -399,7 +401,7 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
   font-size: 1.25rem; margin-bottom: 0.8rem; letter-spacing: 0.01em;
 }
 .domain-card p { color: var(--dim); font-size: 0.95rem; }
-.domain-tags { margin-top: 1.4rem; color: var(--faint); font-size: 0.75rem; }
+.domain-tags { margin-top: 1.4rem; color: var(--faint); font-size: var(--fs-label); }
 
 /* --- work --------------------------------------------------- */
 .work-list { border-top: 1px solid var(--line-soft); }
@@ -412,7 +414,7 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
   border-bottom: 1px solid var(--line-soft);
   transition: background 250ms ease;
 }
-.work-item:hover, .work-item:focus-visible { background: linear-gradient(90deg, rgba(255, 42, 77, 0.06), transparent 70%); }
+.work-item:hover, .work-item:focus-visible { background: var(--row-tint); }
 .work-body, .pub-body, .post-row > * { transition: transform 250ms ease; }
 /* The slide is spatial motion, so it runs only when motion is allowed; the
    background tint and title colour stay as feedback either way. */
@@ -428,7 +430,7 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
 }
 .work-item:hover .work-index { -webkit-text-stroke-color: var(--rose); }
 .work-body { display: flex; flex-direction: column; gap: 0.35rem; min-width: 0; }
-.work-kind { color: var(--rose); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.16em; }
+.work-kind { color: var(--rose); font-size: var(--fs-label); text-transform: uppercase; letter-spacing: 0.16em; }
 .work-title { font-weight: 700; font-size: clamp(1.15rem, 2.4vw, 1.6rem); }
 .work-desc { color: var(--dim); font-size: 0.95rem; max-width: 46rem; }
 .work-arrow {
@@ -447,7 +449,7 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
 }
 .spotlight-kicker {
   color: var(--rose); text-transform: uppercase;
-  font-size: 0.75rem; letter-spacing: 0.18em;
+  font-size: var(--fs-label); letter-spacing: 0.18em;
   margin-bottom: 1.1rem;
 }
 .spotlight-title {
@@ -459,7 +461,7 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
 .spotlight-link { margin-top: 1.8rem; }
 .spotlight-venue {
   margin-top: 1.5rem; color: var(--faint);
-  font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;
+  font-size: var(--fs-label); text-transform: uppercase; letter-spacing: 0.1em;
 }
 .pub-list { border-top: 1px solid var(--line-soft); }
 .pub-row {
@@ -469,13 +471,13 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
   border-bottom: 1px solid var(--line-soft);
   transition: background 250ms ease;
 }
-a.pub-row:hover, a.pub-row:focus-visible { background: linear-gradient(90deg, rgba(255, 42, 77, 0.06), transparent 70%); }
+a.pub-row:hover, a.pub-row:focus-visible { background: var(--row-tint); }
 .pub-body { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
 .pub-title { font-weight: 500; font-size: 1.02rem; line-height: 1.45; }
 a.pub-row:hover .pub-title { color: var(--rose); }
-.pub-venue { color: var(--faint); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
+.pub-venue { color: var(--faint); font-size: var(--fs-label); text-transform: uppercase; letter-spacing: 0.1em; }
 .pub-status {
-  font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+  font-size: var(--fs-label); letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--ember); border: 1px solid rgba(255, 106, 61, 0.35);
   padding: 0.3rem 0.7rem; white-space: nowrap;
 }
@@ -498,7 +500,7 @@ a.pub-row:hover .pub-title { color: var(--rose); }
   align-items: baseline;
   transition: background 250ms ease;
 }
-.post-row:hover, .post-row:focus-visible { background: linear-gradient(90deg, rgba(255, 42, 77, 0.06), transparent 70%); }
+.post-row:hover, .post-row:focus-visible { background: var(--row-tint); }
 .post-date { color: var(--faint); }
 .post-title { font-weight: 700; font-size: 1.2rem; }
 .post-row:hover .post-title { color: var(--rose); }
@@ -633,7 +635,7 @@ a.pub-row:hover .pub-title { color: var(--rose); }
 .cert-body { padding: 1rem 1.1rem 1.2rem; display: flex; flex-direction: column; gap: 0.3rem; }
 .cert-name { font-weight: 700; font-size: 0.98rem; }
 .cert-card:hover .cert-name { color: var(--rose); }
-.cert-meta { font-family: var(--mono); color: var(--faint); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
+.cert-meta { font-family: var(--mono); color: var(--faint); font-size: var(--fs-label); text-transform: uppercase; letter-spacing: 0.1em; }
 
 .post-foot { margin-top: 4rem; border-top: 1px solid var(--line-soft); padding-top: 2rem; }
 .post-nav { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
@@ -655,7 +657,7 @@ a.pub-row:hover .pub-title { color: var(--rose); }
 .footer-line { color: var(--rose); }
 .footer-head {
   color: var(--faint); text-transform: uppercase; letter-spacing: 0.18em;
-  font-size: 0.75rem; margin-bottom: 1.1rem;
+  font-size: var(--fs-label); margin-bottom: 1.1rem;
 }
 .footer-col { display: flex; flex-direction: column; gap: 0.55rem; align-items: flex-start; }
 .footer-col a {
@@ -663,8 +665,8 @@ a.pub-row:hover .pub-title { color: var(--rose); }
   border-bottom: 1px solid transparent; letter-spacing: 0.04em;
 }
 .footer-col a:hover { color: var(--ink); border-bottom-color: var(--rose); }
-.footer-note { color: var(--faint); font-size: 0.75rem; }
-.footer-copy { color: var(--faint); font-size: 0.75rem; padding-top: 1.6rem; }
+.footer-note { color: var(--faint); font-size: var(--fs-label); }
+.footer-copy { color: var(--faint); font-size: var(--fs-label); padding-top: 1.6rem; }
 @media (max-width: 760px) {
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer-brand { grid-column: 1 / -1; }
@@ -684,7 +686,7 @@ html.js .statusbar {
 
 /* --- nav contact cta ----------------------------------------- */
 .nav-links a.nav-cta {
-  font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em;
+  font-family: var(--mono); font-size: var(--fs-label); letter-spacing: 0.08em;
   color: var(--rose); border: 1px solid var(--line);
   padding: 0.45rem 0.9rem;
   transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
@@ -695,7 +697,7 @@ html.js .statusbar {
 @media (max-width: 640px) {
   .inner-rose { right: 0; }
   .nav-links { gap: 0.9rem; }
-  .nav-links a { font-size: 0.75rem; }
+  .nav-links a { font-size: var(--fs-label); }
   .post-row { grid-template-columns: 1fr; }
   .post-desc { grid-column: 1; }
   .work-item { grid-template-columns: 1fr auto; }
