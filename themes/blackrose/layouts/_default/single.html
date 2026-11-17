@@ -13,11 +13,13 @@
   <div class="prose">
     {{ .Content }}
   </div>
+  {{ if in (slice "posts" "projects") .Section }}
   <footer class="post-foot">
     <div class="post-nav">
       {{ with .PrevInSection }}<a class="btn-ghost mono" href="{{ .RelPermalink }}">&larr; {{ .Title }}</a>{{ end }}
       {{ with .NextInSection }}<a class="btn-ghost mono" href="{{ .RelPermalink }}">{{ .Title }} &rarr;</a>{{ end }}
     </div>
   </footer>
+  {{ end }}
 </article>
 {{ end }}

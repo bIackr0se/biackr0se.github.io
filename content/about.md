@@ -5,7 +5,7 @@ description: "Jaafer Rahmani. Security engineer and PhD researcher. AI red teami
 
 ## whoami
 
-Jaafer Rahmani. Security engineer and PhD researcher in adversarial machine learning. I work both sides of AI security: red-teaming ML models, LLM agents, and RAG pipelines, and engineering the ML-driven detection that defends enterprise and industrial networks against a moving target. Twelve peer-reviewed papers, a CVE, and a preference for attacks that reproduce.
+PhD researcher in adversarial machine learning. I work both sides of AI security: red-teaming ML models, LLM agents, and RAG pipelines, and engineering the ML-driven detection that defends enterprise and industrial networks against a moving target. Twelve peer-reviewed papers, a CVE, and a preference for attacks that reproduce.
 
 ## current
 
