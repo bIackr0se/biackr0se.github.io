@@ -156,6 +156,9 @@ img { max-width: 100%; display: block; }
     height: calc(var(--stage-vh, 100) * 1vh);
     height: calc(var(--stage-vh, 100) * 1svh);
   }
+  /* The thesis stage starts rising while the hero is still pinned, so its
+     first line is on screen by the time the hero has closed to black. */
+  html.cinema .stage[data-stage="manifesto"] { margin-top: -40vh; margin-top: -40svh; }
   html.cinema .stage .scene {
     position: sticky; top: 0;
     height: 100vh; height: 100svh;
@@ -411,9 +414,13 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
 }
 .work-item:hover, .work-item:focus-visible { background: linear-gradient(90deg, rgba(255, 42, 77, 0.06), transparent 70%); }
 .work-body, .pub-body, .post-row > * { transition: transform 250ms ease; }
-.work-item:hover .work-body, .work-item:focus-visible .work-body,
-a.pub-row:hover .pub-body, a.pub-row:focus-visible .pub-body,
-.post-row:hover > *, .post-row:focus-visible > * { transform: translateX(0.7rem); }
+/* The slide is spatial motion, so it runs only when motion is allowed; the
+   background tint and title colour stay as feedback either way. */
+@media (prefers-reduced-motion: no-preference) {
+  .work-item:hover .work-body, .work-item:focus-visible .work-body,
+  a.pub-row:hover .pub-body, a.pub-row:focus-visible .pub-body,
+  .post-row:hover > *, .post-row:focus-visible > * { transform: translateX(0.7rem); }
+}
 .work-index {
   font-family: var(--display); font-size: clamp(1.6rem, 4vw, 2.8rem);
   color: transparent; -webkit-text-stroke: 1px var(--faint);
