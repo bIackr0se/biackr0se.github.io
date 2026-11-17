@@ -474,6 +474,10 @@ a.pub-row:hover .pub-title { color: var(--rose); }
 
 /* --- writing / post lists ----------------------------------- */
 .post-list { border-top: 1px solid var(--line-soft); }
+/* On index pages the list is also the padded page container, so its own top
+   border would overhang the rows; the first row carries the rule instead. */
+.post-list.list-page { border-top: 0; }
+.post-list.list-page > .post-row:first-child { border-top: 1px solid var(--line-soft); }
 .post-row {
   display: grid; grid-template-columns: 8.5rem 1fr; gap: 0.4rem 2rem;
   padding: 1.7rem 0.5rem 1.7rem 0;
@@ -675,6 +679,8 @@ html.js .statusbar {
   .work-index { display: none; }
   .hero-cue { display: none; }
   .hero-title { font-size: 11.2vw; }
+  .manifesto, .domains, .work, .writing, .contact, .research { padding-block: clamp(3.5rem, 9vh, 6rem); }
+  .record { padding-block: clamp(3rem, 8vh, 5rem); }
 }
 @media (max-width: 420px) {
   .nav { padding-inline: 0.8rem; }
@@ -683,6 +689,8 @@ html.js .statusbar {
   .nav-links { gap: 0.55rem; }
   .nav-links a { font-size: 0.7rem; }
   .nav-links a.nav-cta { font-size: 0.7rem; padding: 0.4rem 0.55rem; }
+  .contact-alt { gap: 0.6rem; }
+  .contact-alt .btn-ghost { padding-inline: 1.05rem; }
 }
 
 /* --- reduced motion ------------------------------------------ */

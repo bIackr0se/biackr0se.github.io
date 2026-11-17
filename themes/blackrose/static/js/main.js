@@ -246,16 +246,20 @@
       /* atmosphere closes to black only after the rose has held bright */
       if (heroRefs.fade) heroRefs.fade.style.opacity = ramp(p, 0.80, 0.99).toFixed(3);
     };
-    var applyManifesto = function (p) {
-      if (maniRefs.kicker) maniRefs.kicker.style.opacity = ramp(p, 0.02, 0.14).toFixed(3);
+    /* `entry` runs 0 to 1 while the scene rises into view, before it pins.
+       The kicker and the first line arrive during that rise, so the screen
+       after the hero's fade to black is never empty; the later lines and
+       the copy follow once the scene is pinned. */
+    var applyManifesto = function (p, entry) {
+      if (maniRefs.kicker) maniRefs.kicker.style.opacity = ramp(entry, 0.3, 0.6).toFixed(3);
       maniRefs.lines.forEach(function (ln, i) {
-        var t = ramp(p, 0.08 + i * 0.24, 0.24 + i * 0.24);
+        var t = i === 0 ? ramp(entry, 0.35, 0.85) : ramp(p, 0.04 + (i - 1) * 0.24, 0.2 + (i - 1) * 0.24);
         t = 1 - Math.pow(1 - t, 3);
         ln.style.opacity = t.toFixed(3);
         ln.style.transform = "translateY(" + ((1 - t) * 70).toFixed(1) + "px)";
       });
       if (maniRefs.copy) {
-        var c = ramp(p, 0.78, 0.98);
+        var c = ramp(p, 0.5, 0.7);
         c = 1 - Math.pow(1 - c, 3);
         maniRefs.copy.style.opacity = c.toFixed(3);
         maniRefs.copy.style.transform = "translateY(" + ((1 - c) * 40).toFixed(1) + "px)";
@@ -277,6 +281,7 @@
       /* reads */
       var hp = heroRefs ? progressOf(heroRefs.stage) : 0;
       var mp = maniRefs ? progressOf(maniRefs.stage) : 0;
+      var me = maniRefs ? clamp01(1 - maniRefs.stage.getBoundingClientRect().top / window.innerHeight) : 0;
       var qs = null;
       if (canTranslate && plx.length) {
         var vh = window.innerHeight;
@@ -295,7 +300,7 @@
       if (maniRefs) {
         smoothMani = smoothMani === undefined ? mp : smoothMani + (mp - smoothMani) * 0.24;
         if (Math.abs(mp - smoothMani) > 0.0005) settled = false;
-        applyManifesto(smoothMani);
+        applyManifesto(smoothMani, me);
       }
       if (qs) {
         plx.forEach(function (el, i) {
