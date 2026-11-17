@@ -1,4 +1,5 @@
 ---
+aliases: ["/work/"]
 title: "Work"
 description: "Disclosures, tools, and published research."
 ---

@@ -6,7 +6,8 @@
   {{ with .Content }}<div class="page-intro">{{ . }}</div>{{ end }}
 </section>
 <section class="post-list list-page">
-  {{ range .RegularPages.ByDate.Reverse }}
+  {{/* Disclosures written up under posts/ set `work: true` to appear here too. */}}
+  {{ range (.RegularPages | union (where site.RegularPages "Params.work" true)).ByDate.Reverse }}
   <a class="post-row" href="{{ .RelPermalink }}">
     <span class="post-date mono">{{ .Date.Format "2006.01.02" }}</span>
     <span class="post-title">{{ .Title }}</span>

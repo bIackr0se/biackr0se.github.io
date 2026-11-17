@@ -81,13 +81,34 @@
     }, 3400);
   }
 
+  /* ---- hero cue: a smooth glide only when motion is allowed ---- */
+  var cueLink = document.querySelector(".hero-cue");
+  if (cueLink && !reduced) {
+    cueLink.addEventListener("click", function (ev) {
+      var target = document.getElementById(cueLink.hash.slice(1));
+      if (!target) return;
+      ev.preventDefault();
+      target.scrollIntoView({ behavior: "smooth" });
+    });
+  }
+
   /* ---- hero boot line ----------------------------------------- */
   var boot = document.querySelector("[data-boot]");
   if (boot) {
     var msg = "$ ./init --target intelligent_systems --mode adversarial";
-    if (reduced) {
+    /* Reserve the height of the full line before typing, so a wrap on a
+       narrow screen does not push the wordmark down mid-animation. */
+    var reserve = function () {
+      var shown = boot.textContent;
+      boot.style.minHeight = "";
       boot.textContent = msg;
-    } else {
+      boot.style.minHeight = boot.offsetHeight + "px";
+      boot.textContent = shown;
+    };
+    boot.textContent = reduced ? msg : "";
+    reserve();
+    if (document.fonts) document.fonts.ready.then(reserve);
+    if (!reduced) {
       var i = 0;
       var type = function () {
         boot.textContent = msg.slice(0, i);
@@ -210,6 +231,10 @@
       if (total <= 0) return 0;
       return clamp01(-el.getBoundingClientRect().top / total);
     };
+    /* 0 while the stage's top is a full screen below, 1 once it reaches the top. */
+    var entryOf = function (el) {
+      return clamp01(1 - el.getBoundingClientRect().top / window.innerHeight);
+    };
     /* Cinematic dolly, not a zoom-through: layers rise at different rates
        (depth parallax), the rose stays the living centerpiece and blooms
        gently, the wordmark racks out of focus as it lifts, and the whole
@@ -235,27 +260,32 @@
         heroRefs.canvas.style.opacity = (1 - ramp(p, 0.82, 0.99)).toFixed(3);
       }
       /* front layer: rises and fades first */
-      var front = (1 - ramp(p, 0.04, 0.22)).toFixed(3);
+      /* gone before it can rise into the growing wordmark (30px apart on a phone) */
+      var front = (1 - ramp(p, 0.03, 0.16)).toFixed(3);
       [heroRefs.name, heroRefs.sub].forEach(function (el) {
         if (!el) return;
         el.style.opacity = front;
-        el.style.transform = "translate3d(0," + (-e * 140).toFixed(1) + "px,0)";
+        el.style.transform = "translate3d(0," + (-e * 60).toFixed(1) + "px,0)";
       });
       if (heroRefs.boot) heroRefs.boot.style.opacity = front;
       if (heroRefs.cue) heroRefs.cue.style.opacity = (1 - ramp(p, 0.02, 0.1)).toFixed(3);
       /* atmosphere closes to black only after the rose has held bright */
       if (heroRefs.fade) heroRefs.fade.style.opacity = ramp(p, 0.80, 0.99).toFixed(3);
     };
-    var applyManifesto = function (p) {
-      if (maniRefs.kicker) maniRefs.kicker.style.opacity = ramp(p, 0.02, 0.14).toFixed(3);
+    /* `entry` runs 0 to 1 while the scene rises into view, before it pins.
+       The kicker and the first line arrive during that rise, so the screen
+       after the hero's fade to black is never empty; the later lines and
+       the copy follow once the scene is pinned. */
+    var applyManifesto = function (p, entry) {
+      if (maniRefs.kicker) maniRefs.kicker.style.opacity = ramp(entry, 0.3, 0.6).toFixed(3);
       maniRefs.lines.forEach(function (ln, i) {
-        var t = ramp(p, 0.08 + i * 0.24, 0.24 + i * 0.24);
+        var t = i === 0 ? ramp(entry, 0.35, 0.85) : ramp(p, 0.04 + (i - 1) * 0.24, 0.2 + (i - 1) * 0.24);
         t = 1 - Math.pow(1 - t, 3);
         ln.style.opacity = t.toFixed(3);
         ln.style.transform = "translateY(" + ((1 - t) * 70).toFixed(1) + "px)";
       });
       if (maniRefs.copy) {
-        var c = ramp(p, 0.78, 0.98);
+        var c = ramp(p, 0.5, 0.7);
         c = 1 - Math.pow(1 - c, 3);
         maniRefs.copy.style.opacity = c.toFixed(3);
         maniRefs.copy.style.transform = "translateY(" + ((1 - c) * 40).toFixed(1) + "px)";
@@ -277,6 +307,7 @@
       /* reads */
       var hp = heroRefs ? progressOf(heroRefs.stage) : 0;
       var mp = maniRefs ? progressOf(maniRefs.stage) : 0;
+      var me = maniRefs ? entryOf(maniRefs.stage) : 0;
       var qs = null;
       if (canTranslate && plx.length) {
         var vh = window.innerHeight;
@@ -295,7 +326,7 @@
       if (maniRefs) {
         smoothMani = smoothMani === undefined ? mp : smoothMani + (mp - smoothMani) * 0.24;
         if (Math.abs(mp - smoothMani) > 0.0005) settled = false;
-        applyManifesto(smoothMani);
+        applyManifesto(smoothMani, me);
       }
       if (qs) {
         plx.forEach(function (el, i) {

@@ -37,6 +37,7 @@ stats:
     sub: AI-agent infrastructure and vehicle software, both fixed upstream
 
 spotlight:
+  pub: shield-ai  # id of the entry in data/publications.yaml whose url the button opens
   kicker: featured // latest acceptance
   title: "When the Analyst Scans for the Attacker"
   venue: "SHIELD-AI @ ECML PKDD 2026 / Springer CCIS / to appear"

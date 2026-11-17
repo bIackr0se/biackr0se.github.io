@@ -3,8 +3,9 @@ title: "Hello, World"
 date: 2026-04-05
 draft: false
 featured: false
+build:
+  list: never
 description: "First post. Boot sequence complete."
-tags: ["meta"]
 ---
 
 ## init
