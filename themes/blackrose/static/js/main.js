@@ -81,13 +81,34 @@
     }, 3400);
   }
 
+  /* ---- hero cue: a smooth glide only when motion is allowed ---- */
+  var cueLink = document.querySelector(".hero-cue");
+  if (cueLink && !reduced) {
+    cueLink.addEventListener("click", function (ev) {
+      var target = document.getElementById(cueLink.hash.slice(1));
+      if (!target) return;
+      ev.preventDefault();
+      target.scrollIntoView({ behavior: "smooth" });
+    });
+  }
+
   /* ---- hero boot line ----------------------------------------- */
   var boot = document.querySelector("[data-boot]");
   if (boot) {
     var msg = "$ ./init --target intelligent_systems --mode adversarial";
-    if (reduced) {
+    /* Reserve the height of the full line before typing, so a wrap on a
+       narrow screen does not push the wordmark down mid-animation. */
+    var reserve = function () {
+      var shown = boot.textContent;
+      boot.style.minHeight = "";
       boot.textContent = msg;
-    } else {
+      boot.style.minHeight = boot.offsetHeight + "px";
+      boot.textContent = shown;
+    };
+    boot.textContent = reduced ? msg : "";
+    reserve();
+    if (document.fonts) document.fonts.ready.then(reserve);
+    if (!reduced) {
       var i = 0;
       var type = function () {
         boot.textContent = msg.slice(0, i);
@@ -239,11 +260,12 @@
         heroRefs.canvas.style.opacity = (1 - ramp(p, 0.82, 0.99)).toFixed(3);
       }
       /* front layer: rises and fades first */
-      var front = (1 - ramp(p, 0.04, 0.22)).toFixed(3);
+      /* gone before it can rise into the growing wordmark (30px apart on a phone) */
+      var front = (1 - ramp(p, 0.03, 0.16)).toFixed(3);
       [heroRefs.name, heroRefs.sub].forEach(function (el) {
         if (!el) return;
         el.style.opacity = front;
-        el.style.transform = "translate3d(0," + (-e * 140).toFixed(1) + "px,0)";
+        el.style.transform = "translate3d(0," + (-e * 60).toFixed(1) + "px,0)";
       });
       if (heroRefs.boot) heroRefs.boot.style.opacity = front;
       if (heroRefs.cue) heroRefs.cue.style.opacity = (1 - ramp(p, 0.02, 0.1)).toFixed(3);

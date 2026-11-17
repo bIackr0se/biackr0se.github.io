@@ -17,6 +17,14 @@
   src: url("../fonts/archivo-variable-latin.woff2") format("woff2");
   font-weight: 800; font-stretch: 62% 125%; font-style: normal; font-display: swap;
 }
+/* Arrows and angle quotes from Plex Mono, behind every family in the stacks
+   below: the latin subsets above do not carry them. */
+@font-face {
+  font-family: "Atlas Arrows";
+  src: url("../fonts/ibm-plex-mono-arrows.woff2") format("woff2");
+  font-weight: 100 900; font-style: normal; font-display: swap;
+  unicode-range: U+2039-203A, U+2190-2199;
+}
 @font-face {
   font-family: "Newsreader";
   src: url("../fonts/newsreader-variable-latin.woff2") format("woff2");
@@ -53,11 +61,11 @@
   --grad: linear-gradient(100deg, var(--rose) 0%, var(--ember) 55%, #ffb03a 100%);
   --row-tint: linear-gradient(90deg, rgba(255, 42, 77, 0.06), transparent 70%);
   --fs-label: 0.75rem; /* floor for small mono labels */
-  --display: "Archivo Display", "Helvetica Neue", Arial, sans-serif;
+  --display: "Archivo Display", "Atlas Arrows", "Helvetica Neue", Arial, sans-serif;
   --disp-track: -0.02em;
-  --body: "Archivo", "Helvetica Neue", Arial, sans-serif;
-  --prose: "Newsreader", Charter, Georgia, serif;
-  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --body: "Archivo", "Atlas Arrows", "Helvetica Neue", Arial, sans-serif;
+  --prose: "Newsreader", "Atlas Arrows", Charter, Georgia, serif;
+  --mono: "IBM Plex Mono", "Atlas Arrows", ui-monospace, Menlo, monospace;
   /* legibility scrim for text sitting on the hero rose bloom */
   --hero-scrim: 0 1px 14px rgba(6, 4, 7, 0.95), 0 0 32px rgba(6, 4, 7, 0.85);
   --pad: clamp(1.25rem, 4vw, 4rem);
@@ -66,11 +74,11 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html {
-  scroll-behavior: smooth;
+  /* No CSS smooth scrolling: keyboard focus jumps straight to its target, and
+     the hero cue glides in main.js only when motion is allowed. */
   /* Keep anchor targets and keyboard-focused cards clear of the fixed nav and the bottom edge. */
   scroll-padding-block: 5rem 2rem;
 }
-html:focus-within { scroll-behavior: smooth; }
 
 body {
   background: var(--bg);
@@ -307,6 +315,8 @@ html.js [data-reveal] {
   transition-delay: var(--d, 0ms);
 }
 html.js [data-reveal].in { opacity: 1; transform: none; }
+/* A card that takes keyboard focus shows at once, without waiting for its reveal. */
+html.js [data-reveal]:focus-within { opacity: 1; transform: none; transition-duration: 120ms; }
 
 /* --- manifesto ---------------------------------------------- */
 .manifesto { position: relative; }
@@ -624,6 +634,7 @@ a.pub-row:hover .pub-title { color: var(--rose); }
 .prose hr { border: 0; border-top: 1px solid var(--line-soft); margin: 3rem 0; }
 .prose table { display: block; overflow-x: auto; border-collapse: collapse; width: 100%; font-size: 0.92rem; }
 .prose th, .prose td { border: 1px solid var(--line-soft); padding: 0.6rem 0.9rem; text-align: left; }
+.prose td code { overflow-wrap: normal; white-space: nowrap; } /* the table scrolls; a number never splits */
 .prose th { background: var(--panel); font-family: var(--mono); font-size: 0.78rem; }
 .br-vsomeip-film { max-width: 32rem; margin-inline: auto; }
 .br-vsomeip-film video { display: block; width: 100%; height: auto; border: 1px solid var(--line); background: #08080c; }
@@ -696,6 +707,7 @@ html.js .statusbar {
   text-transform: uppercase; letter-spacing: 0.12em;
 }
 .sb-status em { color: var(--rose); font-style: normal; }
+.sb-dot { display: inline-block; width: 0.5em; height: 0.5em; border-radius: 50%; background: currentColor; vertical-align: 0.1em; }
 
 /* --- nav contact cta ----------------------------------------- */
 .nav-links a.nav-cta {
@@ -733,7 +745,6 @@ html.js .statusbar {
 
 /* --- reduced motion ------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
   .grain { animation: none; }
   .cue-line { animation: none; }
   .hero-boot::after { animation: none; }
