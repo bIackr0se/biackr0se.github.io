@@ -6,7 +6,6 @@ featured: false
 build:
   list: never
 description: "First post. Boot sequence complete."
-tags: ["meta"]
 ---
 
 ## init

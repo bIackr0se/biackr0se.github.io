@@ -40,8 +40,6 @@ spotlight:
   kicker: featured // latest acceptance
   title: "When the Analyst Scans for the Attacker"
   venue: "SHIELD-AI @ ECML PKDD 2026 / Springer CCIS / to appear"
-  # Same file as the SHIELD-AI entry in data/publications.yaml.
-  url: "/papers/rahmani-shield-ai-2026-accepted.pdf"
   copy: >-
     SOC teams are wiring LLM agents into alert triage. This paper asks what the
     adversary gains. The answer, on a deployed agentic analyst in an OT

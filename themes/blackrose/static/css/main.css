@@ -538,7 +538,8 @@ a.pub-row:hover .pub-title { color: var(--rose); }
    behind the standfirst; it fades back there and moves beside the column
    when the screen has room. */
 .post-head .inner-rose { opacity: 0.22; }
-@media (min-width: 1360px) {
+/* 1480px: the column edge plus the rose's 24rem offset stays inside the viewport. */
+@media (min-width: 1480px) {
   .post-head .inner-rose { width: 20rem; top: -3rem; right: -24rem; opacity: 0.5; }
 }
 .page-head > *:not(.inner-rose), .post-head > *:not(.inner-rose) {

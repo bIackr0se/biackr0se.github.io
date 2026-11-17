@@ -99,7 +99,10 @@
     <h3 class="spotlight-title">{{ .title }}</h3>
     <p class="spotlight-copy">{{ .copy }}</p>
     <p class="spotlight-venue mono">{{ .venue }}</p>
-    {{ with .url }}<p class="spotlight-link"><a class="btn-ghost mono" href="{{ . | relURL }}">read the accepted manuscript &rarr;</a></p>{{ end }}
+    {{/* The link comes from the matching entry in data/publications.yaml, so it follows that entry from PDF to DOI. */}}
+    {{ $title := .title }}{{ $url := "" }}
+    {{ range hugo.Data.publications }}{{ if hasPrefix .title $title }}{{ $url = .url }}{{ end }}{{ end }}
+    {{ with $url }}<p class="spotlight-link"><a class="btn-ghost mono" href="{{ . | relURL }}">{{ if strings.HasSuffix . ".pdf" }}read the accepted manuscript{{ else }}read the paper{{ end }} &rarr;</a></p>{{ end }}
   </div>
   {{ end }}
   {{ partial "publications.html" true }}
