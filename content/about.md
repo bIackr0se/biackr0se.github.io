@@ -24,12 +24,8 @@ PhD researcher in adversarial machine learning. I work both sides of AI security
 
 ## disclosures
 
-```
-[+] CVE-2026-91141 - vsomeip 3.7.3: a 16-byte SOME/IP header makes the
-    receiver allocate 512 MiB. Fixed in 3.7.4. CERT/CC VU#128947.
-[+] CVE-2026-58196 - ToolHive: host-side SSRF bypassing container
-    isolation. Fixed in v0.31.0. Advisory GHSA-pr64-jmmf-jp54.
-```
+- **CVE-2026-91141**, vsomeip 3.7.3: a 16-byte SOME/IP header makes the receiver allocate 512 MiB. Fixed in 3.7.4. CERT/CC VU#128947. [Writeup](/posts/cve-2026-91141-vsomeip/)
+- **CVE-2026-58196**, ToolHive: host-side SSRF bypassing container isolation. Fixed in v0.31.0. Advisory GHSA-pr64-jmmf-jp54. [Writeup](/projects/toolhive-ssrf/)
 
 More reports are in vendor queues. They land here when they go public.
 
