@@ -10,6 +10,7 @@ ticker:
   - MDPI Sensors
   - IEEE IDAACS
   - IEEE ICEST
+  - CVE-2026-59369
   - CVE-2026-91141
   - CVE-2026-58196
   - MITRE ATT&CK
@@ -32,9 +33,9 @@ stats:
   - n: "8"
     label: accepted in 2026 alone
     sub: adversarial ML, LLM agents, OT security
-  - n: "2"
+  - n: "3"
     label: published CVEs
-    sub: AI-agent infrastructure and vehicle software, both fixed upstream
+    sub: AI infrastructure and vehicle software, all fixed upstream
 
 spotlight:
   pub: shield-ai  # id of the entry in data/publications.yaml whose url the button opens
@@ -50,6 +51,10 @@ spotlight:
     hostile scan drops from 52 of 100 runs to 0 on the patched pipeline.
 
 work:
+  - kind: CVE
+    title: "CVE-2026-59369: filter injection in Spring AI"
+    desc: In Spring AI's Typesense vector store, a crafted metadata filter value broke out of the application's tenant filter, and one user read and deleted other users' documents. Credited by Spring as an independent reporter. Fixed in 2.0.3.
+    url: "https://spring.io/security/cve-2026-59369"
   - kind: CVE
     title: "CVE-2026-91141: vsomeip memory exhaustion"
     desc: My vsomeip 3.7.3 test measured a 512.3 MiB rise in process memory after an incomplete SOME/IP message. Published by CERT/CC as VU#128947. Fixed in 3.7.4.

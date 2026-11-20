@@ -5,7 +5,7 @@ description: "Jaafer Rahmani. Security engineer and PhD researcher. AI red teami
 
 ## whoami
 
-I am a PhD researcher in adversarial machine learning, and I work both sides of AI security: red-teaming ML models, LLM agents, and RAG pipelines, and engineering the ML-driven detection that defends enterprise and industrial networks against a moving target. Twelve peer-reviewed papers, two published CVEs, and a preference for attacks that reproduce.
+I am a PhD researcher in adversarial machine learning, and I work both sides of AI security: red-teaming ML models, LLM agents, and RAG pipelines, and engineering the ML-driven detection that defends enterprise and industrial networks against a moving target. Twelve peer-reviewed papers, three published CVEs, and a preference for attacks that reproduce.
 
 ## current
 
@@ -24,6 +24,7 @@ I am a PhD researcher in adversarial machine learning, and I work both sides of 
 
 ## disclosures
 
+- **CVE-2026-59369**, Spring AI 2.0.2: a crafted filter value escapes the tenant filter in the Typesense vector store, so one user reads and deletes other users' documents. Fixed in 2.0.3. Credited as an independent reporter. [Spring advisory](https://spring.io/security/cve-2026-59369)
 - **CVE-2026-91141**, vsomeip 3.7.3: a 16-byte SOME/IP header makes the receiver allocate 512 MiB. Fixed in 3.7.4. CERT/CC VU#128947. [Writeup](/posts/cve-2026-91141-vsomeip/)
 - **CVE-2026-58196**, ToolHive: host-side SSRF bypassing container isolation. Fixed in v0.31.0. Advisory GHSA-pr64-jmmf-jp54. [Writeup](/projects/toolhive-ssrf/)
 
