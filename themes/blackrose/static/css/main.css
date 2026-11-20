@@ -158,7 +158,7 @@ img { max-width: 100%; display: block; }
   border-bottom: 1px solid transparent;
   transition: color 200ms ease, border-color 200ms ease;
 }
-.nav-links a:hover, .nav-links a[aria-current="page"] {
+.nav-links a:hover, .nav-links a[aria-current] {
   color: var(--ink); border-bottom-color: var(--rose);
 }
 
@@ -741,6 +741,10 @@ html.js .statusbar {
   .nav-links a.nav-cta { font-size: 0.7rem; padding: 0.4rem 0.55rem; }
   .contact-alt { gap: 0.6rem; }
   .contact-alt .btn-ghost { padding-inline: 1.05rem; }
+}
+@media (max-width: 420px) {
+  .nav-links { gap: 0.35rem; }
+  .nav-links a.nav-cta { padding-inline: 0.35rem; }
 }
 
 /* --- reduced motion ------------------------------------------ */
