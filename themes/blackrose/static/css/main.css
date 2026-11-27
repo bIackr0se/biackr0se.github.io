@@ -696,6 +696,10 @@ a.pub-row:hover .pub-title { color: var(--rose); }
   .footer-brand { grid-column: 1 / -1; }
 }
 
+@media (max-width: 335px) {
+  .footer-col a[href^="mailto:"] { overflow-wrap: anywhere; }
+}
+
 /* --- footer status strip -------------------------------------- */
 /* Populated by JS; without JS it stays hidden so no dead placeholders show. */
 .statusbar { display: none; }
