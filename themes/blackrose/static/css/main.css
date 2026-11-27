@@ -2,35 +2,48 @@
    BLACKROSE - digital noir design system
    ============================================================ */
 
+/* Type from Atlas, JR's design system: Archivo for structure, Newsreader for
+   long reading, IBM Plex Mono for labels and code. Self-hosted latin subsets,
+   OFL licences in fonts/licenses/. */
 @font-face {
-  font-family: "Archivo Expanded";
-  src: url("../fonts/archivo-expanded-v25-latin-900.woff2") format("woff2");
-  font-weight: 900; font-stretch: 125%; font-style: normal; font-display: swap;
+  font-family: "Archivo";
+  src: url("../fonts/archivo-variable-latin.woff2") format("woff2");
+  font-weight: 100 900; font-stretch: 62% 125%; font-style: normal; font-display: swap;
+}
+/* The display cut: the same file pinned to weight 800, so every heading that
+   uses --display gets it without a weight rule of its own. */
+@font-face {
+  font-family: "Archivo Display";
+  src: url("../fonts/archivo-variable-latin.woff2") format("woff2");
+  font-weight: 800; font-stretch: 62% 125%; font-style: normal; font-display: swap;
+}
+/* Arrows and angle quotes from Plex Mono, behind every family in the stacks
+   below: the latin subsets above do not carry them. */
+@font-face {
+  font-family: "Atlas Arrows";
+  src: url("../fonts/ibm-plex-mono-arrows.woff2") format("woff2");
+  font-weight: 100 900; font-style: normal; font-display: swap;
+  unicode-range: U+2039-203A, U+2190-2199;
 }
 @font-face {
-  font-family: "Space Grotesk";
-  src: url("../fonts/space-grotesk-v22-latin-regular.woff2") format("woff2");
+  font-family: "Newsreader";
+  src: url("../fonts/newsreader-variable-latin.woff2") format("woff2");
+  font-weight: 200 800; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Newsreader";
+  src: url("../fonts/newsreader-variable-latin-italic.woff2") format("woff2");
+  font-weight: 200 800; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("../fonts/ibm-plex-mono-latin-400.woff2") format("woff2");
   font-weight: 400; font-style: normal; font-display: swap;
 }
 @font-face {
-  font-family: "Space Grotesk";
-  src: url("../fonts/space-grotesk-v22-latin-500.woff2") format("woff2");
-  font-weight: 500; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: "Space Grotesk";
-  src: url("../fonts/space-grotesk-v22-latin-700.woff2") format("woff2");
-  font-weight: 700; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: "JetBrains Mono";
-  src: url("../fonts/jetbrains-mono-v24-latin-regular.woff2") format("woff2");
-  font-weight: 400; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: "JetBrains Mono";
-  src: url("../fonts/jetbrains-mono-v24-latin-700.woff2") format("woff2");
-  font-weight: 700; font-style: normal; font-display: swap;
+  font-family: "IBM Plex Mono";
+  src: url("../fonts/ibm-plex-mono-latin-600.woff2") format("woff2");
+  font-weight: 600 700; font-style: normal; font-display: swap;
 }
 
 :root {
@@ -41,16 +54,18 @@
   --line-soft: rgba(232, 228, 221, 0.09);
   --ink: #ece7de;
   --dim: #9a938a;
-  --faint: #7a746c;
+  --faint: #8a847b;
   --rose: #ff2a4d;
   --ember: #ff6a3d;
   --violet: #a12aff;
   --grad: linear-gradient(100deg, var(--rose) 0%, var(--ember) 55%, #ffb03a 100%);
-  --display: "Archivo Expanded", "Arial Black", sans-serif;
-  /* expanded grotesque runs tight, like the original Archivo Black */
-  --disp-track: -0.01em;
-  --body: "Space Grotesk", "Helvetica Neue", sans-serif;
-  --mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
+  --row-tint: linear-gradient(90deg, rgba(255, 42, 77, 0.06), transparent 70%);
+  --fs-label: 0.75rem; /* floor for small mono labels */
+  --display: "Archivo Display", "Atlas Arrows", "Helvetica Neue", Arial, sans-serif;
+  --disp-track: -0.02em;
+  --body: "Archivo", "Atlas Arrows", "Helvetica Neue", Arial, sans-serif;
+  --prose: "Newsreader", "Atlas Arrows", Charter, Georgia, serif;
+  --mono: "IBM Plex Mono", "Atlas Arrows", ui-monospace, Menlo, monospace;
   /* legibility scrim for text sitting on the hero rose bloom */
   --hero-scrim: 0 1px 14px rgba(6, 4, 7, 0.95), 0 0 32px rgba(6, 4, 7, 0.85);
   --pad: clamp(1.25rem, 4vw, 4rem);
@@ -58,8 +73,12 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-html:focus-within { scroll-behavior: smooth; }
+html {
+  /* No CSS smooth scrolling: keyboard focus jumps straight to its target, and
+     the hero cue glides in main.js only when motion is allowed. */
+  /* Keep anchor targets and keyboard-focused cards clear of the fixed nav and the bottom edge. */
+  scroll-padding-block: 5rem 2rem;
+}
 
 body {
   background: var(--bg);
@@ -91,6 +110,7 @@ img { max-width: 100%; display: block; }
   font-family: var(--mono);
 }
 .skip:focus { left: 0; }
+:focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; }
 
 /* --- film grain overlay ------------------------------------ */
 .grain {
@@ -155,6 +175,9 @@ img { max-width: 100%; display: block; }
     height: calc(var(--stage-vh, 100) * 1vh);
     height: calc(var(--stage-vh, 100) * 1svh);
   }
+  /* The thesis stage starts rising while the hero is still pinned, so its
+     first line is on screen by the time the hero has closed to black. */
+  html.cinema .stage[data-stage="manifesto"] { margin-top: -40vh; margin-top: -40svh; }
   html.cinema .stage .scene {
     position: sticky; top: 0;
     height: 100vh; height: 100svh;
@@ -205,6 +228,7 @@ img { max-width: 100%; display: block; }
   font-family: var(--display);
   font-size: clamp(3rem, 12.5vw, 11rem);
   line-height: 0.92; letter-spacing: -0.015em;
+  font-stretch: 112.5%; /* the wordmark keeps some breadth; other headings stay at normal width */
   color: var(--ink);
   text-transform: uppercase;
   text-shadow: 0 0 90px rgba(255, 42, 77, 0.28), 0 0 24px rgba(6, 4, 7, 0.8);
@@ -226,7 +250,7 @@ img { max-width: 100%; display: block; }
 .hero-cue {
   position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
   z-index: 2; color: var(--faint); letter-spacing: 0.3em; text-transform: uppercase;
-  font-size: 0.6875rem; display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+  font-size: var(--fs-label); display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
 }
 .cue-line {
   width: 1px; height: 3rem; background: linear-gradient(to bottom, var(--rose), transparent);
@@ -291,6 +315,8 @@ html.js [data-reveal] {
   transition-delay: var(--d, 0ms);
 }
 html.js [data-reveal].in { opacity: 1; transform: none; }
+/* A card that takes keyboard focus shows at once, without waiting for its reveal. */
+html.js [data-reveal]:focus-within { opacity: 1; transform: none; transition-duration: 120ms; }
 
 /* --- manifesto ---------------------------------------------- */
 .manifesto { position: relative; }
@@ -336,7 +362,7 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
 .ticker-item {
   color: var(--dim); white-space: nowrap;
   letter-spacing: 0.14em;
-  font-size: 0.75rem;
+  font-size: var(--fs-label);
 }
 .ticker-sep { color: var(--rose); margin: 0 1.9rem; font-family: var(--mono); font-size: 0.7rem; opacity: 0.65; }
 @keyframes ticker-scroll {
@@ -369,7 +395,7 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
   font-variant-numeric: tabular-nums;
 }
 .stat-label { font-weight: 700; font-size: 1.05rem; letter-spacing: 0.01em; }
-.stat-sub { color: var(--faint); font-size: 0.71875rem; }
+.stat-sub { color: var(--faint); font-size: var(--fs-label); }
 
 /* --- domains ------------------------------------------------ */
 .domain-grid {
@@ -387,7 +413,7 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
 .domain-card:hover { background: var(--bg-2); }
 .domain-card:hover .domain-index { color: var(--rose); }
 .domain-index {
-  color: var(--faint); font-size: 0.75rem; display: block; margin-bottom: 1.6rem;
+  color: var(--faint); font-size: var(--fs-label); display: block; margin-bottom: 1.6rem;
   transition: color 300ms ease;
 }
 .domain-card h3 {
@@ -395,20 +421,28 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
   font-size: 1.25rem; margin-bottom: 0.8rem; letter-spacing: 0.01em;
 }
 .domain-card p { color: var(--dim); font-size: 0.95rem; }
-.domain-tags { margin-top: 1.4rem; color: var(--faint); font-size: 0.71875rem; }
+.domain-tags { margin-top: 1.4rem; color: var(--faint); font-size: var(--fs-label); }
 
 /* --- work --------------------------------------------------- */
 .work-list { border-top: 1px solid var(--line-soft); }
 .work-item {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: clamp(3rem, 6vw, 4.6rem) 1fr auto;
   gap: clamp(1rem, 4vw, 3rem);
   align-items: center;
-  padding: 2.4rem 0.5rem;
+  padding: 2.4rem 0.5rem 2.4rem 0;
   border-bottom: 1px solid var(--line-soft);
-  transition: background 250ms ease, padding 250ms ease;
+  transition: background 250ms ease;
 }
-.work-item:hover { background: linear-gradient(90deg, rgba(255, 42, 77, 0.06), transparent 70%); padding-left: 1.2rem; }
+.work-item:hover, .work-item:focus-visible { background: var(--row-tint); }
+.work-body, .pub-body, .post-row > * { transition: transform 250ms ease; }
+/* The slide is spatial motion, so it runs only when motion is allowed; the
+   background tint and title colour stay as feedback either way. */
+@media (prefers-reduced-motion: no-preference) {
+  .work-item:hover .work-body, .work-item:focus-visible .work-body,
+  a.pub-row:hover .pub-body, a.pub-row:focus-visible .pub-body,
+  .post-row:hover > *, .post-row:focus-visible > * { transform: translateX(0.7rem); }
+}
 .work-index {
   font-family: var(--display); font-size: clamp(1.6rem, 4vw, 2.8rem);
   color: transparent; -webkit-text-stroke: 1px var(--faint);
@@ -416,7 +450,7 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
 }
 .work-item:hover .work-index { -webkit-text-stroke-color: var(--rose); }
 .work-body { display: flex; flex-direction: column; gap: 0.35rem; min-width: 0; }
-.work-kind { color: var(--rose); font-size: 0.71875rem; text-transform: uppercase; letter-spacing: 0.16em; }
+.work-kind { color: var(--rose); font-size: var(--fs-label); text-transform: uppercase; letter-spacing: 0.16em; }
 .work-title { font-weight: 700; font-size: clamp(1.15rem, 2.4vw, 1.6rem); }
 .work-desc { color: var(--dim); font-size: 0.95rem; max-width: 46rem; }
 .work-arrow {
@@ -435,7 +469,7 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
 }
 .spotlight-kicker {
   color: var(--rose); text-transform: uppercase;
-  font-size: 0.6875rem; letter-spacing: 0.18em;
+  font-size: var(--fs-label); letter-spacing: 0.18em;
   margin-bottom: 1.1rem;
 }
 .spotlight-title {
@@ -444,25 +478,26 @@ html.js [data-reveal].in { opacity: 1; transform: none; }
   margin-bottom: 1rem;
 }
 .spotlight-copy { color: var(--dim); max-width: 52rem; font-size: 1rem; }
+.spotlight-link { margin-top: 1.8rem; }
 .spotlight-venue {
   margin-top: 1.5rem; color: var(--faint);
-  font-size: 0.71875rem; text-transform: uppercase; letter-spacing: 0.1em;
+  font-size: var(--fs-label); text-transform: uppercase; letter-spacing: 0.1em;
 }
 .pub-list { border-top: 1px solid var(--line-soft); }
 .pub-row {
   display: grid; grid-template-columns: 1fr auto; gap: 0.5rem 2rem;
   align-items: center;
-  padding: 1.5rem 0.5rem;
+  padding: 1.5rem 0.5rem 1.5rem 0;
   border-bottom: 1px solid var(--line-soft);
-  transition: background 250ms ease, padding 250ms ease;
+  transition: background 250ms ease;
 }
-a.pub-row:hover { background: linear-gradient(90deg, rgba(255, 42, 77, 0.06), transparent 70%); padding-left: 1.2rem; }
+a.pub-row:hover, a.pub-row:focus-visible { background: var(--row-tint); }
 .pub-body { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
 .pub-title { font-weight: 500; font-size: 1.02rem; line-height: 1.45; }
 a.pub-row:hover .pub-title { color: var(--rose); }
-.pub-venue { color: var(--faint); font-size: 0.71875rem; text-transform: uppercase; letter-spacing: 0.1em; }
+.pub-venue { color: var(--faint); font-size: var(--fs-label); text-transform: uppercase; letter-spacing: 0.1em; }
 .pub-status {
-  font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase;
+  font-size: var(--fs-label); letter-spacing: 0.12em; text-transform: uppercase;
   color: var(--ember); border: 1px solid rgba(255, 106, 61, 0.35);
   padding: 0.3rem 0.7rem; white-space: nowrap;
 }
@@ -474,14 +509,18 @@ a.pub-row:hover .pub-title { color: var(--rose); }
 
 /* --- writing / post lists ----------------------------------- */
 .post-list { border-top: 1px solid var(--line-soft); }
+/* On index pages the list is also the padded page container, so its own top
+   border would overhang the rows; the first row carries the rule instead. */
+.post-list.list-page { border-top: 0; }
+.post-list.list-page > .post-row:first-child { border-top: 1px solid var(--line-soft); }
 .post-row {
   display: grid; grid-template-columns: 8.5rem 1fr; gap: 0.4rem 2rem;
-  padding: 1.7rem 0.5rem;
+  padding: 1.7rem 0.5rem 1.7rem 0;
   border-bottom: 1px solid var(--line-soft);
   align-items: baseline;
-  transition: background 250ms ease, padding 250ms ease;
+  transition: background 250ms ease;
 }
-.post-row:hover { background: linear-gradient(90deg, rgba(255, 42, 77, 0.06), transparent 70%); padding-left: 1.2rem; }
+.post-row:hover, .post-row:focus-visible { background: var(--row-tint); }
 .post-date { color: var(--faint); }
 .post-title { font-weight: 700; font-size: 1.2rem; }
 .post-row:hover .post-title { color: var(--rose); }
@@ -497,6 +536,7 @@ a.pub-row:hover .pub-title { color: var(--rose); }
   transition: background 250ms ease, color 250ms ease, border-color 250ms ease;
 }
 .btn-ghost:hover { border-color: var(--rose); color: var(--rose); }
+.not-found-links { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2rem; }
 .btn-solid { background: var(--rose); border-color: var(--rose); color: #0a0508; font-weight: 700; }
 .btn-solid:hover { background: transparent; color: var(--rose); }
 
@@ -524,12 +564,20 @@ a.pub-row:hover .pub-title { color: var(--rose); }
   aspect-ratio: 1 / 1; height: auto;
   opacity: 0.5; pointer-events: none; z-index: 0;
 }
+/* In a single page the head is the narrow text column, so the rose would sit
+   behind the standfirst; it fades back there and moves beside the column
+   when the screen has room. */
+.post-head .inner-rose { opacity: 0.22; }
+/* 1480px: the column edge plus the rose's 24rem offset stays inside the viewport. */
+@media (min-width: 1480px) {
+  .post-head .inner-rose { width: 20rem; top: -3rem; right: -24rem; opacity: 0.5; }
+}
 .page-head > *:not(.inner-rose), .post-head > *:not(.inner-rose) {
   position: relative; z-index: 1;
 }
 .page-title {
   font-family: var(--display);
-  font-size: clamp(2.6rem, 9vw, 6.5rem);
+  font-size: clamp(1.9rem, 7.6vw, 6.5rem);
   text-transform: uppercase; line-height: 0.95;
 }
 .page-intro { margin-top: 1.6rem; color: var(--dim); max-width: 46rem; }
@@ -554,6 +602,8 @@ a.pub-row:hover .pub-title { color: var(--rose); }
   margin-top: 1.4rem; color: var(--dim);
   font-size: 1.15rem; line-height: 1.55;
 }
+.prose { font-family: var(--prose); font-size: 1.1875rem; line-height: 1.6; }
+.prose h2, .prose h3, .prose table { font-family: var(--body); }
 .prose > * + * { margin-top: 1.3rem; }
 .prose h2 {
   font-family: var(--body); font-weight: 700; font-size: 1.6rem;
@@ -561,11 +611,12 @@ a.pub-row:hover .pub-title { color: var(--rose); }
 }
 .prose h2::before { content: "// "; color: var(--rose); font-family: var(--mono); font-size: 1.2rem; }
 .prose h3 { font-weight: 700; font-size: 1.2rem; margin-top: 2.2rem; }
-.prose a { color: var(--rose); border-bottom: 1px solid var(--line); }
+.prose a { color: var(--rose); border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
 .prose a:hover { border-bottom-color: var(--rose); }
 .prose code {
   font-family: var(--mono); font-size: 0.85em;
   background: var(--panel); padding: 0.15em 0.4em; border-radius: 3px;
+  overflow-wrap: anywhere;
 }
 .prose pre {
   background: #0a0710 !important;
@@ -581,9 +632,13 @@ a.pub-row:hover .pub-title { color: var(--rose); }
 .prose ul, .prose ol { padding-left: 1.4rem; }
 .prose li + li { margin-top: 0.5rem; }
 .prose hr { border: 0; border-top: 1px solid var(--line-soft); margin: 3rem 0; }
-.prose table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+.prose table { display: block; overflow-x: auto; border-collapse: collapse; width: 100%; font-size: 0.92rem; }
 .prose th, .prose td { border: 1px solid var(--line-soft); padding: 0.6rem 0.9rem; text-align: left; }
+.prose td code { overflow-wrap: normal; white-space: nowrap; } /* the table scrolls; a number never splits */
 .prose th { background: var(--panel); font-family: var(--mono); font-size: 0.78rem; }
+.br-vsomeip-film { max-width: 32rem; margin-inline: auto; }
+.br-vsomeip-film video { display: block; width: 100%; height: auto; border: 1px solid var(--line); background: #08080c; }
+.br-vsomeip-film figcaption { margin-top: 0.65rem; color: var(--dim); font-size: 0.88rem; text-align: center; }
 
 /* --- cert grid (about page) ----------------------------------- */
 .cert-grid {
@@ -598,11 +653,13 @@ a.pub-row:hover .pub-title { color: var(--rose); }
   transition: border-color 250ms ease, transform 250ms ease;
 }
 .cert-card:hover { border-color: var(--line); transform: translateY(-3px); }
-.cert-card img { width: 100%; height: auto; }
+/* One frame for every credential, so a square badge and landscape certificates
+   line up; contain keeps the whole document readable. */
+.cert-card img { width: 100%; height: auto; aspect-ratio: 900 / 695; object-fit: contain; background: #fff; }
 .cert-body { padding: 1rem 1.1rem 1.2rem; display: flex; flex-direction: column; gap: 0.3rem; }
 .cert-name { font-weight: 700; font-size: 0.98rem; }
 .cert-card:hover .cert-name { color: var(--rose); }
-.cert-meta { font-family: var(--mono); color: var(--faint); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; }
+.cert-meta { font-family: var(--mono); color: var(--faint); font-size: var(--fs-label); text-transform: uppercase; letter-spacing: 0.1em; }
 
 .post-foot { margin-top: 4rem; border-top: 1px solid var(--line-soft); padding-top: 2rem; }
 .post-nav { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
@@ -624,7 +681,7 @@ a.pub-row:hover .pub-title { color: var(--rose); }
 .footer-line { color: var(--rose); }
 .footer-head {
   color: var(--faint); text-transform: uppercase; letter-spacing: 0.18em;
-  font-size: 0.6875rem; margin-bottom: 1.1rem;
+  font-size: var(--fs-label); margin-bottom: 1.1rem;
 }
 .footer-col { display: flex; flex-direction: column; gap: 0.55rem; align-items: flex-start; }
 .footer-col a {
@@ -632,8 +689,8 @@ a.pub-row:hover .pub-title { color: var(--rose); }
   border-bottom: 1px solid transparent; letter-spacing: 0.04em;
 }
 .footer-col a:hover { color: var(--ink); border-bottom-color: var(--rose); }
-.footer-note { color: var(--faint); font-size: 0.71875rem; }
-.footer-copy { color: var(--faint); font-size: 0.71875rem; padding-top: 1.6rem; }
+.footer-note { color: var(--faint); font-size: var(--fs-label); }
+.footer-copy { color: var(--faint); font-size: var(--fs-label); padding-top: 1.6rem; }
 @media (max-width: 760px) {
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer-brand { grid-column: 1 / -1; }
@@ -646,14 +703,15 @@ html.js .statusbar {
   display: flex; flex-wrap: wrap; gap: 0.4rem 2.2rem;
   border-top: 1px solid var(--line-soft);
   padding: 0.65rem var(--pad);
-  color: var(--faint); font-size: 0.65rem;
+  color: var(--faint); font-size: 0.7rem;
   text-transform: uppercase; letter-spacing: 0.12em;
 }
 .sb-status em { color: var(--rose); font-style: normal; }
+.sb-dot { display: inline-block; width: 0.5em; height: 0.5em; border-radius: 50%; background: currentColor; vertical-align: 0.1em; }
 
 /* --- nav contact cta ----------------------------------------- */
 .nav-links a.nav-cta {
-  font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em;
+  font-family: var(--mono); font-size: var(--fs-label); letter-spacing: 0.08em;
   color: var(--rose); border: 1px solid var(--line);
   padding: 0.45rem 0.9rem;
   transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
@@ -662,13 +720,27 @@ html.js .statusbar {
 
 /* --- responsive --------------------------------------------- */
 @media (max-width: 640px) {
+  .inner-rose { right: 0; }
   .nav-links { gap: 0.9rem; }
-  .nav-links a { font-size: 0.75rem; }
+  .nav-links a { font-size: var(--fs-label); }
   .post-row { grid-template-columns: 1fr; }
   .post-desc { grid-column: 1; }
   .work-item { grid-template-columns: 1fr auto; }
   .work-index { display: none; }
   .hero-cue { display: none; }
+  .hero-title { font-size: 11.2vw; }
+  .manifesto, .domains, .work, .writing, .contact, .research { padding-block: clamp(3.5rem, 9vh, 6rem); }
+  .record { padding-block: clamp(3rem, 8vh, 5rem); }
+}
+@media (max-width: 420px) {
+  .nav { padding-inline: 0.8rem; }
+  .nav-brand { gap: 0.35rem; }
+  .nav-name { font-size: 0.78rem; }
+  .nav-links { gap: 0.55rem; }
+  .nav-links a { font-size: 0.7rem; }
+  .nav-links a.nav-cta { font-size: 0.7rem; padding: 0.4rem 0.55rem; }
+  .contact-alt { gap: 0.6rem; }
+  .contact-alt .btn-ghost { padding-inline: 1.05rem; }
 }
 @media (max-width: 420px) {
   .nav-links { gap: 0.35rem; }
@@ -677,7 +749,6 @@ html.js .statusbar {
 
 /* --- reduced motion ------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
   .grain { animation: none; }
   .cue-line { animation: none; }
   .hero-boot::after { animation: none; }

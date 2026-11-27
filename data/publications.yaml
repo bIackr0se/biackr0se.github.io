@@ -2,15 +2,27 @@
 # When an entry is added or changes status, also update: the stats block and
 # spotlight in data/home.yaml, and the paper counts in content/about.md
 # (whoami paragraph + publications section).
-- title: "When the Analyst Scans for the Attacker: Subverting Agentic LLM Security Operations in OT Networks"
+- id: shield-ai  # the home spotlight links through this id
+  title: "When the Analyst Scans for the Attacker: Subverting Agentic LLM Security Operations in OT Networks"
   venue: "SHIELD-AI @ ECML PKDD 2026, Springer CCIS"
   status: "to appear"
+  note: "accepted manuscript (PDF)"
+  # Self-archived under the Springer licence clause for the author's own website.
+  # When the CCIS volume is out, replace the DOI placeholder in the PDF's page-1
+  # notice with the real DOI.
+  url: "/papers/rahmani-shield-ai-2026-accepted.pdf"
 - title: "KEYSER: Stateful Adversarial Campaign Evaluation of ML-Based Intrusion Detection in Industrial Automation"
   venue: "IEEE ETFA 2026"
-  status: "to appear"
+  status: "published"
+  url: "https://doi.org/10.1109/ETFA68377.2026.11724909"
 - title: "Adversarial Robustness Evaluation of a Multi-Layer OT Intrusion Detection System via Automated C2 Red Teaming"
   venue: "IEEE ETFA 2026"
+  status: "published"
+  url: "https://doi.org/10.1109/ETFA68377.2026.11725122"
+- title: "Agentic Incident Response in IT/OT Critical Infrastructure: Reinforcement Learning and Cross-Domain Generalization"
+  venue: "CCSS 2026"
   status: "to appear"
+  note: "co-author"
 - title: "Characterizing Domain Shift in PROFINET Intrusion Detection: A Multi-Site Ground-Truth Evaluation"
   venue: "IEEE WFCS 2026"
   status: "published"
@@ -36,6 +48,11 @@
   venue: "IEEE IDAACS 2025"
   status: "published"
   url: "https://doi.org/10.1109/IDAACS68557.2025.11322367"
+- title: "A Comprehensive Review of Public Datasets for Machine Learning-Based Intrusion Detection in IoT and OT Networks"
+  venue: "IEEE IDAACS 2025"
+  status: "published"
+  note: "co-author"
+  url: "https://doi.org/10.1109/IDAACS68557.2025.11321996"
 - title: "Mapping the MITRE ATT&CK Framework to Modbus Cyber Attacks in Industrial OT Networks"
   venue: "IEEE ICEST 2025"
   status: "published"

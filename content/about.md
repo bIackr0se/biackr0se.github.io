@@ -5,10 +5,11 @@ description: "Jaafer Rahmani. Security engineer and PhD researcher. AI red teami
 
 ## whoami
 
-Jaafer Rahmani. Security engineer and PhD researcher in adversarial machine learning. I work both sides of AI security: red-teaming ML models, LLM agents, and RAG pipelines, and engineering the ML-driven detection that defends enterprise and industrial networks against a moving target. Ten peer-reviewed papers, a CVE, and a preference for attacks that reproduce.
+I am a PhD researcher in adversarial machine learning, and I work both sides of AI security: red-teaming ML models, LLM agents, and RAG pipelines, and engineering the ML-driven detection that defends enterprise and industrial networks against a moving target. Twelve peer-reviewed papers, three published CVEs, and a preference for attacks that reproduce.
 
 ## current
 
+- [Agentarium](https://github.com/bIackr0se/agentarium): a local, read-only map of agent work, with project islands, mission boards, and evidence replay
 - Doctoral research in adversarial ML: evaluating and hardening intrusion detection systems against adaptive evasion
 - Security analysis of agentic LLM SOC assistants: prompt injection against tool-wielding analysts that act on live OT networks
 - Engineering AI-supported SIEM for critical infrastructure (IT/OT networks)
@@ -23,10 +24,9 @@ Jaafer Rahmani. Security engineer and PhD researcher in adversarial machine lear
 
 ## disclosures
 
-```
-[+] CVE-2026-58196 - ToolHive: host-side SSRF bypassing container
-    isolation. Fixed in v0.31.0. Advisory GHSA-pr64-jmmf-jp54.
-```
+- **CVE-2026-59369**, Spring AI 2.0.2: a crafted filter value escapes the tenant filter in the Typesense vector store, so one user reads and deletes other users' documents. Fixed in 2.0.3. Credited as an independent reporter. [Spring advisory](https://spring.io/security/cve-2026-59369)
+- **CVE-2026-91141**, vsomeip 3.7.3: a 16-byte SOME/IP header makes the receiver allocate 512 MiB. Fixed in 3.7.4. CERT/CC VU#128947. [Writeup](/posts/cve-2026-91141-vsomeip/)
+- **CVE-2026-58196**, ToolHive: host-side SSRF bypassing container isolation. Fixed in v0.31.0. Advisory GHSA-pr64-jmmf-jp54. [Writeup](/projects/toolhive-ssrf/)
 
 More reports are in vendor queues. They land here when they go public.
 
@@ -38,7 +38,7 @@ Affiliations: OWASP member.
 
 ## publications
 
-Ten peer-reviewed papers across IEEE, Springer, and MDPI venues (2025-2026), spanning SIEM frameworks for OT anomaly detection, MITRE-mapped attack emulation testbeds, PROFINET intrusion detection, agentic LLM security analysts and the prompt-injection attacks that subvert them, and adversarial campaign evaluation of ML-based IDS. Full list with venues and status on the [work page]({{< relref "/projects" >}}#papers).
+Twelve peer-reviewed papers across IEEE, Springer, and MDPI venues (2025-2026), spanning SIEM frameworks for OT anomaly detection, MITRE-mapped attack emulation testbeds, public datasets for ML-based intrusion detection, PROFINET intrusion detection, agentic LLM security analysts and the prompt-injection attacks that subvert them, reinforcement-learning incident response for IT/OT, and adversarial campaign evaluation of ML-based IDS. Full list with venues and status on the [work page]({{< relref "/projects" >}}#papers).
 
 ## contact
 

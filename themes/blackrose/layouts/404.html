@@ -1,0 +1,14 @@
+{{ define "main" }}
+<section class="page-head">
+  <canvas class="inner-rose" data-rose-static aria-hidden="true"></canvas>
+  <p class="kicker mono">[ 404 // not found ]</p>
+  <h1 class="page-title glitch" data-glitch="SIGNAL LOST"><span>SIGNAL LOST</span></h1>
+  <div class="page-intro"><p>Nothing lives at this address. The research, the disclosures and the writeups are one link away.</p></div>
+  <p class="not-found-links">
+    <a class="btn-solid mono" href="{{ "/" | relURL }}">home</a>
+    <a class="btn-ghost mono" href="{{ "/projects/" | relURL }}">work</a>
+    <a class="btn-ghost mono" href="{{ "/posts/" | relURL }}">writing</a>
+    <a class="btn-ghost mono" href="mailto:{{ site.Params.email }}">contact</a>
+  </p>
+</section>
+{{ end }}
